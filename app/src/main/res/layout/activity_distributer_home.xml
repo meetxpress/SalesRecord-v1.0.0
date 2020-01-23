@@ -7,16 +7,84 @@
     tools:context=".DistributerHome">
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="284dp"
-        android:text="Button"
+        android:id="@+id/btnAddEmp"
+        android:layout_width="148dp"
+        android:layout_height="117dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/add_emp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnMngEmp"
+        android:layout_width="148dp"
+        android:layout_height="117dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="44dp"
+        android:background="@drawable/manager_emp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnViewAttendance"
+        android:layout_width="148dp"
+        android:layout_height="117dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="140dp"
+        android:background="@drawable/view_attedanace"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddEmp" />
+
+    <Button
+        android:id="@+id/btnViewReport"
+        android:layout_width="148dp"
+        android:layout_height="117dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginEnd="44dp"
+        android:background="@drawable/view_reports"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnMngEmp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="16dp"
+        android:text="Add Employee"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddEmp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="54dp"
+        android:text="Manage Employee"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnMngEmp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="16dp"
+        android:text="View Attendance"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnViewAttendance" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="80dp"
+        android:text="View Reports"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnViewReport" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
