@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterCompany">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:layout_marginStart="-75dp"
+            android:layout_marginEnd="-50dp">
+
+            <TextView
+                android:id="@+id/TitleCompany"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="98dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="175dp"
+                android:layout_marginBottom="8dp"
+                android:text="Company Profile"
+                android:textSize="24sp"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@+id/CompName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/CompName"
+                android:layout_width="349dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="98dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="8dp"
+                android:ems="10"
+                android:hint="Compnay Name"
+                android:inputType="textPersonName"
+                android:maxLength="30"
+                app:layout_constraintBottom_toTopOf="@+id/CompPhno"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TitleCompany" />
+
+            <EditText
+                android:id="@+id/CompPhno"
+                android:layout_width="349dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="98dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="8dp"
+                android:ems="10"
+                android:hint="Compnay Phone No."
+                android:inputType="phone"
+                android:maxLength="10"
+                app:layout_constraintBottom_toTopOf="@+id/CompEmail"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CompName" />
+
+            <EditText
+                android:id="@+id/CompEmail"
+                android:layout_width="349dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="98dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="8dp"
+                android:ems="10"
+                android:hint="Compnay Email"
+                android:inputType="textEmailAddress"
+                android:maxLength="30"
+                app:layout_constraintBottom_toTopOf="@+id/CompAddress"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CompPhno" />
+
+            <EditText
+                android:id="@+id/CompAddress"
+                android:layout_width="349dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="98dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="8dp"
+                android:ems="10"
+                android:hint="Compnay Address"
+                android:inputType="textPostalAddress"
+                android:maxLength="50"
+                app:layout_constraintBottom_toTopOf="@+id/CompLicNo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CompEmail" />
+
+            <EditText
+                android:id="@+id/CompLicNo"
+                android:layout_width="349dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="98dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:ems="10"
+                android:hint="Compnay Licence No."
+                android:inputType="number"
+                android:maxLength="8"
+                app:layout_constraintBottom_toTopOf="@+id/TitleOwner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CompAddress" />
+
+            <TextView
+                android:id="@+id/TitleOwner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="98dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="176dp"
+                android:layout_marginBottom="8dp"
+                android:text="Owner Profile"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@+id/OwnerName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CompLicNo" />
+
+            <EditText
+                android:id="@+id/OwnerName"
+                android:layout_width="349dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="98dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="8dp"
+                android:ems="10"
+                android:hint="Owner's Name"
+                android:inputType="textPersonName"
+                android:maxLength="30"
+                app:layout_constraintBottom_toTopOf="@+id/OwnerPhno"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TitleOwner" />
+
+            <EditText
+                android:id="@+id/OwnerPhno"
+                android:layout_width="349dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="98dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="8dp"
+                android:ems="10"
+                android:hint="Owner's Phone No"
+                android:inputType="phone"
+                android:maxLength="10"
+                app:layout_constraintBottom_toTopOf="@+id/OwnerEmail"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/OwnerName" />
+
+            <EditText
+                android:id="@+id/OwnerEmail"
+                android:layout_width="349dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="98dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="8dp"
+                android:ems="10"
+                android:hint="Owner's Email"
+                android:inputType="textEmailAddress"
+                android:maxLength="30"
+                app:layout_constraintBottom_toTopOf="@+id/OwnerAddress"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/OwnerPhno" />
+
+            <EditText
+                android:id="@+id/OwnerAddress"
+                android:layout_width="349dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="98dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="8dp"
+                android:ems="10"
+                android:hint="Owner's Address"
+                android:inputType="textPostalAddress"
+                android:maxLength="50"
+                app:layout_constraintBottom_toTopOf="@+id/OwnerAadharCard"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/OwnerEmail" />
+
+            <EditText
+                android:id="@+id/OwnerAadharCard"
+                android:layout_width="349dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="98dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:ems="10"
+                android:hint="Owner's Aadharcard No"
+                android:inputType="number"
+                android:maxLength="12"
+                app:layout_constraintBottom_toTopOf="@+id/btnRegisterCompany"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/OwnerAddress" />
+
+            <Button
+                android:id="@+id/btnRegisterCompany"
+                android:layout_width="349dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="98dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="8dp"
+                android:text="Register Company"
+                app:layout_constraintBottom_toTopOf="@id/OwnerAadharCard"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

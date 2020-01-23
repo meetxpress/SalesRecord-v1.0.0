@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SalesRecord</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_register_compnay">RegisterCompnay</string>
+
+    <string-array name="company_delete_list">
+        <item>Vivo</item>
+        <item>Oppo</item>
+        <item>Apple</item>
+        <item>Samsung</item>
+        <item>Xiaomi</item>
+    </string-array>
+</resources>
