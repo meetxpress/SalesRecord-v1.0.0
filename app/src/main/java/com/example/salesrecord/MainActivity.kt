@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         Handler().postDelayed({
-            var i=Intent(this@MainActivity,DistributerHome::class.java)
+            var i=Intent(this@MainActivity,LoginActivity::class.java)
             startActivity(i)
             finish()
         },1500)
