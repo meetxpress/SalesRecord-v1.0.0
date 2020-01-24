@@ -25,6 +25,28 @@
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
+    
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    
+    <style name="IL_Dist_top">
+        <item name="android:layout_marginStart">44dp</item>
+        <item name="android:layout_marginEnd">224dp</item>
+        <item name="android:layout_marginTop">80dp</item>
+        <item name="android:layout_marginBottom">520dp</item>
+    </style>
+
+    <style name="IR_Dist_top" parent="IL_Dist_top">
+        <item name="android:layout_marginEnd">44dp</item>
+        <item name="android:layout_marginStart">224dp</item>
+    </style>
+
+    <style name="IL_Dist_bottom" parent="IL_Dist_top">
+        <item name="android:layout_marginTop">330dp</item>
+        <item name="android:layout_marginBottom">270dp</item>
+    </style>
+
+    <style name="IR_Dist_bottom" parent="IL_Dist_bottom">
+        <item name="android:layout_marginEnd">44dp</item>
+        <item name="android:layout_marginStart">224dp</item>
+    </style>
 </resources>
