@@ -16,11 +16,13 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Welcome " + LoginUsername.text, Toast.LENGTH_LONG).show()
                 var i = Intent(this@LoginActivity, SuperAdminHome::class.java)
                 startActivity(i)
+                finish()
             }
             else if((LoginUsername.text.toString().equals("comp")) and (LoginPassword.text.toString().equals("ccomp"))) {
                 Toast.makeText(this, "Welcome " + LoginUsername.text, Toast.LENGTH_LONG).show()
                 var i = Intent(this@LoginActivity, DistributerHome::class.java)
                 startActivity(i)
+                finish()
             }
             else {
                 Toast.makeText(this,"Invalid Username and Password",Toast.LENGTH_LONG).show()
