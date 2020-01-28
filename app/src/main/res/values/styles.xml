@@ -29,10 +29,10 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
     
     <style name="IL_Dist_top">
-        <item name="android:layout_marginStart">44dp</item>
-        <item name="android:layout_marginEnd">224dp</item>
-        <item name="android:layout_marginTop">80dp</item>
-        <item name="android:layout_marginBottom">520dp</item>
+        <item name="android:layout_marginStart">49dp</item>
+        <item name="android:layout_marginEnd">229dp</item>
+        <item name="android:layout_marginTop">85dp</item>
+        <item name="android:layout_marginBottom">525dp</item>
     </style>
 
     <style name="IR_Dist_top" parent="IL_Dist_top">

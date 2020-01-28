@@ -11,7 +11,7 @@
         style="@style/IL_Dist_top"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/add_company"
+        android:background="@drawable/add_company_sec"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
