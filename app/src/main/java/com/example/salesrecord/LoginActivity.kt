@@ -45,7 +45,10 @@ class LoginActivity : AppCompatActivity() {
 
 */
         btnLogin.setOnClickListener {
-            if((LoginUsername.text.toString().equals("admin")) and (LoginPassword.text.toString().equals("aadmin"))) {
+            if((LoginUsername.text.toString().trim() == "") and (LoginPassword.text.toString().trim() == "")){
+                Toast.makeText(this,"Please Enter Username and Password to Login!",Toast.LENGTH_LONG).show()
+            }
+            else if((LoginUsername.text.toString().equals("admin")) and (LoginPassword.text.toString().equals("aadmin"))) {
                 Toast.makeText(this, "Welcome " + LoginUsername.text, Toast.LENGTH_LONG).show()
                 var i = Intent(this@LoginActivity, SuperAdminHome::class.java)
                 startActivity(i)

@@ -1,5 +1,6 @@
 package com.example.salesrecord
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -12,6 +13,8 @@ class DistributerHome : AppCompatActivity() {
         setContentView(R.layout.activity_distributer_home)
         btnAddEmp.setOnClickListener {
             Toast.makeText(this,"Add Employee Button!",Toast.LENGTH_LONG).show()
+            var i = Intent(this@DistributerHome, RegisterEmployee::class.java)
+            startActivity(i)
         }
 
         btnMngEmp.setOnClickListener{

@@ -9,7 +9,11 @@
         android:roundIcon="@drawable/add_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DistributerHome"></activity>
+        <activity
+            android:name=".RegisterEmployee"
+            android:label="@string/title_activity_register_employee"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".DistributerHome" />
         <activity android:name=".ManageCompany" />
         <activity android:name=".RegisterCompany" />
         <activity
