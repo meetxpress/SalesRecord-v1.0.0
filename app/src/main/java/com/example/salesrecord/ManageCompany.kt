@@ -13,16 +13,15 @@ class ManageCompany : AppCompatActivity() {
         setContentView(R.layout.activity_manage_company)
 
         fun nulling(){
-            UpCompName.text=null
-            UpCompPhno.text=null
-            UpCompEmail.text=null
-            UpCompAddress.text=null
-            UpCompLicNo.text=null
-            UpOwnerName.text=null
-            UpOwnerPhno.text=null
-            UpOwnerEmail.text=null
-            UpOwnerAddress.text=null
-            UpOwnerAadharCard.text=null
+            UpCompName.setText("")
+            UpCompEmail.setText("")
+            UpCompCity.setText("")
+            UpCompPincode.setText("")
+            UpCompPhno.setText("")
+            UpCompContactPerson.setText("")
+            UpCompLicNo.setText("")
+            UpCompGSTno.setText("")
+            UpCompWebsite.setText("")
         }
 
         btnUpdateComp.setOnClickListener {

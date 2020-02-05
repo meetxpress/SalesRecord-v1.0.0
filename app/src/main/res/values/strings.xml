@@ -10,5 +10,4 @@
         <item>Samsung</item>
         <item>Xiaomi</item>
     </string-array>
-    <string name="title_activity_register_employee">RegisterEmployee</string>
 </resources>

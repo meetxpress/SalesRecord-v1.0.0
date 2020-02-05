@@ -11,13 +11,10 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".RegisterEmployee"
-            android:label="@string/title_activity_register_employee"/>
+            android:label="Register Employee"/>
         <activity android:name=".DistributerHome" />
-        <activity android:name=".ManageCompany" />
-        <activity android:name=".RegisterCompany" />
-        <activity
-            android:name=".RegisterCompnay"
-            android:label="@string/title_activity_register_compnay" />
+        <activity android:name=".ManageCompany" android:label="Manage Company"/>
+        <activity android:name=".RegisterCompany" android:label="Register Company"/>
 
         <activity
             android:name=".LoginActivity"
