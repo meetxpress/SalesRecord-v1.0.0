@@ -11,24 +11,23 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".RegisterEmployee"
-            android:label="@string/title_activity_register_employee"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/title_activity_register_employee"/>
         <activity android:name=".DistributerHome" />
         <activity android:name=".ManageCompany" />
         <activity android:name=".RegisterCompany" />
         <activity
             android:name=".RegisterCompnay"
-            android:label="@string/title_activity_register_compnay"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_register_compnay" />
+
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/SplashScreen.NoActionBar">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.salesrecord.MainActivity" />
         </activity>
+
         <activity android:name=".SuperAdminHome" />
         <activity
             android:name=".MainActivity"

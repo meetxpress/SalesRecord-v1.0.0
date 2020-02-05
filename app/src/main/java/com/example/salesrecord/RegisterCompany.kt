@@ -13,21 +13,29 @@ class RegisterCompany : AppCompatActivity() {
         setContentView(R.layout.activity_register_company)
 
         btnRegisterCompany.setOnClickListener {
-            if((CompName.toString().length <0) and (CompPhno.toString().length <0) and (CompEmail.toString().length <0) and (CompLicNo.toString().length <0) and (OwnerName.toString().length <0) and(OwnerPhno.toString().length <0) and(OwnerEmail.toString().length <0) and(OwnerAddress.toString().length <0) and (OwnerAadharCard.toString().length <0)){
+            if((CompName.toString().length <0) and
+                (CompEmail.toString().length <0) and
+                (CompCity.toString().length <0) and
+                (CompPincode.toString().length <0) and
+                (CompPhno.toString().length <0) and
+                (CompContactPerson.toString().length <0) and
+                (CompLicNo.toString().length <0) and
+                (CompGSTno.toString().length <0) and
+                (CompWebsite.toString().length <0))
+            {
                 Toast.makeText(this,CompName.toString().length,Toast.LENGTH_LONG).show()
             }
             else {
                 Toast.makeText(this,CompName.text.toString(),Toast.LENGTH_LONG).show()
-                CompName.text=null
-                CompPhno.text=null
-                CompEmail.text=null
-                CompAddress.text=null
-                CompLicNo.text=null
-                OwnerName.text=null
-                OwnerPhno.text=null
-                OwnerEmail.text=null
-                OwnerAddress.text=null
-                OwnerAadharCard.text=null
+                CompName.setText("")
+                CompEmail.setText("")  
+                CompCity.setText("")
+                CompPincode.setText("")
+                CompPhno.setText("")
+                CompContactPerson.setText("")
+                CompLicNo.setText("")
+                CompGSTno.setText("")
+                CompWebsite.setText("")
             }
         }
     }
