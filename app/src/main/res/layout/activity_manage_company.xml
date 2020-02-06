@@ -61,7 +61,7 @@
                 android:layout_marginEnd="100dp"
                 android:layout_marginBottom="8dp"
                 android:ems="10"
-                android:hint="Name"
+                android:hint="Name*"
                 android:inputType="textPersonName"
                 android:maxLength="30"
                 app:layout_constraintBottom_toTopOf="@+id/UpCompPhno"
@@ -78,7 +78,7 @@
                 android:layout_marginEnd="100dp"
                 android:layout_marginBottom="8dp"
                 android:ems="10"
-                android:hint="Email"
+                android:hint="Email*"
                 android:inputType="textEmailAddress"
                 android:maxLength="30"
                 app:layout_constraintBottom_toTopOf="@+id/UpCompName"
@@ -95,7 +95,7 @@
                 android:layout_marginEnd="100dp"
                 android:layout_marginBottom="8dp"
                 android:ems="10"
-                android:hint="City"
+                android:hint="City*"
                 android:inputType="textPostalAddress"
                 android:maxLength="50"
                 app:layout_constraintBottom_toTopOf="@+id/UpCompEmail"
@@ -112,7 +112,7 @@
                 android:layout_marginEnd="100dp"
                 android:layout_marginBottom="8dp"
                 android:ems="10"
-                android:hint="Pincode"
+                android:hint="Pincode*"
                 android:inputType="number"
                 android:maxLength="6"
                 app:layout_constraintBottom_toTopOf="@+id/UpCompCity"
@@ -129,7 +129,7 @@
                 android:layout_marginEnd="100dp"
                 android:layout_marginBottom="8dp"
                 android:ems="10"
-                android:hint="Phone No."
+                android:hint="Phone No.*"
                 android:inputType="phone"
                 android:maxLength="10"
                 app:layout_constraintBottom_toTopOf="@+id/UpCompPincode"
@@ -146,7 +146,7 @@
                 android:layout_marginEnd="100dp"
                 android:layout_marginBottom="8dp"
                 android:ems="10"
-                android:hint="Person of Contact"
+                android:hint="Person of Contact*"
                 android:inputType="textPersonName"
                 android:maxLength="30"
                 app:layout_constraintBottom_toTopOf="@+id/UpCompPhno"
@@ -163,7 +163,7 @@
                 android:layout_marginEnd="100dp"
                 android:layout_marginBottom="8dp"
                 android:ems="10"
-                android:hint="Licence No."
+                android:hint="Licence No.*"
                 android:inputType="number"
                 android:maxLength="8"
                 app:layout_constraintBottom_toTopOf="@+id/UpCompContactPerson"
@@ -180,7 +180,7 @@
                 android:layout_marginEnd="100dp"
                 android:layout_marginBottom="8dp"
                 android:ems="10"
-                android:hint="GST No."
+                android:hint="GST No.*"
                 android:inputType="text"
                 android:maxLength="15"
                 app:layout_constraintBottom_toTopOf="@+id/UpCompLicNo"
@@ -197,13 +197,28 @@
                 android:layout_marginEnd="100dp"
                 android:layout_marginBottom="8dp"
                 android:ems="10"
-                android:hint="Webiste"
+                android:hint="Webiste*"
                 android:inputType="text"
                 android:maxLength="70"
                 app:layout_constraintBottom_toTopOf="@+id/UpCompGSTno"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnRegisterCompany" />
+
+            <TextView
+                android:id="@+id/textNotice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="9dp"
+                android:text="* Required Fields."
+                android:textSize="17sp"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnUpdateComp"
@@ -218,7 +233,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnDeleteComp" />
-            />
 
             <Button
                 android:id="@+id/btnDeleteComp"
@@ -232,6 +246,8 @@
                 app:layout_constraintBottom_toTopOf="@+id/btnUpdateComp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
+
 
         </LinearLayout>
 
