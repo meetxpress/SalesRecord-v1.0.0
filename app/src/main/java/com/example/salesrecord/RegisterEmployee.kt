@@ -35,7 +35,7 @@ class RegisterEmployee : AppCompatActivity() {
             dpd.show()
         //}
     }
-/*
+
     fun onRadioButtonClicked(view: View) {
         var checked = view as RadioButton
         if (rb_male == checked) {
@@ -44,5 +44,5 @@ class RegisterEmployee : AppCompatActivity() {
         if (rb_female == checked) {
             Toast.makeText(this, (rb_female.text.toString() + if (rb_female.isChecked) " Checked " else " UnChecked "), Toast.LENGTH_LONG).show()
         }
-    }*/
+    }
 }
