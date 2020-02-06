@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterEmployee">
+    tools:context=".ManageEmployee">
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -18,7 +18,7 @@
             android:layout_marginEnd="-50dp">
 
             <TextView
-                android:id="@+id/TitleEmployee"
+                android:id="@+id/UpTitleEmployee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="98dp"
@@ -28,13 +28,13 @@
                 android:text="Employee Profile"
                 android:textSize="24sp"
                 android:textAlignment="center"
-                app:layout_constraintBottom_toTopOf="@+id/CompName"
+                app:layout_constraintBottom_toTopOf="@+id/UpCompName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/EmpName"
+                android:id="@+id/UpEmpName"
                 android:layout_width="349dp"
                 android:layout_height="52dp"
                 android:layout_marginStart="98dp"
@@ -45,13 +45,13 @@
                 android:hint="Name*"
                 android:inputType="text"
                 android:maxLength="30"
-                app:layout_constraintBottom_toTopOf="@+id/tv_gender"
+                app:layout_constraintBottom_toTopOf="@+id/Uptv_gender"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/TitleCompany" />
 
             <TextView
-                android:id="@+id/tv_gender"
+                android:id="@+id/Uptv_gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="98dp"
@@ -59,13 +59,13 @@
                 android:layout_marginEnd="175dp"
                 android:text="Gender*"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/RadioBtnGroup"
+                app:layout_constraintBottom_toTopOf="@+id/UpRadioBtnGroup"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EmpName" />
+                app:layout_constraintTop_toBottomOf="@+id/UpEmpName" />
 
             <RadioGroup
-                android:id="@+id/RadioBtnGroup"
+                android:id="@+id/UpRadioBtnGroup"
                 android:layout_width="349dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="98dp"
@@ -75,7 +75,7 @@
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/rb_male"
+                    android:id="@+id/Uprb_male"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
@@ -83,7 +83,7 @@
                     android:textSize="20sp" />
 
                 <RadioButton
-                    android:id="@+id/rb_female"
+                    android:id="@+id/Uprb_female"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
@@ -92,7 +92,7 @@
             </RadioGroup>
 
             <EditText
-                android:id="@+id/EmpDoB"
+                android:id="@+id/UpEmpDoB"
                 android:layout_width="349dp"
                 android:layout_height="52dp"
                 android:layout_marginStart="98dp"
@@ -102,14 +102,14 @@
                 android:focusable="false"
                 android:hint="Date of Birth*"
                 android:inputType="date"
-                android:onClick="addDoB"
-                app:layout_constraintBottom_toTopOf="@+id/EmpAadharNo"
+                android:onClick="updateDoB"
+                app:layout_constraintBottom_toTopOf="@+id/UpEmpAadharNo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/RadioBtnGroup" />
+                app:layout_constraintTop_toBottomOf="@+id/UpRadioBtnGroup" />
 
             <EditText
-                android:id="@+id/EmpAadharNo"
+                android:id="@+id/UpEmpAadharNo"
                 android:layout_width="349dp"
                 android:layout_height="52dp"
                 android:layout_marginStart="98dp"
@@ -120,13 +120,13 @@
                 android:hint="Aadharcard Number*"
                 android:inputType="number"
                 android:maxLength="12"
-                app:layout_constraintBottom_toTopOf="@+id/EmpPhno"
+                app:layout_constraintBottom_toTopOf="@+id/UpEmpPhno"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EmpDoB" />
+                app:layout_constraintTop_toBottomOf="@+id/UpEmpDoB" />
 
             <EditText
-                android:id="@+id/EmpPhno"
+                android:id="@+id/UpEmpPhno"
                 android:layout_width="349dp"
                 android:layout_height="52dp"
                 android:layout_marginStart="98dp"
@@ -137,13 +137,13 @@
                 android:hint="Phone No.*"
                 android:inputType="phone"
                 android:maxLength="10"
-                app:layout_constraintBottom_toTopOf="@+id/EmpEmail"
+                app:layout_constraintBottom_toTopOf="@+id/UpEmpEmail"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EmpAadharNo" />
+                app:layout_constraintTop_toBottomOf="@+id/UpEmpAadharNo" />
 
             <EditText
-                android:id="@+id/EmpEmail"
+                android:id="@+id/UpEmpEmail"
                 android:layout_width="349dp"
                 android:layout_height="52dp"
                 android:layout_marginStart="98dp"
@@ -154,13 +154,13 @@
                 android:hint="Email*"
                 android:inputType="textEmailAddress"
                 android:maxLength="30"
-                app:layout_constraintBottom_toTopOf="@+id/EmpAdd1"
+                app:layout_constraintBottom_toTopOf="@+id/UpEmpAdd1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EmpPhno" />
+                app:layout_constraintTop_toBottomOf="@+id/UpEmpPhno" />
 
             <EditText
-                android:id="@+id/EmpAdd1"
+                android:id="@+id/UpEmpAdd1"
                 android:layout_width="349dp"
                 android:layout_height="52dp"
                 android:layout_marginStart="98dp"
@@ -171,13 +171,13 @@
                 android:hint="Address1*"
                 android:inputType="textPostalAddress"
                 android:maxLength="50"
-                app:layout_constraintBottom_toTopOf="@+id/EmpAdd2"
+                app:layout_constraintBottom_toTopOf="@+id/UpEmpAdd2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EmpEmail" />
+                app:layout_constraintTop_toBottomOf="@+id/UpEmpEmail" />
 
             <EditText
-                android:id="@+id/EmpAdd2"
+                android:id="@+id/UpEmpAdd2"
                 android:layout_width="349dp"
                 android:layout_height="52dp"
                 android:layout_marginStart="98dp"
@@ -188,13 +188,13 @@
                 android:hint="Address2"
                 android:inputType="textPostalAddress"
                 android:maxLength="50"
-                app:layout_constraintBottom_toTopOf="@+id/EmpAdd2"
+                app:layout_constraintBottom_toTopOf="@+id/UpEmpAdd2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnRegisterEmp" />
+                app:layout_constraintTop_toBottomOf="@+id/btnUpdateEmp" />
 
             <TextView
-                android:id="@+id/textNotice"
+                android:id="@+id/UptextNotice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="100dp"
@@ -209,14 +209,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/btnRegisterEmp"
+                android:id="@+id/btnUpdateEmp"
                 android:layout_width="349dp"
                 android:layout_height="52dp"
                 android:layout_marginStart="98dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="100dp"
                 android:layout_marginBottom="8dp"
-                android:text="Register Employee"
+                android:text="Update Profile"
                 app:layout_constraintBottom_toTopOf="@id/EmpAdd2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -224,6 +224,5 @@
         </LinearLayout>
 
     </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

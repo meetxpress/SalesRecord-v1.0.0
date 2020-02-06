@@ -178,7 +178,7 @@
                 android:layout_marginEnd="100dp"
                 android:layout_marginBottom="8dp"
                 android:ems="10"
-                android:hint="Webiste*"
+                android:hint="Website*"
                 android:inputType="text"
                 android:maxLength="70"
                 app:layout_constraintBottom_toTopOf="@+id/CompGSTno"

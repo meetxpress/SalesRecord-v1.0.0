@@ -10,12 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ManageEmployee"
+            android:label="Manage Employee Profile"></activity>
+        <activity
             android:name=".RegisterEmployee"
-            android:label="Register Employee"/>
+            android:label="Register Employee" />
         <activity android:name=".DistributerHome" />
-        <activity android:name=".ManageCompany" android:label="Manage Company"/>
-        <activity android:name=".RegisterCompany" android:label="Register Company"/>
-
+        <activity
+            android:name=".ManageCompany"
+            android:label="Manage Company" />
+        <activity
+            android:name=".RegisterCompany"
+            android:label="Register Company" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
@@ -24,7 +30,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.salesrecord.MainActivity" />
         </activity>
-
         <activity android:name=".SuperAdminHome" />
         <activity
             android:name=".MainActivity"

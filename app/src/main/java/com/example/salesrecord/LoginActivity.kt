@@ -19,20 +19,20 @@ class LoginActivity : AppCompatActivity() {
             }
             else {
                 if ((LoginUsername.text.toString().equals("admin")) and (LoginPassword.text.toString().equals("aadmin"))) {
+                    /*
                     var per=getSharedPreferences("myPref", Context.MODE_PRIVATE)
                     var edit=per.edit()
                     edit.putString("user",LoginUsername.text.toString())
-                    edit.commit()
-
+                    edit.commit()*/
                     var i = Intent(this@LoginActivity, SuperAdminHome::class.java)
                     startActivity(i)
                     finish()
                 }
                 else if ((LoginUsername.text.toString().equals("comp")) and (LoginPassword.text.toString().equals("ccomp"))) {
-                    var per=getSharedPreferences("myPref", Context.MODE_PRIVATE)
+                    /*var per=getSharedPreferences("myPref", Context.MODE_PRIVATE)
                     var edit=per.edit()
                     edit.putString("user",LoginUsername.text.toString())
-                    edit.commit()
+                    edit.commit()*/
                     Toast.makeText(this, "Welcome " + LoginUsername.text, Toast.LENGTH_LONG).show()
                     var i = Intent(this@LoginActivity, DistributerHome::class.java)
                     startActivity(i)

@@ -15,13 +15,13 @@ class DistributerHome : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_distributer_home)
         btnAddEmp.setOnClickListener {
-            //Toast.makeText(this,"Add Employee Button!",Toast.LENGTH_LONG).show()
             var i = Intent(this@DistributerHome, RegisterEmployee::class.java)
             startActivity(i)
         }
 
         btnMngEmp.setOnClickListener{
-            Toast.makeText(this,"Manage Employee Button!",Toast.LENGTH_LONG).show()
+            var i = Intent(this@DistributerHome, ManageEmployee::class.java)
+            startActivity(i)
         }
 
         btnViewAttendance.setOnClickListener{
