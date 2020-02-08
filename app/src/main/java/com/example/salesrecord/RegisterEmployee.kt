@@ -6,11 +6,10 @@ import android.os.Bundle
 import android.os.SystemClock
 import android.provider.CalendarContract
 import android.view.View
-import android.widget.DatePicker
-import android.widget.EditText
-import android.widget.RadioButton
-import android.widget.Toast
+import android.widget.*
 import kotlinx.android.synthetic.main.activity_register_employee.*
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class RegisterEmployee : AppCompatActivity() {
@@ -26,14 +25,14 @@ class RegisterEmployee : AppCompatActivity() {
         val year=c.get(Calendar.YEAR)
         val month=c.get(Calendar.MONTH)
         val day=c.get(Calendar.DAY_OF_MONTH)
-        val date=findViewById<EditText>(R.id.EmpDoB)
+        val date =findViewById<EditText>(R.id.EmpDoB)
         var d:Date
+        var gen=findViewById<RadioGroup>(R.id.RadioBtnGroup)
+        var gender=findViewById<RadioButton>(gen.checkedRadioButtonId).text.toString()
+
         dpd=DatePickerDialog(this,R.style.DialogTheme, DatePickerDialog.OnDateSetListener {
                 view,year,month,day->date.setText(" $day / ${month+1} / $year")
         },year,month,day)
-        //if(dpd > c.get(Calendar.DATE)) {
-            dpd.show()
-        //}
     }
 
     fun onRadioButtonClicked(view: View) {
