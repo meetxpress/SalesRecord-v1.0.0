@@ -14,6 +14,7 @@ import java.io.IOException
 import java.lang.Exception
 
 class LoginActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -32,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun callSevice(user:String, pass:String){
-        Toast.makeText(this,"Service toast",Toast.LENGTH_LONG).show()
+        var flag:Int=0
         try{
             var client= OkHttpClient()
 
@@ -59,27 +60,27 @@ class LoginActivity : AppCompatActivity() {
                         Log.e("test",str)
 
                         val jsonObj = JSONObject(str)
-                        var flag=jsonObj.getInt("success")
+                        flag=jsonObj.getInt("success")
+                        Log.e("cmd",flag.toString())
                         var message=jsonObj.getString("message")
-
-                        if(flag==1)
-                        {
-
-                            //Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show()
-                            finish();
-                        }
-                        else
-                        {
-                            Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show()
-                        }
-
                         //Log.e("key",response.toString())
-
                     }
                 }
             })
         } catch(e: Exception){
             e.printStackTrace()
+        }
+        if(flag==1)
+        {
+            Toast.makeText(applicationContext,"Invalid Credential.",Toast.LENGTH_LONG).show()
+            /*var i=Intent(this, SuperAdminHome::class.java)
+            startActivity(i)
+            finish()*/
+        }else {
+            Toast.makeText(applicationContext,"Success",Toast.LENGTH_LONG).show()
+            var i=Intent(this, SuperAdminHome::class.java)
+            startActivity(i)
+            finish()
         }
     }
 }
