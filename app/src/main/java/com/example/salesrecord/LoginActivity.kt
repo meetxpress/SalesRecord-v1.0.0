@@ -42,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://10.0.2.2/SalesRecord/login.php")
+                .url("http://10.0.2.2:80/SalesRecord/login.php")
                 .post(formBody)
                 .build()
 
@@ -53,6 +53,7 @@ class LoginActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call, response: Response) {
                     response.use {
+                        //Log.e("check","abcde");
                         if (!response.isSuccessful) throw IOException("Unexpected code $response")
                         var str=response.body!!.string()
                         Log.e("test",str)
@@ -63,13 +64,16 @@ class LoginActivity : AppCompatActivity() {
 
                         if(flag==1)
                         {
-                            Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show()
+                            //Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show()
                             finish();
                         }
                         else
                         {
                             Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show()
                         }
+
+                        //Log.e("key",response.toString())
+
                     }
                 }
             })
