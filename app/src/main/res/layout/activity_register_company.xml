@@ -102,7 +102,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/CompPhno" />
 
             <EditText
-                android:id="@+id/CompPhno"
+                android:id="@+id/CompPhno1"
                 android:layout_width="349dp"
                 android:layout_height="52dp"
                 android:layout_marginStart="98dp"
@@ -110,10 +110,27 @@
                 android:layout_marginEnd="100dp"
                 android:layout_marginBottom="8dp"
                 android:ems="10"
-                android:hint="Phone No.*"
+                android:hint="Phone No. 1*"
                 android:inputType="phone"
                 android:maxLength="10"
                 app:layout_constraintBottom_toTopOf="@+id/CompPincode"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CompPhno2" />
+
+            <EditText
+                android:id="@+id/CompPhno2"
+                android:layout_width="349dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="98dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="8dp"
+                android:ems="10"
+                android:hint="Phone No. 2"
+                android:inputType="phone"
+                android:maxLength="10"
+                app:layout_constraintBottom_toTopOf="@+id/CompPhno1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/CompContactPerson" />
@@ -127,10 +144,10 @@
                 android:layout_marginEnd="100dp"
                 android:layout_marginBottom="8dp"
                 android:ems="10"
-                android:hint="Person of Contact*"
+                android:hint="Contact Person*"
                 android:inputType="textPersonName"
                 android:maxLength="30"
-                app:layout_constraintBottom_toTopOf="@+id/CompPhno"
+                app:layout_constraintBottom_toTopOf="@+id/CompPhno1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/CompLicNo" />
@@ -161,7 +178,7 @@
                 android:layout_marginEnd="100dp"
                 android:layout_marginBottom="8dp"
                 android:ems="10"
-                android:hint="GST No.*"
+                android:hint="GST No."
                 android:inputType="number"
                 android:maxLength="15"
                 app:layout_constraintBottom_toTopOf="@+id/CompLicNo"
@@ -170,7 +187,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/CompWebsite" />
 
             <EditText
-                android:id="@+id/CompWebsite"
+                    android:id="@+id/CompWebsite"
                 android:layout_width="349dp"
                 android:layout_height="52dp"
                 android:layout_marginStart="98dp"
@@ -178,7 +195,7 @@
                 android:layout_marginEnd="100dp"
                 android:layout_marginBottom="8dp"
                 android:ems="10"
-                android:hint="Website*"
+                android:hint="Website"
                 android:inputType="text"
                 android:maxLength="70"
                 app:layout_constraintBottom_toTopOf="@+id/CompGSTno"

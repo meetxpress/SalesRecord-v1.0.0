@@ -1,5 +1,6 @@
 package com.example.salesrecord
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -22,25 +23,24 @@ class RegisterCompany : AppCompatActivity() {
                 (CompEmail.toString().length <0) and
                 (CompCity.toString().length <0) and
                 (CompPincode.toString().length <0) and
-                (CompPhno.toString().length <0) and
+                (CompPhno1.toString().length <0) and
                 (CompContactPerson.toString().length <0) and
-                (CompLicNo.toString().length <0) and
-                (CompGSTno.toString().length <0) and
-                (CompWebsite.toString().length <0))
+                (CompLicNo.toString().length <0))
             {
-               // Toast.makeText(this,CompName.toString().length,Toast.LENGTH_LONG).show()
+                Toast.makeText(this,CompName.toString().length,Toast.LENGTH_LONG).show()
             }
             else {
                 var coName=CompName.text.toString()
                 var coEmail=CompEmail.text.toString()
                 var coCity=CompCity.text.toString()
                 var coPin=CompPincode.text.toString()
-                var coPhno=CompPhno.text.toString()
+                var coPhno1=CompPhno1.text.toString()
+                var coPhno2=CompPhno2.text.toString()
                 var coConPer=CompContactPerson.text.toString()
                 var coLic=CompLicNo.text.toString()
                 var coGST=CompGSTno.text.toString()
                 var coWeb=CompWebsite.text.toString()
-                callService(coName, coEmail, coCity, coPin, coPhno, coConPer, coLic, coGST, coWeb)
+                callService(coName, coEmail, coCity, coPin, coPhno1, coConPer, coLic)
 
                 //Toast.makeText(this,"LOL Else part",Toast.LENGTH_LONG).show()
                 /*CompName.setText("")
@@ -56,9 +56,9 @@ class RegisterCompany : AppCompatActivity() {
         }
     }
 
-    fun callService(coName:String, coEmail:String, coCity:String, coPin:String, coPhno:String, coConPer:String, coLic:String, coGST:String, coWeb:String){
+    fun callService(coName:String, coEmail:String, coCity:String, coPin:String, coPhno1:String, coConPer:String, coLic:String){
+        var flag:Int=0
         try{
-            Toast.makeText(this,"calling service part",Toast.LENGTH_LONG).show()
             var client= OkHttpClient()
 
             var formBody= FormBody.Builder()
@@ -66,37 +66,53 @@ class RegisterCompany : AppCompatActivity() {
                 .add("email",coEmail)
                 .add("city",coCity)
                 .add("pincode",coPin)
-                .add("phno",coPhno)
+                .add("phno1",coPhno1)
+                //.add("phno2",coPhno2)
                 .add("contact_person",coConPer)
                 .add("lic_no",coLic)
-                .add("get_no",coGST)
-                .add("website",coWeb)
+                //.add("get_no",coGST)
+                //.add("website",coWeb)
                 .build()
 
             var req=Request.Builder()
-                .url("http://10.0.2.2:80/SalesRecord/insertUser.php")
+                .url("http://10.0.2.2:80/SalesRecord/addcomp.php")
                 .post(formBody)
                 .build()
 
-            client.newCall(req).enqueue(object :Callback {
+            client.newCall(req).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     Log.e("Exception",e.toString())
                 }
 
                 override fun onResponse(call: Call, response: Response) {
-                    response.use{
+                    response.use {
+                        Log.v("check","abcde");
+                        if (!response.isSuccessful) throw IOException("Unexpected code $response")
                         var str=response.body!!.string()
-                        var js=JSONObject(str)
-                       // var =js.getInt("success")
-                        var message=js.getString("message")
-                       // Log.e("id",id.toString())
-                        Log.e("test",message.toString())
+                        Log.v("test",str)
 
+                        val jsonObj = JSONObject(str)
+                        flag=jsonObj.getInt("success")
+                        Log.v("cmd",flag.toString())
+                        var message=jsonObj.getString("message")
+                        Log.v("key",response.toString())
                     }
                 }
             })
-        }catch(e:Exception){
+        } catch(e: Exception) {
             e.printStackTrace()
+        }
+
+        if(flag==1) {
+            Toast.makeText(applicationContext,"Registered Successfully. .",Toast.LENGTH_LONG).show()
+            /*var i=Intent(this, SuperAdminHome::class.java)
+            startActivity(i)
+            finish()*/
+        }else {
+            Toast.makeText(applicationContext,"Can not Register Company.",Toast.LENGTH_LONG).show()
+            //var i= Intent(this, SuperAdminHome::class.java)
+            //startActivity(i)
+            //finish()
         }
     }
 }
