@@ -64,6 +64,7 @@ class LoginActivity : AppCompatActivity() {
 
                         if(flag==1)
                         {
+
                             //Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show()
                             finish();
                         }
