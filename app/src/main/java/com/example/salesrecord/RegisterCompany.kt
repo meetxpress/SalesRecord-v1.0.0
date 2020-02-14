@@ -13,7 +13,7 @@ import java.io.IOException
 import java.lang.Exception
 
 class RegisterCompany : AppCompatActivity() {
-    var temp:String = ""
+    var temp:Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,7 +94,8 @@ class RegisterCompany : AppCompatActivity() {
                         Log.v("test",str)
 
                         val jsonObj = JSONObject(str)
-                        temp=jsonObj.getString("success")
+                        val t=jsonObj.getString("success")+""
+                        temp=Integer.parseInt(t)*1;
                         Log.v("flagvalue",temp.toString())
                         Log.v("abc",response.toString())
                         Log.v("cmd",temp.toString())
@@ -103,7 +104,7 @@ class RegisterCompany : AppCompatActivity() {
                     }
                 }
             })
-            if(temp.equals("y")) {
+            if(temp==1) {
                 Log.v("lol",temp.toString())
                 Toast.makeText(applicationContext,"Registered Successfully.",Toast.LENGTH_LONG).show()
                 /*var i=Intent(this, SuperAdminHome::class.java)

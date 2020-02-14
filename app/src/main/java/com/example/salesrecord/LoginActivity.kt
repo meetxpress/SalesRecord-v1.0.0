@@ -70,8 +70,7 @@ class LoginActivity : AppCompatActivity() {
         } catch(e: Exception){
             e.printStackTrace()
         }
-        if(flag==1)
-        {
+        if(flag==1) {
             Toast.makeText(applicationContext,"Invalid Credential.",Toast.LENGTH_LONG).show()
             /*var i=Intent(this, SuperAdminHome::class.java)
             startActivity(i)
