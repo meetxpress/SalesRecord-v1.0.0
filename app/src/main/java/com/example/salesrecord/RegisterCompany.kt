@@ -13,6 +13,7 @@ import java.io.IOException
 import java.lang.Exception
 
 class RegisterCompany : AppCompatActivity() {
+    var temp:String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +59,7 @@ class RegisterCompany : AppCompatActivity() {
 
     fun callService(coName:String, coEmail:String, coCity:String, coPin:String, coPhno1:String, coConPer:String, coLic:String){
         try{
-            var temp:Int=0
+
 
             var client= OkHttpClient()
 
@@ -93,7 +94,7 @@ class RegisterCompany : AppCompatActivity() {
                         Log.v("test",str)
 
                         val jsonObj = JSONObject(str)
-                        temp=jsonObj.getInt("success")
+                        temp=jsonObj.getString("success")
                         Log.v("flagvalue",temp.toString())
                         Log.v("abc",response.toString())
                         Log.v("cmd",temp.toString())
@@ -102,7 +103,7 @@ class RegisterCompany : AppCompatActivity() {
                     }
                 }
             })
-            if(temp==1) {
+            if(temp.equals("y")) {
                 Log.v("lol",temp.toString())
                 Toast.makeText(applicationContext,"Registered Successfully.",Toast.LENGTH_LONG).show()
                 /*var i=Intent(this, SuperAdminHome::class.java)
@@ -111,7 +112,7 @@ class RegisterCompany : AppCompatActivity() {
             }else {
                 Log.v("lmao",temp.toString())
 
-                Toast.makeText(applicationContext,"Can not Register Company.",Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext,"Successful.",Toast.LENGTH_LONG).show()
                 //var i= Intent(this, SuperAdminHome::class.java)
                 //startActivity(i)
                 //finish()
