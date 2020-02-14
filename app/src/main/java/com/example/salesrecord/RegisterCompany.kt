@@ -57,8 +57,9 @@ class RegisterCompany : AppCompatActivity() {
     }
 
     fun callService(coName:String, coEmail:String, coCity:String, coPin:String, coPhno1:String, coConPer:String, coLic:String){
-        var flag:Int=0
         try{
+            var temp:Int=0
+
             var client= OkHttpClient()
 
             var formBody= FormBody.Builder()
@@ -92,27 +93,33 @@ class RegisterCompany : AppCompatActivity() {
                         Log.v("test",str)
 
                         val jsonObj = JSONObject(str)
-                        flag=jsonObj.getInt("success")
-                        Log.v("cmd",flag.toString())
+                        temp=jsonObj.getInt("success")
+                        Log.v("flagvalue",temp.toString())
+                        Log.v("abc",response.toString())
+                        Log.v("cmd",temp.toString())
                         var message=jsonObj.getString("message")
                         Log.v("key",response.toString())
                     }
                 }
             })
+            if(temp==1) {
+                Log.v("lol",temp.toString())
+                Toast.makeText(applicationContext,"Registered Successfully.",Toast.LENGTH_LONG).show()
+                /*var i=Intent(this, SuperAdminHome::class.java)
+                startActivity(i)
+                finish()*/
+            }else {
+                Log.v("lmao",temp.toString())
+
+                Toast.makeText(applicationContext,"Can not Register Company.",Toast.LENGTH_LONG).show()
+                //var i= Intent(this, SuperAdminHome::class.java)
+                //startActivity(i)
+                //finish()
+            }
         } catch(e: Exception) {
             e.printStackTrace()
         }
 
-        if(flag==1) {
-            Toast.makeText(applicationContext,"Registered Successfully. .",Toast.LENGTH_LONG).show()
-            /*var i=Intent(this, SuperAdminHome::class.java)
-            startActivity(i)
-            finish()*/
-        }else {
-            Toast.makeText(applicationContext,"Can not Register Company.",Toast.LENGTH_LONG).show()
-            //var i= Intent(this, SuperAdminHome::class.java)
-            //startActivity(i)
-            //finish()
-        }
+
     }
 }
