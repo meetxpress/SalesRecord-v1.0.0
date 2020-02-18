@@ -14,7 +14,7 @@ import java.io.IOException
 import java.lang.Exception
 
 class LoginActivity : AppCompatActivity() {
-
+    var flag:String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -33,7 +33,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun callSevice(user:String, pass:String){
-        var flag:Int=0
         try{
             var client= OkHttpClient()
 
@@ -54,32 +53,32 @@ class LoginActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call, response: Response) {
                     response.use {
-                        //Log.e("check","abcde");
+                        //Log.v("check","abcde");
                         if (!response.isSuccessful) throw IOException("Unexpected code $response")
                         var str=response.body!!.string()
-                        Log.e("test",str)
+                        Log.v("test",str)
 
                         val jsonObj = JSONObject(str)
-                        flag=jsonObj.getInt("success")
-                        Log.e("cmd",flag.toString())
+                        val t:String=jsonObj.getString("success")+""
+                        flag = t
+                        Log.v("cmd",flag.toString())
                         var message=jsonObj.getString("message")
                         //Log.e("key",response.toString())
                     }
                 }
             })
+            if(flag=="y") {
+                Log.v("success",flag.toString())
+                Toast.makeText(applicationContext,"Success",Toast.LENGTH_LONG).show()
+                var i=Intent(this, SuperAdminHome::class.java)
+                startActivity(i)
+                finish()
+            }else {
+                Log.v("failed",flag.toString())
+                Toast.makeText(applicationContext,"Invalid Credential.",Toast.LENGTH_LONG).show()
+            }
         } catch(e: Exception){
             e.printStackTrace()
-        }
-        if(flag==1) {
-            Toast.makeText(applicationContext,"Invalid Credential.",Toast.LENGTH_LONG).show()
-            /*var i=Intent(this, SuperAdminHome::class.java)
-            startActivity(i)
-            finish()*/
-        }else {
-            Toast.makeText(applicationContext,"Success",Toast.LENGTH_LONG).show()
-            var i=Intent(this, SuperAdminHome::class.java)
-            startActivity(i)
-            finish()
         }
     }
 }

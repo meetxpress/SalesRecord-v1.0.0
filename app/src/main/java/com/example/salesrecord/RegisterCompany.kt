@@ -13,7 +13,7 @@ import java.io.IOException
 import java.lang.Exception
 
 class RegisterCompany : AppCompatActivity() {
-    var temp:Int = 0
+    var flag:String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,8 +59,6 @@ class RegisterCompany : AppCompatActivity() {
 
     fun callService(coName:String, coEmail:String, coCity:String, coPin:String, coPhno1:String, coConPer:String, coLic:String){
         try{
-
-
             var client= OkHttpClient()
 
             var formBody= FormBody.Builder()
@@ -95,33 +93,26 @@ class RegisterCompany : AppCompatActivity() {
 
                         val jsonObj = JSONObject(str)
                         val t=jsonObj.getString("success")+""
-                        temp=Integer.parseInt(t)*1;
-                        Log.v("flagvalue",temp.toString())
+                        flag= t
                         Log.v("abc",response.toString())
-                        Log.v("cmd",temp.toString())
+                        Log.v("cmd",flag.toString())
                         var message=jsonObj.getString("message")
                         Log.v("key",response.toString())
                     }
                 }
             })
-            if(temp==1) {
-                Log.v("lol",temp.toString())
+            if(flag == "y") {
+                Log.v("success",flag.toString())
                 Toast.makeText(applicationContext,"Registered Successfully.",Toast.LENGTH_LONG).show()
                 /*var i=Intent(this, SuperAdminHome::class.java)
                 startActivity(i)
                 finish()*/
             }else {
-                Log.v("lmao",temp.toString())
-
-                Toast.makeText(applicationContext,"Successful.",Toast.LENGTH_LONG).show()
-                //var i= Intent(this, SuperAdminHome::class.java)
-                //startActivity(i)
-                //finish()
+                Log.v("failed",flag.toString())
+                Toast.makeText(applicationContext,"Registration Failed.",Toast.LENGTH_LONG).show()
             }
         } catch(e: Exception) {
             e.printStackTrace()
         }
-
-
     }
 }
