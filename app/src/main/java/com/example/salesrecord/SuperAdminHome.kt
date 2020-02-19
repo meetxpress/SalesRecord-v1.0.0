@@ -38,7 +38,7 @@ class SuperAdminHome : AppCompatActivity() {
             edit.clear()
             edit.commit()
             Toast.makeText(this,"Logged out Successfully!",Toast.LENGTH_LONG).show()
-            var inte=Intent(this,LoginActivity::class.java)
+            var inte=Intent(this@SuperAdminHome,LoginActivity::class.java)
             startActivity(inte)
             finish()
         }
@@ -47,6 +47,4 @@ class SuperAdminHome : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-
 }
