@@ -13,7 +13,7 @@ import java.io.IOException
 import java.lang.Exception
 
 class RegisterCompany : AppCompatActivity() {
-    var flag:String = ""
+    //var flag:String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +28,7 @@ class RegisterCompany : AppCompatActivity() {
                 (CompContactPerson.toString().length <0) and
                 (CompLicNo.toString().length <0))
             {
-                Toast.makeText(this,CompName.toString().length,Toast.LENGTH_LONG).show()
+                Toast.makeText(this@RegisterCompany,CompName.toString().length,Toast.LENGTH_LONG).show()
             }
             else {
                 var coName=CompName.text.toString()
@@ -92,25 +92,40 @@ class RegisterCompany : AppCompatActivity() {
                         Log.v("test",str)
 
                         val jsonObj = JSONObject(str)
-                        val t=jsonObj.getString("success")+""
-                        flag= t
-                        Log.v("abc",response.toString())
-                        Log.v("cmd",flag.toString())
+                        val flag=jsonObj.getInt("success")
                         var message=jsonObj.getString("message")
-                        Log.v("key",response.toString())
+
+                        Log.v("res",response.toString())
+                        Log.v("cdm",flag.toString())
+                        Log.v("msg",message)
+
+                        /*if(flag == 1) {
+                            Log.v("success",flag.toString())
+                            Toast.makeText(applicationContext,"Registered Successfully.",Toast.LENGTH_LONG).show()
+                            /*var i=Intent(this, SuperAdminHome::class.java)
+                            startActivity(i)
+                            finish()*/
+                        }else {
+                            Log.v("failed",flag.toString())
+                            Toast.makeText(applicationContext,"Registration Failed.",Toast.LENGTH_LONG).show()
+                        }*/
+
+                        if(flag == 1){
+                            Log.v("fs", flag.toString())
+                            runOnUiThread{
+                                Toast.makeText(this@RegisterCompany,"Successful.!", Toast.LENGTH_LONG).show()
+                                var i= Intent(this@RegisterCompany,SuperAdminHome::class.java)
+                                startActivity(i)
+                            }
+                        }else{
+                            Log.v("ff", flag.toString())
+                            runOnUiThread{
+                                Toast.makeText(this@RegisterCompany,"Failed", Toast.LENGTH_LONG).show()
+                            }
+                        }
                     }
                 }
             })
-            if(flag == "y") {
-                Log.v("success",flag.toString())
-                Toast.makeText(applicationContext,"Registered Successfully.",Toast.LENGTH_LONG).show()
-                /*var i=Intent(this, SuperAdminHome::class.java)
-                startActivity(i)
-                finish()*/
-            }else {
-                Log.v("failed",flag.toString())
-                Toast.makeText(applicationContext,"Registration Failed.",Toast.LENGTH_LONG).show()
-            }
         } catch(e: Exception) {
             e.printStackTrace()
         }

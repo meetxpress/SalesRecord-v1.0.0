@@ -26,7 +26,6 @@ class LoginActivity : AppCompatActivity() {
             else {
                 var user=LoginUsername.text.toString()
                 var pass=LoginPassword.text.toString()
-                Toast.makeText(this,"Toast Button",Toast.LENGTH_LONG).show()
                 callSevice(user,pass)
             }
         }
@@ -53,21 +52,36 @@ class LoginActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call, response: Response) {
                     response.use {
-                        //Log.v("check","abcde");
-                        if (!response.isSuccessful) throw IOException("Unexpected code $response")
                         var str=response.body!!.string()
-                        Log.v("test",str)
+                        var js= JSONObject(str)
+                        var flag=js.getInt("success")
+                        var msg=js.getString("message")
 
-                        val jsonObj = JSONObject(str)
-                        val t:String=jsonObj.getString("success")+""
-                        flag = t
-                        Log.v("cmd",flag.toString())
-                        var message=jsonObj.getString("message")
-                        //Log.e("key",response.toString())
+                        Log.v("res",str)
+                        Log.v("cd", flag.toString())
+                        Log.v("ms",msg)
+
+                        if(flag == 1){
+                            Log.v("fs", flag.toString())
+                            runOnUiThread{
+                                var per=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+                                var editor=per.edit()
+                                editor.putString("user",LoginUsername.text.toString())
+                                editor.commit()
+                                Toast.makeText(this@LoginActivity,"Login Successful.!", Toast.LENGTH_LONG).show()
+                                var i= Intent(this@LoginActivity,SuperAdminHome::class.java)
+                                startActivity(i)
+                            }
+                        }else{
+                            Log.v("ff", flag.toString())
+                            runOnUiThread{
+                                Toast.makeText(this@LoginActivity,"Login Failed", Toast.LENGTH_LONG).show()
+                            }
+                        }
                     }
                 }
             })
-            if(flag=="y") {
+            /*if(flag=="y") {
                 Log.v("success",flag.toString())
                 Toast.makeText(applicationContext,"Success",Toast.LENGTH_LONG).show()
                 var i=Intent(this, SuperAdminHome::class.java)
@@ -76,7 +90,7 @@ class LoginActivity : AppCompatActivity() {
             }else {
                 Log.v("failed",flag.toString())
                 Toast.makeText(applicationContext,"Invalid Credential.",Toast.LENGTH_LONG).show()
-            }
+            }*/
         } catch(e: Exception){
             e.printStackTrace()
         }
