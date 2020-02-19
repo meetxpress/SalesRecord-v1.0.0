@@ -13,8 +13,6 @@ import java.io.IOException
 import java.lang.Exception
 
 class RegisterCompany : AppCompatActivity() {
-    //var flag:String = ""
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_company)
@@ -42,17 +40,6 @@ class RegisterCompany : AppCompatActivity() {
                 var coGST=CompGSTno.text.toString()
                 var coWeb=CompWebsite.text.toString()
                 callService(coName, coEmail, coCity, coPin, coPhno1, coConPer, coLic)
-
-                //Toast.makeText(this,"LOL Else part",Toast.LENGTH_LONG).show()
-                /*CompName.setText("")
-                CompEmail.setText("")  
-                CompCity.setText("")
-                CompPincode.setText("")
-                CompPhno.setText("")
-                CompContactPerson.setText("")
-                CompLicNo.setText("")
-                CompGSTno.setText("")
-                CompWebsite.setText("")*/
             }
         }
     }
@@ -98,17 +85,6 @@ class RegisterCompany : AppCompatActivity() {
                         Log.v("res",response.toString())
                         Log.v("cdm",flag.toString())
                         Log.v("msg",message)
-
-                        /*if(flag == 1) {
-                            Log.v("success",flag.toString())
-                            Toast.makeText(applicationContext,"Registered Successfully.",Toast.LENGTH_LONG).show()
-                            /*var i=Intent(this, SuperAdminHome::class.java)
-                            startActivity(i)
-                            finish()*/
-                        }else {
-                            Log.v("failed",flag.toString())
-                            Toast.makeText(applicationContext,"Registration Failed.",Toast.LENGTH_LONG).show()
-                        }*/
 
                         if(flag == 1){
                             Log.v("fs", flag.toString())

@@ -81,16 +81,6 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             })
-            /*if(flag=="y") {
-                Log.v("success",flag.toString())
-                Toast.makeText(applicationContext,"Success",Toast.LENGTH_LONG).show()
-                var i=Intent(this, SuperAdminHome::class.java)
-                startActivity(i)
-                finish()
-            }else {
-                Log.v("failed",flag.toString())
-                Toast.makeText(applicationContext,"Invalid Credential.",Toast.LENGTH_LONG).show()
-            }*/
         } catch(e: Exception){
             e.printStackTrace()
         }
