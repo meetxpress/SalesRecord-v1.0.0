@@ -12,6 +12,9 @@ class ManageCompany : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manage_company)
 
+        //back button on actionbar
+        supportActionBar?.setDisplayShowCustomEnabled(true)
+
         fun nulling(){
             UpCompName.setText("")
             UpCompEmail.setText("")

@@ -17,6 +17,9 @@ class RegisterCompany : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_company)
 
+        //back button on actionbar
+        supportActionBar?.setDisplayShowCustomEnabled(true)
+
         btnRegisterCompany.setOnClickListener {
             if((CompName.toString().length <0) and
                 (CompEmail.toString().length <0) and

@@ -15,17 +15,20 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ManageEmployee"
-            android:label="Manage Employee Profile"></activity>
+            android:label="Manage Employee Profile"/>
         <activity
             android:name=".RegisterEmployee"
-            android:label="Register Employee" />
+            android:label="Register Employee"
+            android:parentActivityName=".ManageEmployee"/>
         <activity android:name=".DistributerHome" />
         <activity
             android:name=".ManageCompany"
-            android:label="Manage Company" />
+            android:label="Manage Company"
+            android:parentActivityName=".SuperAdminHome"/>
         <activity
             android:name=".RegisterCompany"
-            android:label="Register Company" />
+            android:label="Register Company"
+            android:parentActivityName=".ManageCompany"/>
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
