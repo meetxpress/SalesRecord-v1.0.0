@@ -32,12 +32,15 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/SplashScreen.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.salesrecord.MainActivity" />
         </activity>
-        <activity android:name=".SuperAdminHome" />
+        <activity
+            android:name=".SuperAdminHome"
+            android:label="Super Admin"/>
         <activity
             android:name=".MainActivity"
             android:theme="@style/SplashScreen.NoActionBar">

@@ -1,237 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterEmployee">
+    android:fillViewport="true">
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:layout_marginStart="-75dp"
-            android:layout_marginEnd="-50dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".RegisterEmployee">
 
-            <TextView
-                android:id="@+id/TitleEmployee"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="175dp"
-                android:layout_marginBottom="8dp"
-                android:text="Employee Profile"
-                android:textSize="24sp"
-                android:textAlignment="center"
-                app:layout_constraintBottom_toTopOf="@+id/CompName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/TitleEmployee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="?attr/colorBackgroundFloating"
+            android:text="Employee Profile"
+            android:textAlignment="center"
+            android:textSize="39sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/EmpName"
-                android:layout_width="349dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="100dp"
-                android:layout_marginBottom="8dp"
-                android:ems="10"
-                android:hint="Name*"
-                android:inputType="text"
-                android:maxLength="30"
-                app:layout_constraintBottom_toTopOf="@+id/tv_gender"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TitleCompany" />
+        <EditText
+            android:id="@+id/EmpName"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:ems="10"
+            android:hint=" Enter Employee Name*"
+            android:inputType="text"
+            android:maxLength="30"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TitleEmployee" />
 
-            <TextView
-                android:id="@+id/tv_gender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="175dp"
-                android:text="Gender*"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/RadioBtnGroup"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EmpName" />
-
-            <RadioGroup
-                android:id="@+id/RadioBtnGroup"
-                android:layout_width="349dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginEnd="100dp"
-                android:layout_marginBottom="0dp"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/rb_male"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="Male"
-                    android:textSize="20sp" />
-
-                <RadioButton
-                    android:id="@+id/rb_female"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="Female"
-                    android:textSize="20sp" />
-
-                <RadioButton
-                    android:id="@+id/rb_transgender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="TransGender "
-                    android:textSize="20sp" />
-            </RadioGroup>
-
-            <EditText
-                android:id="@+id/EmpDoB"
-                android:layout_width="349dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="100dp"
-                android:layout_marginBottom="8dp"
-                android:focusable="false"
-                android:hint="Date of Birth*"
-                android:inputType="date"
-                android:onClick="addDoB"
-                app:layout_constraintBottom_toTopOf="@+id/EmpAadharNo"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/RadioBtnGroup" />
-
-            <EditText
-                android:id="@+id/EmpAadharNo"
-                android:layout_width="349dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="100dp"
-                android:layout_marginBottom="8dp"
-                android:ems="10"
-                android:hint="Aadharcard Number*"
-                android:inputType="number"
-                android:maxLength="12"
-                app:layout_constraintBottom_toTopOf="@+id/EmpPhno"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EmpDoB" />
-
-            <EditText
-                android:id="@+id/EmpPhno"
-                android:layout_width="349dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="100dp"
-                android:layout_marginBottom="8dp"
-                android:ems="10"
-                android:hint="Phone No.*"
-                android:inputType="phone"
-                android:maxLength="10"
-                app:layout_constraintBottom_toTopOf="@+id/EmpEmail"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EmpAadharNo" />
-
-            <EditText
-                android:id="@+id/EmpEmail"
-                android:layout_width="349dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="100dp"
-                android:layout_marginBottom="8dp"
-                android:ems="10"
-                android:hint="Email*"
-                android:inputType="textEmailAddress"
-                android:maxLength="30"
-                app:layout_constraintBottom_toTopOf="@+id/EmpAdd1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EmpPhno" />
-
-            <EditText
-                android:id="@+id/EmpAdd1"
-                android:layout_width="349dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="100dp"
-                android:layout_marginBottom="8dp"
-                android:ems="10"
-                android:hint="Address1*"
-                android:inputType="textPostalAddress"
-                android:maxLength="50"
-                app:layout_constraintBottom_toTopOf="@+id/EmpAdd2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EmpEmail" />
-
-            <EditText
-                android:id="@+id/EmpAdd2"
-                android:layout_width="349dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="100dp"
-                android:layout_marginBottom="8dp"
-                android:ems="10"
-                android:hint="Address2"
-                android:inputType="textPostalAddress"
-                android:maxLength="50"
-                app:layout_constraintBottom_toTopOf="@+id/EmpAdd2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnRegisterEmp" />
+        <RadioGroup
+            android:id="@+id/RadioBtnGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/EmpName">
 
             <TextView
-                android:id="@+id/textNotice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginBottom="9dp"
-                android:text="* Required Fields."
-                android:textSize="17sp"
-                app:layout_constraintBottom_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:text=" Gender*"
+                android:textSize="20sp"/>
 
-            <Button
-                android:id="@+id/btnRegisterEmp"
-                android:layout_width="349dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="100dp"
-                android:layout_marginBottom="8dp"
-                android:text="Register Employee"
-                app:layout_constraintBottom_toTopOf="@id/EmpAdd2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+            <RadioButton
+                android:id="@+id/rb_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:checked="true"
+                android:text="Male"/>
 
-        </LinearLayout>
+            <RadioButton
+                android:id="@+id/rb_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="Female"/>
 
-    </ScrollView>
+            <RadioButton
+                android:id="@+id/rb_transgender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="Transgender"/>
+
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/EmpDoB"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:focusable="false"
+            android:hint=" Date of Birth*"
+            android:inputType="date"
+            android:onClick="addDoB"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/RadioBtnGroup"/>
+
+        <EditText
+            android:id="@+id/EmpAadharNo"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:ems="10"
+            android:hint=" Aadharcard Number*"
+            android:inputType="number"
+            android:maxLength="12"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/EmpDoB" />
+
+        <EditText
+            android:id="@+id/EmpPhno"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:ems="10"
+            android:hint=" Mobile Number*"
+            android:inputType="phone"
+            android:maxLength="10"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/EmpAadharNo" />
+
+        <EditText
+            android:id="@+id/EmpEmail"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:ems="10"
+            android:hint=" Enter Email ID*"
+            android:inputType="textEmailAddress"
+            android:maxLength="30"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/EmpPhno" />
+
+        <EditText
+            android:id="@+id/EmpAdd1"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:ems="10"
+            android:hint=" Address Line 1*"
+            android:inputType="textPostalAddress"
+            android:maxLength="50"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/EmpEmail" />
+
+        <EditText
+            android:id="@+id/EmpAdd2"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:ems="10"
+            android:hint=" Address Line 2"
+            android:inputType="textPostalAddress"
+            android:maxLength="50"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/EmpAdd1" />
+
+        <TextView
+            android:id="@+id/textNotice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="#FFFFFF"
+            android:gravity="right"
+            android:text="* Required Fields."
+            android:textColor="#FF0000"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/EmpAdd2" />
+
+        <Button
+            android:id="@+id/btnRegisterEmp"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="160dp"
+            android:background="@drawable/btngrade"
+            android:text="Register Employee"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textNotice" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>

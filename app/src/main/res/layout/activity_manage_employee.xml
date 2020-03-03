@@ -1,228 +1,231 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ManageEmployee">
+    android:fillViewport="true">
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ManageEmployee">
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:layout_marginStart="-75dp"
-            android:layout_marginEnd="-50dp">
+        <TextView
+            android:id="@+id/UpTitleEmployee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Employee Profile"
+            android:textAlignment="center"
+            android:textSize="39sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/UpTitleEmployee"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="175dp"
-                android:layout_marginBottom="8dp"
-                android:text="Employee Profile"
-                android:textSize="24sp"
-                android:textAlignment="center"
-                app:layout_constraintBottom_toTopOf="@+id/UpCompName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/UpEmpName"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:ems="10"
+            android:hint=" Enter Employee Name*"
+            android:inputType="text"
+            android:maxLength="30"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/UpTitleEmployee" />
 
-            <EditText
-                android:id="@+id/UpEmpName"
-                android:layout_width="349dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="100dp"
-                android:layout_marginBottom="8dp"
-                android:ems="10"
-                android:hint="Name*"
-                android:inputType="text"
-                android:maxLength="30"
-                app:layout_constraintBottom_toTopOf="@+id/Uptv_gender"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TitleCompany" />
-
-            <TextView
-                android:id="@+id/Uptv_gender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="175dp"
-                android:text="Gender*"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toTopOf="@+id/UpRadioBtnGroup"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/UpEmpName" />
-
-            <RadioGroup
-                android:id="@+id/UpRadioBtnGroup"
-                android:layout_width="349dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginEnd="100dp"
-                android:layout_marginBottom="0dp"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/Uprb_male"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="Male"
-                    android:textSize="20sp" />
-
-                <RadioButton
-                    android:id="@+id/Uprb_female"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:text="Female"
-                    android:textSize="20sp" />
-            </RadioGroup>
-
-            <EditText
-                android:id="@+id/UpEmpDoB"
-                android:layout_width="349dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="100dp"
-                android:layout_marginBottom="8dp"
-                android:focusable="false"
-                android:hint="Date of Birth*"
-                android:inputType="date"
-                android:onClick="updateDoB"
-                app:layout_constraintBottom_toTopOf="@+id/UpEmpAadharNo"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/UpRadioBtnGroup" />
-
-            <EditText
-                android:id="@+id/UpEmpAadharNo"
-                android:layout_width="349dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="100dp"
-                android:layout_marginBottom="8dp"
-                android:ems="10"
-                android:hint="Aadharcard Number*"
-                android:inputType="number"
-                android:maxLength="12"
-                app:layout_constraintBottom_toTopOf="@+id/UpEmpPhno"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/UpEmpDoB" />
-
-            <EditText
-                android:id="@+id/UpEmpPhno"
-                android:layout_width="349dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="100dp"
-                android:layout_marginBottom="8dp"
-                android:ems="10"
-                android:hint="Phone No.*"
-                android:inputType="phone"
-                android:maxLength="10"
-                app:layout_constraintBottom_toTopOf="@+id/UpEmpEmail"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/UpEmpAadharNo" />
-
-            <EditText
-                android:id="@+id/UpEmpEmail"
-                android:layout_width="349dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="100dp"
-                android:layout_marginBottom="8dp"
-                android:ems="10"
-                android:hint="Email*"
-                android:inputType="textEmailAddress"
-                android:maxLength="30"
-                app:layout_constraintBottom_toTopOf="@+id/UpEmpAdd1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/UpEmpPhno" />
-
-            <EditText
-                android:id="@+id/UpEmpAdd1"
-                android:layout_width="349dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="100dp"
-                android:layout_marginBottom="8dp"
-                android:ems="10"
-                android:hint="Address1*"
-                android:inputType="textPostalAddress"
-                android:maxLength="50"
-                app:layout_constraintBottom_toTopOf="@+id/UpEmpAdd2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/UpEmpEmail" />
-
-            <EditText
-                android:id="@+id/UpEmpAdd2"
-                android:layout_width="349dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="100dp"
-                android:layout_marginBottom="8dp"
-                android:ems="10"
-                android:hint="Address2"
-                android:inputType="textPostalAddress"
-                android:maxLength="50"
-                app:layout_constraintBottom_toTopOf="@+id/UpEmpAdd2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnUpdateEmp" />
+        <RadioGroup
+            android:id="@+id/Uptv_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/UpEmpName">
 
             <TextView
-                android:id="@+id/UptextNotice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginBottom="9dp"
-                android:text="* Required Fields."
-                android:textSize="17sp"
-                app:layout_constraintBottom_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:text=" Gender*"
+                android:textSize="20sp"/>
 
-            <Button
-                android:id="@+id/btnUpdateEmp"
-                android:layout_width="349dp"
-                android:layout_height="52dp"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="100dp"
-                android:layout_marginBottom="8dp"
-                android:text="Update Profile"
-                app:layout_constraintBottom_toTopOf="@id/EmpAdd2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+            <RadioButton
+                android:id="@+id/Uprb_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:checked="true"
+                android:text="Male"/>
 
-        </LinearLayout>
+            <RadioButton
+                android:id="@+id/Uprb_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="Female"/>
 
-    </ScrollView>
+            <RadioButton
+                android:id="@+id/Uprb_transgender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="Transgender"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/UpEmpDoB"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:focusable="false"
+            android:hint="Date of Birth*"
+            android:inputType="date"
+            android:onClick="updateDoB"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Uptv_gender" />
+
+        <EditText
+            android:id="@+id/UpEmpAadharNo"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:ems="10"
+            android:hint="Aadharcard Number*"
+            android:inputType="number"
+            android:maxLength="12"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/UpEmpDoB" />
+
+        <EditText
+            android:id="@+id/UpEmpPhno"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:ems="10"
+            android:hint="Phone No.*"
+            android:inputType="phone"
+            android:maxLength="10"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/UpEmpAadharNo" />
+
+        <EditText
+            android:id="@+id/UpEmpEmail"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:ems="10"
+            android:hint="Email*"
+            android:inputType="textEmailAddress"
+            android:maxLength="30"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/UpEmpPhno" />
+
+        <EditText
+            android:id="@+id/UpEmpAdd1"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:ems="10"
+            android:hint="Address1*"
+            android:inputType="textPostalAddress"
+            android:maxLength="50"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/UpEmpEmail" />
+
+        <EditText
+            android:id="@+id/UpEmpAdd2"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:ems="10"
+            android:hint="Address2"
+            android:inputType="textPostalAddress"
+            android:maxLength="50"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/UpEmpAdd1" />
+
+        <TextView
+            android:id="@+id/textNotice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="#FFFFFF"
+            android:gravity="right"
+            android:text="* Required Fields."
+            android:textColor="#FF0000"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/UpEmpAdd2" />
+
+        <Button
+            android:id="@+id/btnUpdateEmp"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="100dp"
+            android:gravity="center"
+            android:background="@drawable/btngrade"
+            android:text="Register Company"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textNotice" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

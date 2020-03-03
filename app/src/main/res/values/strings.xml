@@ -2,6 +2,7 @@
     <string name="app_name">SalesRecord</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_register_compnay">RegisterCompnay</string>
+    <string name="link"> <u>Forget Password?</u></string>
 
     <string-array name="company_delete_list">
         <item>Vivo</item>
