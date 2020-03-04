@@ -38,7 +38,6 @@
             android:hint=" Enter Company Name*"
             android:inputType="textPersonName"
             android:maxLength="30"
-            android:textColor="#F5F5F5"
             android:textColorHint="#798A8E"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -65,6 +64,24 @@
             app:layout_constraintTop_toBottomOf="@+id/CompName" />
 
         <EditText
+            android:id="@+id/CompPassword"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:ems="10"
+            android:hint=" Enter Password*"
+            android:inputType="textPostalAddress"
+            android:maxLength="16"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CompEmail" />
+
+        <EditText
             android:id="@+id/CompCity"
             android:layout_width="0dp"
             android:layout_height="52dp"
@@ -80,7 +97,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CompEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/CompPassword" />
 
         <EditText
             android:id="@+id/CompPincode"
@@ -163,7 +180,7 @@
             android:layout_marginEnd="32dp"
             android:background="@drawable/formback"
             android:ems="10"
-            android:hint=" Enter GST Number*"
+            android:hint=" Enter GST Number"
             android:inputType="number"
             android:maxLength="15"
             android:textSize="20sp"
@@ -181,7 +198,7 @@
             android:layout_marginEnd="32dp"
             android:background="@drawable/formback"
             android:ems="10"
-            android:hint=" Enter Website*"
+            android:hint=" Enter Website"
             android:inputType="text"
             android:maxLength="70"
             android:textSize="20sp"
@@ -189,6 +206,24 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CompGSTno" />
+
+        <EditText
+            android:id="@+id/CompStatus"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:ems="10"
+            android:hint=" Enter Status*"
+            android:inputType="text"
+            android:maxLength="12"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CompWebsite" />
 
         <TextView
             android:id="@+id/textNotice"
@@ -204,7 +239,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CompWebsite" />
+            app:layout_constraintTop_toBottomOf="@+id/CompStatus" />
 
         <Button
             android:id="@+id/btnRegisterCompany"

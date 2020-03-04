@@ -23,6 +23,7 @@ class RegisterCompany : AppCompatActivity() {
         btnRegisterCompany.setOnClickListener {
             if((CompName.toString().length <0) and
                 (CompEmail.toString().length <0) and
+                (CompPassword.toString().length <0) and
                 (CompCity.toString().length <0) and
                 (CompPincode.toString().length <0) and
                 (CompPhno1.toString().length <0) and
@@ -34,6 +35,7 @@ class RegisterCompany : AppCompatActivity() {
             else {
                 var coName=CompName.text.toString()
                 var coEmail=CompEmail.text.toString()
+                var coPass=CompPassword.text.toString()
                 var coCity=CompCity.text.toString()
                 var coPin=CompPincode.text.toString()
                 var coPhno1=CompPhno1.text.toString()
@@ -41,25 +43,29 @@ class RegisterCompany : AppCompatActivity() {
                 var coLic=CompLicNo.text.toString()
                 var coGST=CompGSTno.text.toString()
                 var coWeb=CompWebsite.text.toString()
-                callService(coName, coEmail, coCity, coPin, coPhno1, coConPer, coLic)
+                var coStatus=CompStatus.text.toString()
+                callService(coName, coPass, coEmail, coCity, coPin, coPhno1, coConPer, coLic, coStatus)
             }
         }
     }
 
-    fun callService(coName:String, coEmail:String, coCity:String, coPin:String, coPhno1:String, coConPer:String, coLic:String){
+    fun callService(coName:String, coPass:String, coEmail:String, coCity:String, coPin:String, coPhno1:String, coConPer:String, coLic:String, coStatus:String){
         try{
             var client= OkHttpClient()
 
             var formBody= FormBody.Builder()
                 .add("name",coName)
+                .add("pass",coPass)
                 .add("email",coEmail)
                 .add("city",coCity)
                 .add("pincode",coPin)
                 .add("phno1",coPhno1)
+                //.add("phno2",coPhno2)
                 .add("contact_person",coConPer)
                 .add("lic_no",coLic)
-                //.add("get_no",coGST)
+                //.add("gst_no",coGST)
                 //.add("website",coWeb)
+                .add("status",coStatus)
                 .build()
 
             var req=Request.Builder()
