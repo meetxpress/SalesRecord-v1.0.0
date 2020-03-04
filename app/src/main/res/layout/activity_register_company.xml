@@ -207,7 +207,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CompGSTno" />
 
-        <EditText
+        <Spinner
             android:id="@+id/CompStatus"
             android:layout_width="0dp"
             android:layout_height="52dp"
@@ -216,14 +216,13 @@
             android:layout_marginEnd="32dp"
             android:background="@drawable/formback"
             android:ems="10"
-            android:hint=" Enter Status*"
-            android:inputType="text"
-            android:maxLength="12"
+            android:entries="@array/status"
             android:textSize="20sp"
+            android:tooltipText="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CompWebsite" />
+            app:layout_constraintTop_toBottomOf="@+id/CompWebsite"/>
 
         <TextView
             android:id="@+id/textNotice"
@@ -248,7 +247,6 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="16dp"
             android:background="@drawable/btngrade"
             android:text="Register Company"
             android:textColor="#FFFFFF"

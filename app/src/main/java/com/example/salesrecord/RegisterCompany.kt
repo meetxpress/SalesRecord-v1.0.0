@@ -1,12 +1,15 @@
 package com.example.salesrecord
 
+import android.app.DownloadManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_manage_company.view.*
 import kotlinx.android.synthetic.main.activity_register_company.*
+import kotlinx.android.synthetic.main.activity_register_company.view.*
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
@@ -31,8 +34,7 @@ class RegisterCompany : AppCompatActivity() {
                 (CompLicNo.toString().length <0))
             {
                 Toast.makeText(this@RegisterCompany,CompName.toString().length,Toast.LENGTH_LONG).show()
-            }
-            else {
+            } else {
                 var coName=CompName.text.toString()
                 var coEmail=CompEmail.text.toString()
                 var coPass=CompPassword.text.toString()
@@ -43,7 +45,7 @@ class RegisterCompany : AppCompatActivity() {
                 var coLic=CompLicNo.text.toString()
                 var coGST=CompGSTno.text.toString()
                 var coWeb=CompWebsite.text.toString()
-                var coStatus=CompStatus.text.toString()
+                var coStatus=CompStatus.CompStatus.selectedItem.toString()
                 callService(coName, coPass, coEmail, coCity, coPin, coPhno1, coConPer, coLic, coStatus)
             }
         }
@@ -68,7 +70,7 @@ class RegisterCompany : AppCompatActivity() {
                 .add("status",coStatus)
                 .build()
 
-            var req=Request.Builder()
+            var req= Request.Builder()
                 .url("http://10.0.2.2:80/SalesRecord/addcomp.php")
                 .post(formBody)
                 .build()
@@ -95,16 +97,13 @@ class RegisterCompany : AppCompatActivity() {
 
                         if(flag == 1){
                             Log.v("fs", flag.toString())
-                            runOnUiThread{
-                                Toast.makeText(this@RegisterCompany,"Successful.!", Toast.LENGTH_LONG).show()
-                                var i= Intent(this@RegisterCompany,SuperAdminHome::class.java)
-                                startActivity(i)
-                            }
+                            Toast.makeText(this@RegisterCompany,"Successful.!", Toast.LENGTH_LONG).show()
+                            var i= Intent(this@RegisterCompany,SuperAdminHome::class.java)
+                            startActivity(i)
+                            finish()
                         }else{
                             Log.v("ff", flag.toString())
-                            runOnUiThread{
-                                Toast.makeText(this@RegisterCompany,"Failed", Toast.LENGTH_LONG).show()
-                            }
+                            Toast.makeText(this@RegisterCompany,"Failed", Toast.LENGTH_LONG).show()
                         }
                     }
                 }
