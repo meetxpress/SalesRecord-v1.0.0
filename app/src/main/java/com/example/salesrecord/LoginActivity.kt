@@ -62,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
                         Log.v("ms",msg)
 
                         if(flag == 1){
-                            Log.v("fs", flag.toString())
+                            Log.v("f1", flag.toString())
                             runOnUiThread{
                                 var per=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
                                 var editor=per.edit()
@@ -71,6 +71,28 @@ class LoginActivity : AppCompatActivity() {
                                 Toast.makeText(this@LoginActivity,"Login Successful.!", Toast.LENGTH_LONG).show()
                                 var i= Intent(this@LoginActivity,SuperAdminHome::class.java)
                                 startActivity(i)
+                            }
+                        }else if(flag == 2){
+                            Log.v("f2", flag.toString())
+                            runOnUiThread{
+                                var per=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+                                var editor=per.edit()
+                                editor.putString("user",LoginUsername.text.toString())
+                                editor.commit()
+                                Toast.makeText(this@LoginActivity,"Login Successful.!", Toast.LENGTH_LONG).show()
+                                var i= Intent(this@LoginActivity,DistributerHome::class.java)
+                                startActivity(i)
+                            }
+                        }else if(flag == 3){
+                            Log.v("f3", flag.toString())
+                            runOnUiThread{
+                                var per=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+                                var editor=per.edit()
+                                editor.putString("user",LoginUsername.text.toString())
+                                editor.commit()
+                                Toast.makeText(this@LoginActivity,"Login Successful.!", Toast.LENGTH_LONG).show()
+                                //var i= Intent(this@LoginActivity,SuperAdminHome::class.java)
+                                //startActivity(i)
                             }
                         }else{
                             Log.v("ff", flag.toString())
