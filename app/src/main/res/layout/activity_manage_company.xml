@@ -25,37 +25,53 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView6"
+        <EditText
+            android:id="@+id/etUpdateComp"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="52dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="200dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="148dp"
             android:background="@drawable/formback"
-            android:gravity="left"
-            android:text="Select Company"
+            android:ems="10"
+            android:hint=" Search Company ID*"
+            android:inputType="textPersonName"
+            android:maxLength="30"
             android:textSize="20sp"
             android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-        <Spinner
-            android:id="@+id/CompSpinner"
-            android:layout_width="131dp"
-            android:layout_height="27dp"
-            android:layout_gravity="right"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+        <Button
+            android:id="@+id/btnSearchComp"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:background="@drawable/formback"
-            android:entries="@array/company_delete_list"
-            android:scrollbarSize="24dp"
+            android:background="@drawable/btngrade"
+            android:text="Search"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView6"
+            app:layout_constraintStart_toEndOf="@id/etUpdateComp"
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+        <TextView
+            android:id="@+id/textView70"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="?attr/colorBackgroundFloating"
+            android:text="- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etUpdateComp" />
 
         <EditText
             android:id="@+id/UpCompName"
@@ -73,7 +89,7 @@
             android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintTop_toBottomOf="@+id/textView70"/>
 
         <EditText
             android:id="@+id/UpCompEmail"

@@ -14,6 +14,10 @@ class HomeCompany : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_company)
+
+        //back button on actionbar
+        supportActionBar?.setDisplayShowCustomEnabled(true)
+
         btnAddEmp.setOnClickListener {
             var i = Intent(this@HomeCompany, RegisterEmployee::class.java)
             startActivity(i)
@@ -25,7 +29,8 @@ class HomeCompany : AppCompatActivity() {
         }
 
         btnViewAttendance.setOnClickListener{
-            Toast.makeText(this,"View Attendance Button!",Toast.LENGTH_LONG).show()
+            var i = Intent(this@HomeCompany, PunchAttendance::class.java)
+            startActivity(i)
         }
 
         btnViewReport.setOnClickListener{

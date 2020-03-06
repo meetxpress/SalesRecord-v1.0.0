@@ -19,11 +19,11 @@ class RegisterEmployee : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_employee)
 
-        var gen=findViewById<RadioGroup>(R.id.RadioBtnGroup)
-        var gender=findViewById<RadioButton>(gen.checkedRadioButtonId).text.toString()
-
         //back button on actionbar
         supportActionBar?.setDisplayShowCustomEnabled(true)
+
+        var gen=findViewById<RadioGroup>(R.id.RadioBtnGroup)
+        var gender=findViewById<RadioButton>(gen.checkedRadioButtonId).text.toString()
 
         btnRegisterEmp.setOnClickListener {
             if((EmpName.toString().length <0) and
@@ -42,12 +42,6 @@ class RegisterEmployee : AppCompatActivity() {
             {
                 Toast.makeText(this@RegisterEmployee,"Required Fields are missing.",Toast.LENGTH_LONG).show()
             } else {
-                RadioBtnGroup.setOnCheckedChangeListener { group, checkedId ->
-                    val radio: RadioButton = findViewById(checkedId)
-                    val eGen=radio.text
-                    Toast.makeText(applicationContext, " ${radio.text}", Toast.LENGTH_SHORT).show()
-                }
-
                 var eName=EmpName.text.toString()
                 var ePass=EmpPassword.text.toString()
                 var eDob=EmpDoB.text.toString()
@@ -62,21 +56,25 @@ class RegisterEmployee : AppCompatActivity() {
                 var eStatus=EmpStatus.text.toString()
                 var eDeg=EmpDeg.text.toString()
 
-                callService(eName, ePass, eGen, eDob, eAadhar, ePhno1, ePhno2, eMail, eAdd, ePincode, eCity, eState, eStatus, eDeg)
+                RadioBtnGroup.setOnCheckedChangeListener { group, checkedId ->
+                    val radio: RadioButton = findViewById(checkedId)
+                    var eGen=radio.text
+                    Toast.makeText(this@RegisterEmployee, "${radio.text}", Toast.LENGTH_SHORT).show()
+                }
+
+                callService(eName, ePass, eDob, eAadhar, ePhno1, ePhno2, eMail, eAdd, ePincode, eCity, eState, eStatus, eDeg)
             }
         }
     }
 
-    fun callService(eName:String, ePass:String, eGen:String, eDob:String, eAadhar:String, ePhno1:String, ePhno2:String, eMail:String, eAdd:String, ePincode:String, eCity:String, eState:String, eStatus:String, eDeg:String){
+    fun callService(eName:String, ePass:String, eDob:String, eAadhar:String, ePhno1:String, ePhno2:String, eMail:String, eAdd:String, ePincode:String, eCity:String, eState:String, eStatus:String, eDeg:String){
         try{
-           // Toast.makeText(this@RegisterEmployee, eGen, Toast.LENGTH_SHORT).show()
-
             var client=OkHttpClient()
 
             var formBody=FormBody.Builder()
                 .add("ename",eName)
                 .add("ePass",ePass)
-                .add("eGen",eGen)
+               // .add("eGen",eGen)
                 .add("eDob",eDob)
                 .add("eAadhar",eAadhar)
                 .add("ePhno1",ePhno1)

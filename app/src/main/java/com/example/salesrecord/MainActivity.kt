@@ -5,7 +5,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import kotlinx.android.synthetic.main.activity_login.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,12 +22,12 @@ class MainActivity : AppCompatActivity() {
             }
             else{
                 if(str.equals("admin")) {
-                    var i=Intent(this@MainActivity,SuperAdminHome::class.java)
+                    var i=Intent(this@MainActivity,HomeSuperAdmin::class.java)
                     startActivity(i)
                     finish()
                 }
                 else{
-                    var i=Intent(this@MainActivity,SuperAdminHome::class.java)
+                    var i=Intent(this@MainActivity,HomeSuperAdmin::class.java)
                     startActivity(i)
                     finish()
                 }

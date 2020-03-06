@@ -1,13 +1,10 @@
 package com.example.salesrecord
 
-import android.app.DownloadManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.EditText
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_manage_company.view.*
 import kotlinx.android.synthetic.main.activity_register_company.*
 import kotlinx.android.synthetic.main.activity_register_company.view.*
 import okhttp3.*
@@ -98,7 +95,7 @@ class RegisterCompany : AppCompatActivity() {
                         if(flag == 1){
                             Log.v("fs", flag.toString())
                             Toast.makeText(this@RegisterCompany,"Successful.!", Toast.LENGTH_LONG).show()
-                            var i= Intent(this@RegisterCompany,SuperAdminHome::class.java)
+                            var i= Intent(this@RegisterCompany,HomeSuperAdmin::class.java)
                             startActivity(i)
                             finish()
                         }else{

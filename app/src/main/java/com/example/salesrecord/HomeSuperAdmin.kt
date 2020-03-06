@@ -7,21 +7,21 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_super_admin_home.*
+import kotlinx.android.synthetic.main.activity_home_super_admin.*
 
-class SuperAdminHome : AppCompatActivity() {
+class HomeSuperAdmin : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_super_admin_home)
+        setContentView(R.layout.activity_home_super_admin)
 
         btnAddComp.setOnClickListener {
-            var i = Intent(this@SuperAdminHome, RegisterCompany::class.java)
+            var i = Intent(this@HomeSuperAdmin, RegisterCompany::class.java)
             startActivity(i)
         }
 
         btnManageComp.setOnClickListener {
-            var i = Intent(this@SuperAdminHome, ManageCompany::class.java)
+            var i = Intent(this@HomeSuperAdmin, ManageCompany::class.java)
             startActivity(i)
         }
     }
@@ -38,7 +38,7 @@ class SuperAdminHome : AppCompatActivity() {
             edit.clear()
             edit.commit()
             Toast.makeText(this,"Logged out Successfully!",Toast.LENGTH_LONG).show()
-            var inte=Intent(this@SuperAdminHome,LoginActivity::class.java)
+            var inte=Intent(this@HomeSuperAdmin,LoginActivity::class.java)
             startActivity(inte)
             finish()
         }
