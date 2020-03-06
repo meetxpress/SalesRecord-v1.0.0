@@ -19,8 +19,14 @@
         <activity
             android:name=".RegisterEmployee"
             android:label="Register Employee"
-            android:parentActivityName=".ManageEmployee"/>
-        <activity android:name=".DistributerHome">
+            android:parentActivityName=".ManageEmployee">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".HomeCompany">
 
         </activity>
         <activity
@@ -39,12 +45,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.salesrecord.MainActivity" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".SuperAdminHome"

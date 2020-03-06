@@ -251,7 +251,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textNotice" />
 
-        <!--Button
+        <Button
             android:id="@+id/btnDeleteComp"
             android:layout_width="0dp"
             android:layout_height="52dp"
@@ -265,7 +265,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnUpdateComp" /-->
+            app:layout_constraintTop_toBottomOf="@+id/btnUpdateComp" />
 
 
 

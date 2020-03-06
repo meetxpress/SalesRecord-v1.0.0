@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.*
 import kotlinx.android.synthetic.main.activity_login.*
 import okhttp3.*
 import org.json.JSONObject
@@ -69,7 +68,7 @@ class LoginActivity : AppCompatActivity() {
                                 editor.putString("user",LoginUsername.text.toString())
                                 editor.commit()
                                 Toast.makeText(this@LoginActivity,"Login Successful.!", Toast.LENGTH_LONG).show()
-                                var i= Intent(this@LoginActivity,SuperAdminHome::class.java)
+                                var i= Intent(this@LoginActivity,HomeCompany::class.java)
                                 startActivity(i)
                             }
                         }else if(flag == 2){
@@ -80,7 +79,7 @@ class LoginActivity : AppCompatActivity() {
                                 editor.putString("user",LoginUsername.text.toString())
                                 editor.commit()
                                 Toast.makeText(this@LoginActivity,"Login Successful.!", Toast.LENGTH_LONG).show()
-                                var i= Intent(this@LoginActivity,DistributerHome::class.java)
+                                var i= Intent(this@LoginActivity,HomeCompany::class.java)
                                 startActivity(i)
                             }
                         }else if(flag == 3){

@@ -7,20 +7,20 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_distributer_home.*
+import kotlinx.android.synthetic.main.activity_home_company.*
 
-class DistributerHome : AppCompatActivity() {
+class HomeCompany : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_distributer_home)
+        setContentView(R.layout.activity_home_company)
         btnAddEmp.setOnClickListener {
-            var i = Intent(this@DistributerHome, RegisterEmployee::class.java)
+            var i = Intent(this@HomeCompany, RegisterEmployee::class.java)
             startActivity(i)
         }
 
         btnMngEmp.setOnClickListener{
-            var i = Intent(this@DistributerHome, ManageEmployee::class.java)
+            var i = Intent(this@HomeCompany, ManageEmployee::class.java)
             startActivity(i)
         }
 

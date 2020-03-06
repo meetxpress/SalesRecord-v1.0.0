@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".DistributerHome">
+    tools:context=".HomeCompany">
 
     <Button
         android:id="@+id/btnAddEmp"
         style="@style/IL_Dist_top"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/add_employee_sec"
+        android:background="@drawable/add_employee"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
@@ -28,6 +28,7 @@
         android:text="Add Employee"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnAddEmp" />
+
     <Button
         android:id="@+id/btnMngEmp"
         style="@style/IR_Dist_top"
@@ -54,7 +55,7 @@
         style="@style/IL_Dist_bottom"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/view_attendance_sec"
+        android:background="@drawable/view_attendance"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,13 +71,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnViewAttendance" />
 
-
     <Button
         android:id="@+id/btnViewReport"
         style="@style/IR_Dist_bottom"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/view_reports_sec"
+        android:background="@drawable/emp_att"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

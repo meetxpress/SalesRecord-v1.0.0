@@ -28,12 +28,12 @@ class ManageCompany : AppCompatActivity() {
         }
 
         btnUpdateComp.setOnClickListener {
-            Toast.makeText(this,"Company details updated Successfully",Toast.LENGTH_LONG).show()
+            Toast.makeText(this@ManageCompany,"Company details updated Successfully",Toast.LENGTH_LONG).show()
             nulling()
         }
 
         btnDeleteComp.setOnClickListener {
-            Toast.makeText(this,"Company Deactivated Successfully.",Toast.LENGTH_LONG).show()
+            Toast.makeText(this@ManageCompany,"Company Deactivated Successfully.",Toast.LENGTH_LONG).show()
             nulling()
         }
     }
