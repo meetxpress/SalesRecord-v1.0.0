@@ -17,6 +17,8 @@ class RegisterEmployee : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_employee)
+        var gen=findViewById<RadioGroup>(R.id.RadioBtnGroup)
+        var gender=findViewById<RadioButton>(gen.checkedRadioButtonId).text.toString()
     }
 
     fun addDoB(view:View) {
@@ -27,8 +29,6 @@ class RegisterEmployee : AppCompatActivity() {
         val day=c.get(Calendar.DAY_OF_MONTH)
         val date =findViewById<EditText>(R.id.EmpDoB)
         var d:Date
-        var gen=findViewById<RadioGroup>(R.id.RadioBtnGroup)
-        var gender=findViewById<RadioButton>(gen.checkedRadioButtonId).text.toString()
 
         dpd=DatePickerDialog(this,R.style.DialogTheme, DatePickerDialog.OnDateSetListener {
                 view,year,month,day->date.setText(" $day / ${month+1} / $year")

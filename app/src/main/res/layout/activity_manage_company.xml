@@ -12,6 +12,20 @@
         tools:context=".ManageCompany">
 
         <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="?attr/colorBackgroundFloating"
+            android:text="Manage Company"
+            android:textAlignment="center"
+            android:textSize="39sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/textView6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -237,7 +251,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textNotice" />
 
-        <Button
+        <!--Button
             android:id="@+id/btnDeleteComp"
             android:layout_width="0dp"
             android:layout_height="52dp"
@@ -251,21 +265,8 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnUpdateComp" />
+            app:layout_constraintTop_toBottomOf="@+id/btnUpdateComp" /-->
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="?attr/colorBackgroundFloating"
-            android:text="Manage Company"
-            android:textAlignment="center"
-            android:textSize="39sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

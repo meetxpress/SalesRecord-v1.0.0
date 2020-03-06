@@ -88,6 +88,24 @@
         </RadioGroup>
 
         <EditText
+            android:id="@+id/EmpPassword"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:ems="10"
+            android:hint=" Enter Password*"
+            android:inputType="textPassword"
+            android:maxLength="15"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/RadioBtnGroup" />
+
+        <EditText
             android:id="@+id/EmpDoB"
             android:layout_width="0dp"
             android:layout_height="52dp"
@@ -103,7 +121,7 @@
             android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/RadioBtnGroup"/>
+            app:layout_constraintTop_toBottomOf="@+id/EmpPassword"/>
 
         <EditText
             android:id="@+id/EmpAadharNo"
@@ -124,7 +142,7 @@
             app:layout_constraintTop_toBottomOf="@+id/EmpDoB" />
 
         <EditText
-            android:id="@+id/EmpPhno"
+            android:id="@+id/EmpPhno1"
             android:layout_width="0dp"
             android:layout_height="52dp"
             android:layout_marginStart="32dp"
@@ -132,7 +150,7 @@
             android:layout_marginEnd="32dp"
             android:background="@drawable/formback"
             android:ems="10"
-            android:hint=" Mobile Number*"
+            android:hint=" Mobile Number 1*"
             android:inputType="phone"
             android:maxLength="10"
             android:textSize="20sp"
@@ -140,6 +158,24 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/EmpAadharNo" />
+
+        <EditText
+            android:id="@+id/EmpPhno2"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:ems="10"
+            android:hint=" Mobile Number 2*"
+            android:inputType="phone"
+            android:maxLength="10"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/EmpPhno1" />
 
         <EditText
             android:id="@+id/EmpEmail"
@@ -157,10 +193,10 @@
             android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EmpPhno" />
+            app:layout_constraintTop_toBottomOf="@+id/EmpPhno2" />
 
         <EditText
-            android:id="@+id/EmpAdd1"
+            android:id="@+id/EmpAdd"
             android:layout_width="0dp"
             android:layout_height="52dp"
             android:layout_marginStart="32dp"
@@ -168,7 +204,7 @@
             android:layout_marginEnd="32dp"
             android:background="@drawable/formback"
             android:ems="10"
-            android:hint=" Address Line 1*"
+            android:hint=" Address*"
             android:inputType="textPostalAddress"
             android:maxLength="50"
             android:textSize="20sp"
@@ -178,22 +214,94 @@
             app:layout_constraintTop_toBottomOf="@+id/EmpEmail" />
 
         <EditText
-            android:id="@+id/EmpAdd2"
+            android:id="@+id/EmpPincode"
             android:layout_width="0dp"
             android:layout_height="52dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/formback"
-            android:ems="10"
-            android:hint=" Address Line 2"
-            android:inputType="textPostalAddress"
+            android:ems="6"
+            android:hint=" Pincode"
+            android:inputType="number"
             android:maxLength="50"
             android:textSize="20sp"
             android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EmpAdd1" />
+            app:layout_constraintTop_toBottomOf="@+id/EmpAdd" />
+
+        <EditText
+        android:id="@+id/EmpCity"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/formback"
+        android:ems="30"
+        android:hint=" City*"
+        android:inputType="textPostalAddress"
+        android:maxLength="50"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EmpPincode" />
+
+        <EditText
+            android:id="@+id/EmpState"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:ems="30"
+            android:hint=" State*"
+            android:inputType="textPostalAddress"
+            android:maxLength="20"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/EmpCity" />
+
+        <EditText
+            android:id="@+id/EmpStatus"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:ems="30"
+            android:hint=" Employee Status*"
+            android:inputType="text"
+            android:maxLength="12"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/EmpState" />
+
+        <EditText
+            android:id="@+id/EmpDeg"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/formback"
+            android:ems="30"
+            android:hint=" Designation*"
+            android:inputType="text"
+            android:maxLength="15"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/EmpStatus" />
 
         <TextView
             android:id="@+id/textNotice"
@@ -209,7 +317,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EmpAdd2" />
+            app:layout_constraintTop_toBottomOf="@+id/EmpDeg" />
 
         <Button
             android:id="@+id/btnRegisterEmp"

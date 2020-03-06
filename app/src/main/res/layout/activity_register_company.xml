@@ -215,7 +215,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/formback"
-            android:ems="10"
+            android:ems="30"
             android:entries="@array/status"
             android:textSize="20sp"
             android:tooltipText="20sp"
