@@ -43,7 +43,7 @@
                     android:padding="5dp">
 
                     <TextView
-                        android:id="@+id/textView0"
+                        android:id="@+id/date1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -87,6 +87,7 @@
                                     android:textStyle="bold" />
 
                                 <Button
+                                    android:id="@+id/btnAtt1_1"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
@@ -193,7 +194,7 @@
                     android:padding="5dp">
 
                     <TextView
-                        android:id="@+id/textView8"
+                        android:id="@+id/date2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -343,7 +344,7 @@
                     android:padding="5dp">
 
                     <TextView
-                        android:id="@+id/textView15"
+                        android:id="@+id/date3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -494,7 +495,7 @@
                     android:padding="5dp">
 
                     <TextView
-                        android:id="@+id/textView22"
+                        android:id="@+id/date4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"

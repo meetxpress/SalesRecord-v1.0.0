@@ -21,7 +21,13 @@
         <activity
             android:name=".PunchAttendance"
             android:label="Attendance"
-            android:parentActivityName=".HomeEmployee"/>
+            android:parentActivityName=".HomeEmployee">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".ManageEmployee"
@@ -40,13 +46,7 @@
         <activity
             android:name=".ManageCompany"
             android:label="Manage Company"
-            android:parentActivityName=".HomeSuperAdmin">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:parentActivityName=".HomeSuperAdmin"/>
 
         <activity
             android:name=".RegisterCompany"
