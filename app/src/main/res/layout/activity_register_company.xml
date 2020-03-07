@@ -73,7 +73,7 @@
             android:background="@drawable/formback"
             android:ems="10"
             android:hint=" Enter Password*"
-            android:inputType="textPostalAddress"
+            android:inputType="textPassword"
             android:maxLength="16"
             android:textSize="20sp"
             android:textStyle="bold"

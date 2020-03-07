@@ -106,4 +106,5 @@ class LoginActivity : AppCompatActivity() {
             e.printStackTrace()
         }
     }
+
 }
