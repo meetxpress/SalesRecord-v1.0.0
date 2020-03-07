@@ -83,6 +83,8 @@ class ManageCompany : AppCompatActivity() {
                         var js= JSONObject(str)
                         var flag=js.getInt("success")
                         var msg=js.getString("message")
+
+                        //filling data in EditText
                         var comp_name=js.getString("comp_name")
                         var comp_email=js.getString("comp_email")
                         var comp_city=js.getString("comp_city")
@@ -124,7 +126,7 @@ class ManageCompany : AppCompatActivity() {
         }
     }
 
-    fun callServiceUpdate(comp_id:String,comp_name:String,comp_email:String,comp_city:String,comp_pincode:String,comp_phno:String,comp_person:String,comp_licno:String,comp_gstno:String,comp_website:String){
+    fun callServiceUpdate(comp_id:String, comp_name:String, comp_email:String, comp_city:String, comp_pincode:String, comp_phno:String, comp_person:String, comp_licno:String, comp_gstno:String, comp_website:String){
         try{
             var client= OkHttpClient()
 
@@ -135,7 +137,6 @@ class ManageCompany : AppCompatActivity() {
                 .add("city",comp_city)
                 .add("pincode",comp_pincode)
                 .add("phno1",comp_phno)
-
                 .add("contact_person",comp_person)
                 .add("lic_no",comp_licno)
                 .add("get_no",comp_gstno)
