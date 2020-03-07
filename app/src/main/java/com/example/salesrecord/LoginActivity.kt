@@ -67,8 +67,8 @@ class LoginActivity : AppCompatActivity() {
                                 var editor=per.edit()
                                 editor.putString("user",LoginUsername.text.toString())
                                 editor.commit()
-                                Toast.makeText(this@LoginActivity,"Login Successful.!", Toast.LENGTH_LONG).show()
-                                var i= Intent(this@LoginActivity,HomeCompany::class.java)
+                                Toast.makeText(this@LoginActivity,"Logged In Successfully.!", Toast.LENGTH_LONG).show()
+                                var i= Intent(this@LoginActivity,HomeSuperAdmin::class.java)
                                 startActivity(i)
                             }
                         }else if(flag == 2){
@@ -78,7 +78,7 @@ class LoginActivity : AppCompatActivity() {
                                 var editor=per.edit()
                                 editor.putString("user",LoginUsername.text.toString())
                                 editor.commit()
-                                Toast.makeText(this@LoginActivity,"Login Successful.!", Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@LoginActivity,"Logged In Successfully.!", Toast.LENGTH_LONG).show()
                                 var i= Intent(this@LoginActivity,HomeCompany::class.java)
                                 startActivity(i)
                             }
@@ -89,9 +89,9 @@ class LoginActivity : AppCompatActivity() {
                                 var editor=per.edit()
                                 editor.putString("user",LoginUsername.text.toString())
                                 editor.commit()
-                                Toast.makeText(this@LoginActivity,"Login Successful.!", Toast.LENGTH_LONG).show()
-                                //var i= Intent(this@LoginActivity,SuperAdminHome::class.java)
-                                //startActivity(i)
+                                Toast.makeText(this@LoginActivity,"Logged In Successfully.!", Toast.LENGTH_LONG).show()
+                                var i= Intent(this@LoginActivity,HomeEmployee::class.java)
+                                startActivity(i)
                             }
                         }else{
                             Log.v("ff", flag.toString())

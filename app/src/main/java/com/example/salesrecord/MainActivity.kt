@@ -25,13 +25,16 @@ class MainActivity : AppCompatActivity() {
                     var i=Intent(this@MainActivity,HomeSuperAdmin::class.java)
                     startActivity(i)
                     finish()
-                }
-                else{
+                }else if(str.equals("")){
                     var i=Intent(this@MainActivity,HomeSuperAdmin::class.java)
+                    startActivity(i)
+                    finish()
+                }else{
+                    var i=Intent(this@MainActivity,HomeEmployee::class.java)
                     startActivity(i)
                     finish()
                 }
             }
-        },1500)
+        },1000)
     }
 }

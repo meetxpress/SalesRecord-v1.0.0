@@ -19,13 +19,14 @@ class shared_Preference: AppCompatActivity() {
             var edit=per.edit()
             edit.clear()
             edit.commit()
-            Toast.makeText(this,"Logged out Successfully!", Toast.LENGTH_LONG).show()
-            var inte= Intent(this, LoginActivity::class.java)
+
+            Toast.makeText(this@shared_Preference,"Logged out Successfully!", Toast.LENGTH_LONG).show()
+            var inte= Intent(this@shared_Preference, LoginActivity::class.java)
             startActivity(inte)
             finish()
         }
         else{
-            Toast.makeText(this,"Random Option!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@shared_Preference,"Random Option!", Toast.LENGTH_LONG).show()
         }
         return super.onOptionsItemSelected(item)
     }
