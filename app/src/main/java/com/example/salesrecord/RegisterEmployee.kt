@@ -15,20 +15,19 @@ import java.util.*
 
 class RegisterEmployee : AppCompatActivity() {
 
+    var eGen:String=""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_employee)
 
         //back button on actionbar
         supportActionBar?.setDisplayShowCustomEnabled(true)
-
-        var gen=findViewById<RadioGroup>(R.id.RadioBtnGroup)
-        var gender=findViewById<RadioButton>(gen.checkedRadioButtonId).text.toString()
-
         btnRegisterEmp.setOnClickListener {
+
             if((EmpName.toString().length <0) and
                 (EmpPassword.toString().length <0) and
-                (EmpDoB.toString().length <0) and
+                //(EmpDoB.toString().length <0) and
                 (EmpAadharNo.toString().length <0) and
                 (EmpPhno1.toString().length <0) and
                 (EmpPhno2.toString().length <0) and
@@ -37,14 +36,13 @@ class RegisterEmployee : AppCompatActivity() {
                 (EmpPincode.toString().length <0) and
                 (EmpCity.toString().length <0) and
                 (EmpState.toString().length <0) and
-                (EmpStatus.toString().length <0) and
-                (EmpDeg.toString().length <0))
+                (EmpStatus.toString().length <0))
             {
                 Toast.makeText(this@RegisterEmployee,"Required Fields are missing.",Toast.LENGTH_LONG).show()
             } else {
                 var eName=EmpName.text.toString()
                 var ePass=EmpPassword.text.toString()
-                var eDob=EmpDoB.text.toString()
+                //var eDob=EmpDoB.text.toString()
                 var eAadhar=EmpAadharNo.text.toString()
                 var ePhno1=EmpPhno1.text.toString()
                 var ePhno2=EmpPhno2.text.toString()
@@ -53,29 +51,29 @@ class RegisterEmployee : AppCompatActivity() {
                 var ePincode=EmpPincode.text.toString()
                 var eCity=EmpCity.text.toString()
                 var eState=EmpState.text.toString()
-                var eStatus=EmpStatus.text.toString()
-                var eDeg=EmpDeg.text.toString()
+                var eStatus=EmpStatus.selectedItem.toString()
 
                 RadioBtnGroup.setOnCheckedChangeListener { group, checkedId ->
                     val radio: RadioButton = findViewById(checkedId)
-                    var eGen=radio.text
-                    Toast.makeText(this@RegisterEmployee, "${radio.text}", Toast.LENGTH_SHORT).show()
+                    eGen = radio.text.substring(0,1)
+                   // Toast.makeText(this@RegisterEmployee, eGen, Toast.LENGTH_SHORT).show()
                 }
-
-                callService(eName, ePass, eDob, eAadhar, ePhno1, ePhno2, eMail, eAdd, ePincode, eCity, eState, eStatus, eDeg)
+                callService(eName, ePass, eGen, eAadhar, ePhno1, ePhno2, eMail, eAdd, ePincode, eCity, eState, eStatus)
+                //eDob,
             }
         }
     }
 
-    fun callService(eName:String, ePass:String, eDob:String, eAadhar:String, ePhno1:String, ePhno2:String, eMail:String, eAdd:String, ePincode:String, eCity:String, eState:String, eStatus:String, eDeg:String){
+    //eDob:String,
+    fun callService(eName:String, ePass:String, eGen:String, eAadhar:String, ePhno1:String, ePhno2:String, eMail:String, eAdd:String, ePincode:String, eCity:String, eState:String, eStatus:String) =
         try{
             var client=OkHttpClient()
 
             var formBody=FormBody.Builder()
-                .add("ename",eName)
+                .add("eName",eName)
                 .add("ePass",ePass)
-               // .add("eGen",eGen)
-                .add("eDob",eDob)
+                .add("eGen",eGen)
+                //.add("eDob",eDob)
                 .add("eAadhar",eAadhar)
                 .add("ePhno1",ePhno1)
                 .add("ePhno2",ePhno2)
@@ -84,6 +82,7 @@ class RegisterEmployee : AppCompatActivity() {
                 .add("ePincode",ePincode)
                 .add("eCity",eCity)
                 .add("eState",eState)
+                .add("eStatus",eStatus)
                 .build()
 
             var request=Request.Builder()
@@ -110,16 +109,19 @@ class RegisterEmployee : AppCompatActivity() {
                         Log.v("res",response.toString())
                         Log.v("cdm",flag.toString())
                         Log.v("msg",message)
-
                         if(flag == 1){
-                            Log.v("fs", flag.toString())
-                            Toast.makeText(this@RegisterEmployee,"Successful.!", Toast.LENGTH_LONG).show()
-                            var i= Intent(this@RegisterEmployee,HomeCompany::class.java)
-                            startActivity(i)
-                            finish()
+                            runOnUiThread {
+                                Log.v("fs", flag.toString())
+                                Toast.makeText(this@RegisterEmployee,"Successful.!", Toast.LENGTH_LONG).show()
+                                var i= Intent(this@RegisterEmployee,HomeCompany::class.java)
+                                startActivity(i)
+                                finish()
+                            }
                         }else{
-                            Log.v("ff", flag.toString())
-                            Toast.makeText(this@RegisterEmployee,"Failed", Toast.LENGTH_LONG).show()
+                            runOnUiThread {
+                                Log.v("ff", flag.toString())
+                                Toast.makeText(this@RegisterEmployee,"Failed", Toast.LENGTH_LONG).show()
+                            }
                         }
                     }
                 }
@@ -127,7 +129,6 @@ class RegisterEmployee : AppCompatActivity() {
         }catch (e:Exception){
             e.printStackTrace()
         }
-    }
 
     fun addDoB(view:View) {
         var dpd:DatePickerDialog
@@ -141,18 +142,5 @@ class RegisterEmployee : AppCompatActivity() {
         dpd=DatePickerDialog(this@RegisterEmployee,R.style.DialogTheme, DatePickerDialog.OnDateSetListener {
                 view,year,month,day->date.setText(" $day / ${month+1} / $year")
         },year,month,day)
-    }
-
-    fun onRadioButtonClicked(view: View) {
-        var checked = view as RadioButton
-        if (rb_male == checked) {
-            Toast.makeText(this@RegisterEmployee, (rb_male.text.toString() + if (rb_male.isChecked) " Checked " else " UnChecked "), Toast.LENGTH_LONG).show()
-        }
-        if (rb_female == checked) {
-            Toast.makeText(this@RegisterEmployee, (rb_female.text.toString() + if (rb_female.isChecked) " Checked " else " UnChecked "), Toast.LENGTH_LONG).show()
-        }
-        if(rb_transgender == checked){
-            Toast.makeText(this@RegisterEmployee,(rb_transgender.text.toString() + if(rb_transgender.isChecked) "Checked" else "Unchecked"), Toast.LENGTH_LONG).show()
-        }
     }
 }

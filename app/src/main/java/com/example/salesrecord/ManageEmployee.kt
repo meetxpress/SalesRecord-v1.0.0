@@ -1,6 +1,7 @@
 package com.example.salesrecord
 
 import android.app.DatePickerDialog
+import android.icu.text.UnicodeSetSpanner
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -16,6 +17,7 @@ import java.util.*
 
 class ManageEmployee : AppCompatActivity() {
 
+    var emp_gen:String=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manage_employee)
@@ -28,7 +30,7 @@ class ManageEmployee : AppCompatActivity() {
             var emp_name=UpEmpName.text.toString()
             RadioBtnGroup.setOnCheckedChangeListener { group, checkedId ->
                 val radio: RadioButton = findViewById(checkedId)
-                var emp_gen=radio.text
+                emp_gen=radio.text.substring(0).toString()
                 Toast.makeText(this@ManageEmployee, "${radio.text}", Toast.LENGTH_SHORT).show()
             }
             var emp_dob=UpEmpDoB.text.toString()
@@ -40,7 +42,7 @@ class ManageEmployee : AppCompatActivity() {
             var emp_pincode=UpEmpPincode.text.toString()
             var emp_state=UpEmpState.text.toString()
             var emp_deg =UpEmpDeg.text.toString()
-            callServiceUpdate(emp_id, emp_name, emp_add, emp_dob, emp_aadhar, emp_phno1, emp_email, emp_city, emp_pincode, emp_state, emp_deg)
+            callServiceUpdate(emp_id, emp_name, emp_add, emp_gen, emp_dob, emp_aadhar, emp_phno1, emp_email, emp_city, emp_pincode, emp_state, emp_deg)
             //Toast.makeText(this,"Company details updated Successfully",Toast.LENGTH_LONG).show()
         }
 
@@ -162,13 +164,14 @@ class ManageEmployee : AppCompatActivity() {
         }
     }
 
-    fun callServiceUpdate(emp_id:String, emp_name:String, emp_add:String, emp_dob:String, emp_aadhar:String, emp_phno1:String, emp_email:String, emp_city:String, emp_pincode:String, emp_state:String,  emp_deg:String){
+    fun callServiceUpdate(emp_id:String, emp_name:String, emp_add:String, emp_gen:String, emp_dob:String, emp_aadhar:String, emp_phno1:String, emp_email:String, emp_city:String, emp_pincode:String, emp_state:String,  emp_deg:String){
     try{
             var client= OkHttpClient()
 
             var formBody= FormBody.Builder()
                 .add("id", emp_id)
                 .add("name", emp_name)
+                .add("gender",emp_gen)
                 .add("dob", emp_dob)
                 .add("aadhar", emp_aadhar)
                 .add("phno1", emp_phno1)

@@ -42,7 +42,7 @@ class RegisterCompany : AppCompatActivity() {
                 var coLic=CompLicNo.text.toString()
                 var coGST=CompGSTno.text.toString()
                 var coWeb=CompWebsite.text.toString()
-                var coStatus=CompStatus.CompStatus.selectedItem.toString()
+                var coStatus=CompStatus.selectedItem.toString()
                 callService(coName, coPass, coEmail, coCity, coPin, coPhno1, coConPer, coLic, coStatus)
             }
         }

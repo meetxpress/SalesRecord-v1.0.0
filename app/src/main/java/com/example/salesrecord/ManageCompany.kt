@@ -179,7 +179,7 @@ class ManageCompany : AppCompatActivity() {
                         }else{
                             Log.v("ff", flag.toString())
                             runOnUiThread{
-                                Toast.makeText(this@ManageCompany,"An Error occured!", Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@ManageCompany,"An Error Occurred!", Toast.LENGTH_LONG).show()
                             }
                         }
                     }

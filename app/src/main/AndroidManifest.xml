@@ -42,7 +42,7 @@
         <activity
             android:name=".RegisterEmployee"
             android:label="Register Employee"
-            android:parentActivityName=".ManageEmployee" />
+            android:parentActivityName=".ManageEmployee"/>
         <activity
             android:name=".ManageCompany"
             android:label="Manage Company"
@@ -54,7 +54,13 @@
         <activity
             android:name=".DeactivateCompany"
             android:label="Deactivate Company"
-            android:parentActivityName=".HomeSuperAdmin" />
+            android:parentActivityName=".HomeSuperAdmin">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".RegisterCompany"
             android:label="Register Company"
