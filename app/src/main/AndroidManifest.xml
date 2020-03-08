@@ -5,10 +5,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission. ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -20,44 +20,48 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name=".HomeEmployee"
-            android:label="Employee Dashboard"/>
-
-        <activity
             android:name=".PunchAttendance"
             android:label="Attendance"
-            android:parentActivityName=".HomeEmployee">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
+            android:parentActivityName=".HomeEmployee" />
         <activity
             android:name=".ManageEmployee"
             android:label="Manage Employee Profile"
-            android:parentActivityName=".HomeEmployee"/>
-
+            android:parentActivityName=".HomeEmployee" />
+        <activity
+            android:name=".HomeEmployee"
+            android:label="Employee Dashboard"/>
+        <!-- Company Module-->
+        <activity
+            android:name=".DeactivateEmployee"
+            android:label="Deactivate Employee"
+            android:parentActivityName=".HomeCompany"/>
+        <activity
+            android:name=".ViewCompReports"
+            android:label="View Reports"
+            android:parentActivityName=".HomeCompany"/>
         <activity
             android:name=".RegisterEmployee"
             android:label="Register Employee"
-            android:parentActivityName=".ManageEmployee"/>
-
-        <activity
-            android:name=".HomeCompany"
-            android:label="Company Dashboard"/>
-
+            android:parentActivityName=".ManageEmployee" />
         <activity
             android:name=".ManageCompany"
             android:label="Manage Company"
-            android:parentActivityName=".HomeSuperAdmin"/>
-
+            android:parentActivityName=".HomeSuperAdmin" />
+        <activity
+            android:name=".HomeCompany"
+            android:label="Company Dashboard" />
+        <!-- Super Admin Module-->
+        <activity
+            android:name=".DeactivateCompany"
+            android:label="Deactivate Company"
+            android:parentActivityName=".HomeSuperAdmin" />
         <activity
             android:name=".RegisterCompany"
             android:label="Register Company"
             android:parentActivityName=".ManageCompany" />
-
+        <activity
+            android:name=".HomeSuperAdmin"
+            android:label="Super Admin Dashboard"/>
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
@@ -69,10 +73,6 @@
         </activity>
 
         <activity
-            android:name=".HomeSuperAdmin"
-            android:label="Super Admin Dashboard" />
-
-        <activity
             android:name=".MainActivity"
             android:theme="@style/SplashScreen.NoActionBar">
             <intent-filter>
@@ -81,6 +81,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
+
 </manifest>

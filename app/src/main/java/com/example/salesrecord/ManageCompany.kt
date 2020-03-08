@@ -35,10 +35,12 @@ class ManageCompany : AppCompatActivity() {
             //Toast.makeText(this,"Company details updated Successfully",Toast.LENGTH_LONG).show()
         }
 
+        /*
         btnDeleteComp.setOnClickListener {
             Toast.makeText(this@ManageCompany,"Company Deactivated Successfully.",Toast.LENGTH_LONG).show()
             nulling()
         }
+        */
 
         btnSearchComp.setOnClickListener {
             var id = etUpdateComp.text.toString();

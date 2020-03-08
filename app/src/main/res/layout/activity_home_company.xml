@@ -25,6 +25,55 @@
             android:columnOrderPreserved="false"
             android:rowCount="2">
 
+            <!-- Manage Company-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="15dp"
+                android:elevation="5dp"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <Button
+                        android:id="@+id/btnMngComp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/manage_company"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.869"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.118"
+                        app:srcCompat="@drawable/manage_company" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center"
+                        android:text="Manage Company"
+                        android:textColor="#000000"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.894"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/btnMngEmp"
+                        app:layout_constraintVertical_bias="0.021" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
             <!-- Add Employee-->
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
@@ -73,104 +122,6 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Manage Employee-->
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_margin="15dp"
-                android:elevation="5dp"
-                app:cardCornerRadius="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-
-                    <Button
-                        android:id="@+id/btnMngEmp"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:background="@drawable/manage_employee"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.869"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.118"
-                        app:srcCompat="@drawable/manage_company" />
-
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:gravity="center"
-                        android:text="Manage Employee"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.894"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/btnMngEmp"
-                        app:layout_constraintVertical_bias="0.021" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- View Attendance-->
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_margin="15dp"
-                android:elevation="5dp"
-                app:cardCornerRadius="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-
-                    <Button
-                        android:id="@+id/btnViewAttendance"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:background="@drawable/emp_att"
-                        android:textColor="#000000"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.126"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.118" />
-
-                    <TextView
-                        android:id="@+id/textView6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:gravity="center"
-                        android:text="View Attendance"
-                        android:textColor="#000000"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.113"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/btnAddEmp"
-                        app:layout_constraintVertical_bias="0.023" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
             <!-- View Reports-->
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
@@ -189,7 +140,7 @@
                     android:padding="5dp">
 
                     <Button
-                        android:id="@+id/btnViewReport"
+                        android:id="@+id/btnViewCompReport"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/emp_report"
@@ -218,6 +169,56 @@
                         app:layout_constraintVertical_bias="0.023" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+            <!-- Deactivate Employee-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="15dp"
+                android:elevation="5dp"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <Button
+                        android:id="@+id/btnDeleteEmp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/manage_employee"
+                        android:textColor="#000000"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.126"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.118" />
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center"
+                        android:text="Inactive Employee"
+                        android:textColor="#000000"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.113"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/btnAddEmp"
+                        app:layout_constraintVertical_bias="0.023" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
         </GridLayout>
     </LinearLayout>
 </ScrollView>

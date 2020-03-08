@@ -18,23 +18,25 @@ class HomeCompany : AppCompatActivity() {
         //back button on actionbar
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
+        btnMngComp.setOnClickListener{
+            var i = Intent(this@HomeCompany, ManageCompany::class.java)
+            startActivity(i)
+        }
+
         btnAddEmp.setOnClickListener {
             var i = Intent(this@HomeCompany, RegisterEmployee::class.java)
             startActivity(i)
         }
 
-        btnMngEmp.setOnClickListener{
-            var i = Intent(this@HomeCompany, ManageEmployee::class.java)
+        btnViewCompReport.setOnClickListener{
+            var i = Intent(this@HomeCompany, ViewCompReports::class.java)
             startActivity(i)
         }
 
-        btnViewAttendance.setOnClickListener{
-            var i = Intent(this@HomeCompany, PunchAttendance::class.java)
+        btnDeleteEmp.setOnClickListener{
+           // Toast.makeText(this,"View Report Button!",Toast.LENGTH_LONG).show()
+            var i = Intent(this@HomeCompany, DeactivateEmployee::class.java)
             startActivity(i)
-        }
-
-        btnViewReport.setOnClickListener{
-            Toast.makeText(this,"View Report Button!",Toast.LENGTH_LONG).show()
         }
     }
 

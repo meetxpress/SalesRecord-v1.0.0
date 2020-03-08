@@ -20,8 +20,8 @@ class HomeSuperAdmin : AppCompatActivity() {
             startActivity(i)
         }
 
-        btnManageComp.setOnClickListener {
-            var i = Intent(this@HomeSuperAdmin, ManageCompany::class.java)
+        btnDeleteComp.setOnClickListener {
+            var i = Intent(this@HomeSuperAdmin, DeactivateCompany::class.java)
             startActivity(i)
         }
     }

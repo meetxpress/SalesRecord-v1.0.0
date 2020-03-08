@@ -96,7 +96,7 @@
                     android:padding="5dp">
 
                     <Button
-                        android:id="@+id/btnManageComp"
+                        android:id="@+id/btnDeleteComp"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_marginTop="15dp"
@@ -115,7 +115,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:gravity="center"
-                        android:text="Manage Company"
+                        android:text="Inactive Company"
                         android:textColor="#000000"
                         android:textSize="20sp"
                         android:textStyle="bold"
