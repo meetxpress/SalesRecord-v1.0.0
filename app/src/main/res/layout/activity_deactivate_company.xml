@@ -30,7 +30,7 @@
         android:background="@drawable/formback"
         android:ems="10"
         android:hint=" Search Company ID*"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:maxLength="30"
         android:textSize="20sp"
         android:textStyle="bold|italic"

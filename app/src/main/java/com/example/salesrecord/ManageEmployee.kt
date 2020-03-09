@@ -41,15 +41,14 @@ class ManageEmployee : AppCompatActivity() {
             var emp_city=UpEmpCity.text.toString()
             var emp_pincode=UpEmpPincode.text.toString()
             var emp_state=UpEmpState.text.toString()
-            var emp_deg =UpEmpDeg.text.toString()
-            callServiceUpdate(emp_id, emp_name, emp_add, emp_gen, emp_dob, emp_aadhar, emp_phno1, emp_email, emp_city, emp_pincode, emp_state, emp_deg)
+            callServiceUpdate(emp_id, emp_name, emp_add, emp_gen, emp_dob, emp_aadhar, emp_phno1, emp_email, emp_city, emp_pincode, emp_state)
             //Toast.makeText(this,"Company details updated Successfully",Toast.LENGTH_LONG).show()
         }
 
-        btnDeleteEmp.setOnClickListener {
+        /*btnDeleteEmp.setOnClickListener {
             Toast.makeText(this@ManageEmployee,"Employee Deleted Successfully.",Toast.LENGTH_LONG).show()
             nulling()
-        }
+        }*/
 
         btnSearchEmp.setOnClickListener {
             var id = etUpdateEmp.text.toString();
@@ -84,7 +83,6 @@ class ManageEmployee : AppCompatActivity() {
         UpEmpCity.setText("")
         UpEmpPincode.setText("")
         UpEmpState.setText("")
-        UpEmpDeg.setText("")
     }
 
     fun callService(id:String){
@@ -120,10 +118,9 @@ class ManageEmployee : AppCompatActivity() {
                         var ePhno1 = js.getString("emp_mob1")
                         var eMail = js.getString("emp_email")
                         var eAdd = js.getString("emp_address")
-                        var eCity = js.getString("emp_city")
                         var ePincode = js.getString("emp_pincode")
+                        var eCity = js.getString("emp_city")
                         var eState = js.getString("emp_state")
-                        var eDeg = js.getString("emp_deg")
 
                         Log.v("res",str)
 
@@ -132,7 +129,7 @@ class ManageEmployee : AppCompatActivity() {
                             runOnUiThread{
                                 Toast.makeText(this@ManageEmployee,"Data Found", Toast.LENGTH_LONG).show()
 
-                                var emp_name=UpEmpName.text.toString()
+                                //var emp_name=UpEmpName.text.toString()
                                 RadioBtnGroup.setOnCheckedChangeListener { group, checkedId ->
                                     val radio: RadioButton = findViewById(checkedId)
                                     var emp_gen = radio.text
@@ -148,7 +145,6 @@ class ManageEmployee : AppCompatActivity() {
                                 UpEmpCity.setText(eCity).toString()
                                 UpEmpPincode.setText(ePincode).toString()
                                 UpEmpState.setText(eState).toString()
-                                UpEmpDeg.setText(eDeg).toString()
                             }
                         }else{
                             Log.v("ff", flag.toString())
@@ -164,7 +160,7 @@ class ManageEmployee : AppCompatActivity() {
         }
     }
 
-    fun callServiceUpdate(emp_id:String, emp_name:String, emp_add:String, emp_gen:String, emp_dob:String, emp_aadhar:String, emp_phno1:String, emp_email:String, emp_city:String, emp_pincode:String, emp_state:String,  emp_deg:String){
+    fun callServiceUpdate(emp_id:String, emp_name:String, emp_add:String, emp_gen:String, emp_dob:String, emp_aadhar:String, emp_phno1:String, emp_email:String, emp_city:String, emp_pincode:String, emp_state:String){
     try{
             var client= OkHttpClient()
 
@@ -180,7 +176,6 @@ class ManageEmployee : AppCompatActivity() {
                 .add("city", emp_city)
                 .add("pincode", emp_pincode)
                 .add("state", emp_state)
-                .add("deg", emp_deg)
                 .build()
 
             var req= Request.Builder()
@@ -217,7 +212,7 @@ class ManageEmployee : AppCompatActivity() {
                         }else{
                             Log.v("ff", flag.toString())
                             runOnUiThread{
-                                Toast.makeText(this@ManageEmployee,"An Error occured!", Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@ManageEmployee,"An Error occurred!", Toast.LENGTH_LONG).show()
                             }
                         }
                     }

@@ -103,7 +103,6 @@ class ManageCompany : AppCompatActivity() {
                             Log.v("fs", flag.toString())
                             runOnUiThread{
                                 Toast.makeText(this@ManageCompany,"Data Found", Toast.LENGTH_LONG).show()
-
                                 UpCompName.setText(comp_name).toString()
                                 UpCompEmail.setText(comp_email).toString()
                                 UpCompCity.setText(comp_city).toString()

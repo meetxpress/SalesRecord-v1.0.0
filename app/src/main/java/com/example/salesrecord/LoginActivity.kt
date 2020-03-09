@@ -63,35 +63,38 @@ class LoginActivity : AppCompatActivity() {
                         if(flag == 1){
                             Log.v("f1", flag.toString())
                             runOnUiThread{
-                                var per=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
-                                var editor=per.edit()
-                                editor.putString("user",LoginUsername.text.toString())
+                                var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+                                var editor=preference.edit()
+                                editor.putString("uname",LoginUsername.text.toString());
                                 editor.commit()
                                 Toast.makeText(this@LoginActivity,"Logged In Successfully.!", Toast.LENGTH_LONG).show()
                                 var i= Intent(this@LoginActivity,HomeSuperAdmin::class.java)
                                 startActivity(i)
+                                finish()
                             }
                         }else if(flag == 2){
                             Log.v("f2", flag.toString())
                             runOnUiThread{
-                                var per=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
-                                var editor=per.edit()
-                                editor.putString("user",LoginUsername.text.toString())
+                                var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+                                var editor=preference.edit()
+                                editor.putString("uname",LoginUsername.text.toString());
                                 editor.commit()
                                 Toast.makeText(this@LoginActivity,"Logged In Successfully.!", Toast.LENGTH_LONG).show()
                                 var i= Intent(this@LoginActivity,HomeCompany::class.java)
                                 startActivity(i)
+                                finish()
                             }
                         }else if(flag == 3){
                             Log.v("f3", flag.toString())
                             runOnUiThread{
-                                var per=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
-                                var editor=per.edit()
-                                editor.putString("user",LoginUsername.text.toString())
+                                var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+                                var editor=preference.edit()
+                                editor.putString("uname",LoginUsername.text.toString());
                                 editor.commit()
                                 Toast.makeText(this@LoginActivity,"Logged In Successfully.!", Toast.LENGTH_LONG).show()
                                 var i= Intent(this@LoginActivity,HomeEmployee::class.java)
                                 startActivity(i)
+                                finish()
                             }
                         }else{
                             Log.v("ff", flag.toString())

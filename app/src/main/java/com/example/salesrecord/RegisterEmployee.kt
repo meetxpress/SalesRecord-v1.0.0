@@ -16,6 +16,7 @@ import java.util.*
 class RegisterEmployee : AppCompatActivity() {
 
     var eGen:String=""
+    var eDob:String=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,11 +24,25 @@ class RegisterEmployee : AppCompatActivity() {
 
         //back button on actionbar
         supportActionBar?.setDisplayShowCustomEnabled(true)
-        btnRegisterEmp.setOnClickListener {
 
+        var c=Calendar.getInstance()
+        var year = c.get(Calendar.YEAR)
+        var month = c.get(Calendar.MONTH)
+        var day = c.get(Calendar.DAY_OF_MONTH)
+
+        EmpDoB.setOnClickListener {
+            var dpd=DatePickerDialog(this@RegisterEmployee,DatePickerDialog.OnDateSetListener{view, mYear, mMonth, mDay->
+                eDob=("$mYear-$mMonth-$mDay")
+                EmpDoB.setText(eDob)
+            }, year, month, day)
+            dpd.show()
+            //Toast.makeText(this@RegisterEmployee, eDob.toString(), Toast.LENGTH_LONG).show()
+        }
+
+        btnRegisterEmp.setOnClickListener {
             if((EmpName.toString().length <0) and
                 (EmpPassword.toString().length <0) and
-                //(EmpDoB.toString().length <0) and
+                (EmpDoB.toString().length <0) and
                 (EmpAadharNo.toString().length <0) and
                 (EmpPhno1.toString().length <0) and
                 (EmpPhno2.toString().length <0) and
@@ -42,7 +57,7 @@ class RegisterEmployee : AppCompatActivity() {
             } else {
                 var eName=EmpName.text.toString()
                 var ePass=EmpPassword.text.toString()
-                //var eDob=EmpDoB.text.toString()
+                eDob=EmpDoB.text.toString()
                 var eAadhar=EmpAadharNo.text.toString()
                 var ePhno1=EmpPhno1.text.toString()
                 var ePhno2=EmpPhno2.text.toString()
@@ -58,14 +73,13 @@ class RegisterEmployee : AppCompatActivity() {
                     eGen = radio.text.substring(0,1)
                    // Toast.makeText(this@RegisterEmployee, eGen, Toast.LENGTH_SHORT).show()
                 }
-                callService(eName, ePass, eGen, eAadhar, ePhno1, ePhno2, eMail, eAdd, ePincode, eCity, eState, eStatus)
-                //eDob,
+                callService(eName, ePass, eDob, eGen, eAadhar, ePhno1, ePhno2, eMail, eAdd, ePincode, eCity, eState, eStatus)
             }
         }
     }
 
-    //eDob:String,
-    fun callService(eName:String, ePass:String, eGen:String, eAadhar:String, ePhno1:String, ePhno2:String, eMail:String, eAdd:String, ePincode:String, eCity:String, eState:String, eStatus:String) =
+
+    fun callService(eName:String, ePass:String, eDob:String, eGen:String, eAadhar:String, ePhno1:String, ePhno2:String, eMail:String, eAdd:String, ePincode:String, eCity:String, eState:String, eStatus:String){
         try{
             var client=OkHttpClient()
 
@@ -73,10 +87,10 @@ class RegisterEmployee : AppCompatActivity() {
                 .add("eName",eName)
                 .add("ePass",ePass)
                 .add("eGen",eGen)
-                //.add("eDob",eDob)
+                .add("eDob",eDob)
                 .add("eAadhar",eAadhar)
                 .add("ePhno1",ePhno1)
-                .add("ePhno2",ePhno2)
+                //.add("ePhno2",ePhno2)
                 .add("eMail",eMail)
                 .add("eAdd",eAdd)
                 .add("ePincode",ePincode)
@@ -102,7 +116,7 @@ class RegisterEmployee : AppCompatActivity() {
                         var str=response.body!!.string()
                         Log.v("test",str)
 
-                        val jsonObj = JSONObject(str)
+                        var jsonObj = JSONObject(str)
                         val flag=jsonObj.getInt("success")
                         var message=jsonObj.getString("message")
 
@@ -129,18 +143,5 @@ class RegisterEmployee : AppCompatActivity() {
         }catch (e:Exception){
             e.printStackTrace()
         }
-
-    fun addDoB(view:View) {
-        var dpd:DatePickerDialog
-        val c= Calendar.getInstance()
-        val year=c.get(Calendar.YEAR)
-        val month=c.get(Calendar.MONTH)
-        val day=c.get(Calendar.DAY_OF_MONTH)
-        val date =findViewById<EditText>(R.id.EmpDoB)
-        var d:Date
-
-        dpd=DatePickerDialog(this@RegisterEmployee,R.style.DialogTheme, DatePickerDialog.OnDateSetListener {
-                view,year,month,day->date.setText(" $day / ${month+1} / $year")
-        },year,month,day)
     }
 }

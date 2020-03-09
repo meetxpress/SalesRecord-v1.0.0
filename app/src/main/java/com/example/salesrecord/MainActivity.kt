@@ -14,26 +14,32 @@ class MainActivity : AppCompatActivity() {
 
         Handler().postDelayed({
             var per=getSharedPreferences("myPref", Context.MODE_PRIVATE)
-            var str=per.getString("user","Wrong")
+            var str=per.getString("uname","Wrong")
             if(str.equals("Wrong")){
-                var i=Intent(this@MainActivity,LoginActivity::class.java)
+                var i=Intent(this@MainActivity, LoginActivity::class.java)
                 startActivity(i)
                 finish()
             }
             else{
-                if(str.equals("admin")) {
+                /* if(str.equals("admin")) { */
+                var ss= str?.substring(0, 1)
+                if(str == "admin"){
                     var i=Intent(this@MainActivity,HomeSuperAdmin::class.java)
                     startActivity(i)
                     finish()
-                }else if(str.equals("")){
-                    var i=Intent(this@MainActivity,HomeSuperAdmin::class.java)
+                }else if(ss == "1"){
+                    var i=Intent(this@MainActivity,HomeCompany::class.java)
                     startActivity(i)
                     finish()
-                }else{
+                }else{// if(ss == "3") {
+                    var i = Intent(this@MainActivity, HomeEmployee::class.java)
+                    startActivity(i)
+                    finish()
+                }/*else{
                     var i=Intent(this@MainActivity,HomeEmployee::class.java)
                     startActivity(i)
                     finish()
-                }
+                }*/
             }
         },1000)
     }

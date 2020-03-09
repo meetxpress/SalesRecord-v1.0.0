@@ -84,23 +84,27 @@ class RegisterCompany : AppCompatActivity() {
                         var str=response.body!!.string()
                         Log.v("test",str)
 
-                        val jsonObj = JSONObject(str)
-                        val flag=jsonObj.getInt("success")
-                        var message=jsonObj.getString("message")
+                        var jObj = JSONObject(str)
+                        val flag=jObj.getInt("success")
+                        var message=jObj.getString("message")
 
                         Log.v("res",response.toString())
                         Log.v("cdm",flag.toString())
                         Log.v("msg",message)
 
                         if(flag == 1){
-                            Log.v("fs", flag.toString())
-                            Toast.makeText(this@RegisterCompany,"Successful.!", Toast.LENGTH_LONG).show()
-                            var i= Intent(this@RegisterCompany,HomeSuperAdmin::class.java)
-                            startActivity(i)
-                            finish()
+                            runOnUiThread {
+                                Log.v("fs", flag.toString())
+                                Toast.makeText(this@RegisterCompany,"Successful.!", Toast.LENGTH_LONG).show()
+                                var i= Intent(this@RegisterCompany,HomeSuperAdmin::class.java)
+                                startActivity(i)
+                                finish()
+                            }
                         }else{
-                            Log.v("ff", flag.toString())
-                            Toast.makeText(this@RegisterCompany,"Failed", Toast.LENGTH_LONG).show()
+                            runOnUiThread {
+                                Log.v("ff", flag.toString())
+                                Toast.makeText(this@RegisterCompany,"Failed", Toast.LENGTH_LONG).show()
+                            }
                         }
                     }
                 }
