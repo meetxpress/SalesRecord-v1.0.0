@@ -68,20 +68,20 @@ class DeactivateCompany : AppCompatActivity() {
                                 builder.setTitle("Deactivate Company")
                                 builder.setMessage("Are you sure you want to deactivate this company?" +
                                         "\n\n" +
-                                        "\nName: ${comp_name} " +
-                                        "\nCity: ${comp_city}" +
-                                        "\nPhone No.: ${comp_mob1}" +
-                                        "\nContact Person: ${comp_person}" +
-                                        "\nLicense No: ${comp_licno}\n")
+                                        "\nName: $comp_name " +
+                                        "\nCity: $comp_city" +
+                                        "\nPhone No.: $comp_mob1" +
+                                        "\nContact Person: $comp_person" +
+                                        "\nLicense No: $comp_licno\n")
 
-                                builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+                                builder.setPositiveButton(android.R.string.yes) { _, _ ->
                                     runOnUiThread {
                                        // Toast.makeText(this@DeactivateCompany,android.R.string.yes, Toast.LENGTH_SHORT).show()
                                         mainService(id)
                                     }
                                 }
 
-                                builder.setNegativeButton(android.R.string.no) { dialog, which ->
+                                builder.setNegativeButton(android.R.string.no) { _, _ ->
                                     /*runOnUiThread {
                                         Toast.makeText(this@DeactivateCompany,android.R.string.no, Toast.LENGTH_SHORT).show()
                                     }*/
@@ -105,7 +105,7 @@ class DeactivateCompany : AppCompatActivity() {
     //for updating the status of company in database
     fun mainService(id:String){
         try{
-            var client2= OkHttpClient()
+            var client2:OkHttpClient= OkHttpClient()
 
             var fBody= FormBody.Builder()
                 .add("cid",id)
