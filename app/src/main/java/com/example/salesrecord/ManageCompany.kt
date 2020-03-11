@@ -76,19 +76,11 @@ class ManageCompany : AppCompatActivity() {
             //Toast.makeText(this,"Company details updated Successfully",Toast.LENGTH_LONG).show()
         }
 
-        /*
-        btnDeleteComp.setOnClickListener {
-            Toast.makeText(this@ManageCompany,"Company Deactivated Successfully.",Toast.LENGTH_LONG).show()
-            nulling()
-        }
-        */
-
         btnSearchComp.setOnClickListener {
             var id = etUpdateComp.text.toString();
             callService(id)
         }
     }
-
 
     fun callService(id:String){
         try{
@@ -226,8 +218,12 @@ class ManageCompany : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.edit){
-            Toast.makeText(this@ManageCompany,"Enabled Editing",Toast.LENGTH_LONG).show()
-            enableEdits()
+            if(etUpdateComp.text.toString() == ""){
+                Toast.makeText(this@ManageCompany, "Find employee First.",Toast.LENGTH_LONG).show()
+            }else {
+                Toast.makeText(this@ManageCompany, "Enabled Editing", Toast.LENGTH_LONG).show()
+                enableEdits()
+            }
         }
         return super.onOptionsItemSelected(item)
     }

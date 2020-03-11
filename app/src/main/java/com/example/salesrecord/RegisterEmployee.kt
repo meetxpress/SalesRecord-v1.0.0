@@ -33,7 +33,7 @@ class RegisterEmployee : AppCompatActivity() {
         EmpDoB.setOnClickListener {
             var dpd=DatePickerDialog(this@RegisterEmployee,DatePickerDialog.OnDateSetListener{view, mYear, mMonth, mDay->
                 eDob=("$mYear-$mMonth-$mDay")
-                EmpDoB.setText(eDob)
+                EmpDoB.setText(eDob).toString()
             }, year, month, day)
             dpd.show()
             //Toast.makeText(this@RegisterEmployee, eDob.toString(), Toast.LENGTH_LONG).show()
@@ -77,7 +77,6 @@ class RegisterEmployee : AppCompatActivity() {
             }
         }
     }
-
 
     fun callService(eName:String, ePass:String, eDob:String, eGen:String, eAadhar:String, ePhno1:String, ePhno2:String, eMail:String, eAdd:String, ePincode:String, eCity:String, eState:String, eStatus:String){
         try{

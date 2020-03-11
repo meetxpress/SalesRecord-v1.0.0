@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_manage_employee.*
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
+import java.sql.Date
 import java.util.*
 
 class ManageEmployee : AppCompatActivity() {
@@ -55,6 +56,7 @@ class ManageEmployee : AppCompatActivity() {
     }
 
     var emp_gen:String=""
+    var eDob:String=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manage_employee)
@@ -62,15 +64,28 @@ class ManageEmployee : AppCompatActivity() {
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
         disableEdits()
+        var c=Calendar.getInstance()
+        var year = c.get(Calendar.YEAR)
+        var month = c.get(Calendar.MONTH)
+        var day = c.get(Calendar.DAY_OF_MONTH)
+
+        UpEmpDoB.setOnClickListener {
+            var dpd=DatePickerDialog(this@ManageEmployee,DatePickerDialog.OnDateSetListener{view, mYear, mMonth, mDay->
+                eDob=("$mYear-$mMonth-$mDay")
+                UpEmpDoB.setText(eDob).toString()
+            }, year, month, day)
+            dpd.show()
+            //Toast.makeText(this@RegisterEmployee, eDob.toString(), Toast.LENGTH_LONG).show()
+        }
         btnUpdateEmp.setOnClickListener {
             var emp_id=etUpdateEmp.text.toString()
             var emp_name=UpEmpName.text.toString()
             RadioBtnGroup.setOnCheckedChangeListener { group, checkedId ->
                 val radio: RadioButton = findViewById(checkedId)
-                emp_gen=radio.text.substring(0).toString()
+                emp_gen=radio.text.substring(0)
                 Toast.makeText(this@ManageEmployee, "${radio.text}", Toast.LENGTH_SHORT).show()
             }
-            var emp_dob=UpEmpDoB.text.toString()
+            var emp_dob: String =UpEmpDoB.text.toString()
             var emp_aadhar=UpEmpAadharNo.text.toString()
             var emp_phno1 =UpEmpPhno1.text.toString()
             var emp_email=UpEmpEmail.text.toString()
@@ -82,31 +97,10 @@ class ManageEmployee : AppCompatActivity() {
             //Toast.makeText(this,"Company details updated Successfully",Toast.LENGTH_LONG).show()
         }
 
-        /*btnDeleteEmp.setOnClickListener {
-            Toast.makeText(this@ManageEmployee,"Employee Deleted Successfully.",Toast.LENGTH_LONG).show()
-            nulling()
-        }*/
-
         btnSearchEmp.setOnClickListener {
             var id = etUpdateEmp.text.toString();
             callService(id)
         }
-    }
-
-    fun updateDoB(view: View) {
-        var dpd: DatePickerDialog
-        val c= Calendar.getInstance()
-        val year=c.get(Calendar.YEAR)
-        val month=c.get(Calendar.MONTH)
-        val day=c.get(Calendar.DAY_OF_MONTH)
-        val date=findViewById<EditText>(R.id.EmpDoB)
-        var d: Date
-        dpd= DatePickerDialog(this,R.style.DialogTheme, DatePickerDialog.OnDateSetListener {
-                view,year,month,day->date.setText(" $day / ${month+1} / $year")
-        },year,month,day)
-        //if(dpd > c.get(Calendar.DATE)) {
-        dpd.show()
-        //}
     }
 
     fun callService(id:String){
@@ -185,7 +179,8 @@ class ManageEmployee : AppCompatActivity() {
     }
 
     fun callServiceUpdate(emp_id:String, emp_name:String, emp_add:String, emp_gen:String, emp_dob:String, emp_aadhar:String, emp_phno1:String, emp_email:String, emp_city:String, emp_pincode:String, emp_state:String){
-    try{
+        //Toast.makeText(this@ManageEmployee, emp_dob, Toast.LENGTH_SHORT).show()
+        try{
             var client= OkHttpClient()
 
             var formBody= FormBody.Builder()
@@ -254,8 +249,12 @@ class ManageEmployee : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.edit){
-            Toast.makeText(this@ManageEmployee,"Enabled Editing",Toast.LENGTH_LONG).show()
-            enableEdits()
+            if(etUpdateEmp.text.toString() == ""){
+                Toast.makeText(this@ManageEmployee, "Find employee First.",Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(this@ManageEmployee,"Enabled Editing",Toast.LENGTH_LONG).show()
+                enableEdits()
+            }
         }
         return super.onOptionsItemSelected(item)
     }

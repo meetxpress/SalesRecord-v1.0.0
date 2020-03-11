@@ -22,10 +22,6 @@
         <activity
             android:name=".PunchAttendance"
             android:label="Attendance"
-            android:parentActivityName=".HomeEmployee" />
-        <activity
-            android:name=".ManageEmployee"
-            android:label="Manage Employee Profile"
             android:parentActivityName=".HomeEmployee">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,6 +29,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ManageEmployee"
+            android:label="Manage Employee Profile"
+            android:parentActivityName=".HomeEmployee"/>
         <activity
             android:name=".HomeEmployee"
             android:label="Employee Dashboard"/>

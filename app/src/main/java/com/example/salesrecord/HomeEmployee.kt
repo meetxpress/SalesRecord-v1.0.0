@@ -20,10 +20,8 @@ class HomeEmployee : AppCompatActivity() {
 
         btnViewProfile.setOnClickListener {
             Toast.makeText(this@HomeEmployee, "View Employee Profile", Toast.LENGTH_LONG).show()
-            /*
-            var i = Intent(this@HomeEmployee, EmployeeProfile::class.java)
+            var i = Intent(this@HomeEmployee, ManageEmployee::class.java)
             startActivity(i)
-            * */
         }
 
         btnEmpAttendance.setOnClickListener {

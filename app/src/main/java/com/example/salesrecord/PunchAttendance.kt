@@ -7,7 +7,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_punch_attendance.*
-import kotlinx.android.synthetic.main.activity_punch_attendance.textView2
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
@@ -17,7 +16,6 @@ import java.util.*
 class PunchAttendance : AppCompatActivity() {
 
     private var locationManager : LocationManager? = null
-
     var att1:Int = 0
     var att2:Int = 0
 
@@ -31,6 +29,7 @@ class PunchAttendance : AppCompatActivity() {
         val date=Calendar.getInstance()
         date1.text = (SimpleDateFormat("d - M - Y").format(date.time))
 
+        /*
         date.add(Calendar.DATE, 1)
         date2.text = (SimpleDateFormat("d - M - Y").format(date.time))
 
@@ -39,8 +38,9 @@ class PunchAttendance : AppCompatActivity() {
 
         date.add(Calendar.DATE, 1)
         date4.text = (SimpleDateFormat("d - M - Y").format(date.time))
+        */
 
-        btnAtt1_1.setOnClickListener {
+        btnAtt1.setOnClickListener {
             val stf = SimpleDateFormat("hh:mm")
             val curTime = stf.format(Date())
             textView2.text = "Time: $curTime"
@@ -61,10 +61,10 @@ class PunchAttendance : AppCompatActivity() {
             callService(att1 = 1, att2 = 0)
         }
 
-        btnAtt1_2.setOnClickListener {
+        btnAtt2.setOnClickListener {
             Toast.makeText(this@PunchAttendance, "Location", Toast.LENGTH_LONG).show()
-            att1 = 1
-            att2 = 1
+            //att1 = 1
+            //att2 = 1
             callService(att1 = 1, att2 = 1)
         }
 
@@ -78,6 +78,7 @@ class PunchAttendance : AppCompatActivity() {
             var client= OkHttpClient()
 
             var formBody= FormBody.Builder()
+                //.add("comp_id",comp_id.tOString())
                 .add("att1",att1.toString())
                 .add("att2", att2.toString())
                 .build()
