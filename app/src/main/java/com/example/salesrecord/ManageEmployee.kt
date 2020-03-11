@@ -5,6 +5,8 @@ import android.icu.text.UnicodeSetSpanner
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.RadioButton
@@ -17,14 +19,49 @@ import java.util.*
 
 class ManageEmployee : AppCompatActivity() {
 
+    fun nulling(){
+        etUpdateEmp.setText("")
+        UpEmpName.setText("")
+        UpEmpDoB.setText("")
+        UpEmpAadharNo.setText("")
+        UpEmpPhno1.setText("")
+        UpEmpEmail.setText("")
+        UpEmpAdd.setText("")
+        UpEmpCity.setText("")
+        UpEmpPincode.setText("")
+        UpEmpState.setText("")
+    }
+    fun enableEdits(){
+        UpEmpName.isEnabled=true
+        UpEmpDoB.isEnabled=true
+        UpEmpAadharNo.isEnabled=true
+        UpEmpPhno1.isEnabled=true
+        UpEmpEmail.isEnabled=true
+        UpEmpAdd.isEnabled=true
+        UpEmpCity.isEnabled=true
+        UpEmpPincode.isEnabled=true
+        UpEmpState.isEnabled=true
+    }
+    fun disableEdits(){
+        UpEmpName.isEnabled=false
+        UpEmpDoB.isEnabled=false
+        UpEmpAadharNo.isEnabled=false
+        UpEmpPhno1.isEnabled=false
+        UpEmpEmail.isEnabled=false
+        UpEmpAdd.isEnabled=false
+        UpEmpCity.isEnabled=false
+        UpEmpPincode.isEnabled=false
+        UpEmpState.isEnabled=false
+    }
+
     var emp_gen:String=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manage_employee)
-
         //back button on actionbar
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
+        disableEdits()
         btnUpdateEmp.setOnClickListener {
             var emp_id=etUpdateEmp.text.toString()
             var emp_name=UpEmpName.text.toString()
@@ -70,19 +107,6 @@ class ManageEmployee : AppCompatActivity() {
         //if(dpd > c.get(Calendar.DATE)) {
         dpd.show()
         //}
-    }
-
-    fun nulling(){
-        etUpdateEmp.setText("")
-        UpEmpName.setText("")
-        UpEmpDoB.setText("")
-        UpEmpAadharNo.setText("")
-        UpEmpPhno1.setText("")
-        UpEmpEmail.setText("")
-        UpEmpAdd.setText("")
-        UpEmpCity.setText("")
-        UpEmpPincode.setText("")
-        UpEmpState.setText("")
     }
 
     fun callService(id:String){
@@ -221,5 +245,18 @@ class ManageEmployee : AppCompatActivity() {
         } catch(e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.editable,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.edit){
+            Toast.makeText(this@ManageEmployee,"Enabled Editing",Toast.LENGTH_LONG).show()
+            enableEdits()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

@@ -1,32 +1,25 @@
 package com.example.salesrecord
 
-import android.app.AlertDialog
 import android.content.Context
-import android.content.Intent
-import android.location.Address
-import android.location.Location
-import android.location.LocationListener
 import android.location.LocationManager
-import android.media.audiofx.BassBoost
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
-import com.google.android.gms.location.LocationServices
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_punch_attendance.*
 import kotlinx.android.synthetic.main.activity_punch_attendance.textView2
-import okhttp3.internal.format
+import okhttp3.*
+import org.json.JSONObject
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
 class PunchAttendance : AppCompatActivity() {
 
     private var locationManager : LocationManager? = null
+
+    var att1:Int = 0
+    var att2:Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,8 +47,8 @@ class PunchAttendance : AppCompatActivity() {
             textView3.text= Context.LOCATION_SERVICE
 
             //make button disable if the punch is received successfully
-            btnAtt1_1.isEnabled=false
-            btnAtt1_1.isClickable=false
+            //--btnAtt1_1.isEnabled=false
+            //--btnAtt1_1.isClickable=false
 
             /*if(date != date1.text) {
                 Toast.makeText(this@PunchAttendance, "Disabled", Toast.LENGTH_LONG).show()
@@ -63,11 +56,16 @@ class PunchAttendance : AppCompatActivity() {
                 btnAtt1_1.isClickable = true
             }*/
 
+            //att1=1
+            //att2=0
+            callService(att1 = 1, att2 = 0)
         }
 
         btnAtt1_2.setOnClickListener {
             Toast.makeText(this@PunchAttendance, "Location", Toast.LENGTH_LONG).show()
-
+            att1 = 1
+            att2 = 1
+            callService(att1 = 1, att2 = 1)
         }
 
         /* *
@@ -75,4 +73,57 @@ class PunchAttendance : AppCompatActivity() {
         * */
     }
 
+    fun callService(att1: Int, att2: Int){
+        try{
+            var client= OkHttpClient()
+
+            var formBody= FormBody.Builder()
+                .add("att1",att1.toString())
+                .add("att2", att2.toString())
+                .build()
+
+            var req= Request.Builder()
+                .url("http://10.0.2.2:80/SalesRecord/attendance.php")
+                .post(formBody)
+                .build()
+
+            client.newCall(req).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    Log.e("Exception",e.toString())
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    response.use {
+                        var str=response.body!!.string()
+                        var js= JSONObject(str)
+                        var flag=js.getInt("success")
+                        var msg=js.getString("message")
+
+                        Log.v("res",str)
+                        Log.v("cd", flag.toString())
+                        Log.v("ms",msg)
+
+                        if(flag == 1){
+                            Log.v("f1", flag.toString())
+                            runOnUiThread{
+                                Toast.makeText(this@PunchAttendance,"Attendance1 is punched.", Toast.LENGTH_LONG).show()
+                            }
+                        }else if(flag == 2){
+                            Log.v("f2", flag.toString())
+                            runOnUiThread{
+                                Toast.makeText(this@PunchAttendance,"Attendance2 is punched.", Toast.LENGTH_LONG).show()
+                            }
+                        }else{
+                            Log.v("ff", flag.toString())
+                            runOnUiThread{
+                                Toast.makeText(this@PunchAttendance,"Failed to Punch.", Toast.LENGTH_LONG).show()
+                            }
+                        }
+                    }
+                }
+            })
+        } catch(e: Exception){
+            e.printStackTrace()
+        }
+    }
 }

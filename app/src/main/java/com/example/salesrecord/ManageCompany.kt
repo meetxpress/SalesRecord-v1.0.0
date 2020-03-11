@@ -1,10 +1,16 @@
 package com.example.salesrecord
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
+import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_manage_company.*
+import kotlinx.android.synthetic.main.activity_manage_company.view.*
 import kotlinx.android.synthetic.main.activity_register_company.*
 import okhttp3.*
 import org.json.JSONObject
@@ -12,13 +18,48 @@ import java.io.IOException
 
 class ManageCompany : AppCompatActivity() {
 
+    fun nulling(){
+        UpCompName.setText("")
+        UpCompEmail.setText("")
+        UpCompCity.setText("")
+        UpCompPincode.setText("")
+        UpCompPhno.setText("")
+        UpCompContactPerson.setText("")
+        UpCompLicNo.setText("")
+        UpCompGSTno.setText("")
+        UpCompWebsite.setText("")
+    }
+    fun enableEdits(){
+        UpCompName.isEnabled=true
+        UpCompName.isVisible=true
+        UpCompEmail.isEnabled=true
+        UpCompCity.isEnabled=true
+        UpCompPincode.isEnabled=true
+        UpCompPhno.isEnabled=true
+        UpCompContactPerson.isEnabled=true
+        UpCompLicNo.isEnabled=true
+        UpCompGSTno.isEnabled=true
+        UpCompWebsite.isEnabled=true
+    }
+    fun disableEdits(){
+        UpCompName.isEnabled=false
+        UpCompEmail.isEnabled=false
+        UpCompCity.isEnabled=false
+        UpCompPincode.isEnabled=false
+        UpCompPhno.isEnabled=false
+        UpCompContactPerson.isEnabled=false
+        UpCompLicNo.isEnabled=false
+        UpCompGSTno.isEnabled=false
+        UpCompWebsite.isEnabled=false
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manage_company)
-
         //back button on actionbar
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
+        disableEdits()
         btnUpdateComp.setOnClickListener {
             var comp_id=etUpdateComp.text.toString()
             var comp_name=UpCompName.text.toString()
@@ -48,17 +89,6 @@ class ManageCompany : AppCompatActivity() {
         }
     }
 
-    fun nulling(){
-        UpCompName.setText("")
-        UpCompEmail.setText("")
-        UpCompCity.setText("")
-        UpCompPincode.setText("")
-        UpCompPhno.setText("")
-        UpCompContactPerson.setText("")
-        UpCompLicNo.setText("")
-        UpCompGSTno.setText("")
-        UpCompWebsite.setText("")
-    }
 
     fun callService(id:String){
         try{
@@ -187,5 +217,18 @@ class ManageCompany : AppCompatActivity() {
         } catch(e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.editable,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.edit){
+            Toast.makeText(this@ManageCompany,"Enabled Editing",Toast.LENGTH_LONG).show()
+            enableEdits()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
