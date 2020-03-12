@@ -18,50 +18,48 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".forgotPassword"></activity>
         <activity
             android:name=".PunchAttendance"
             android:label="Attendance"
-            android:parentActivityName=".HomeEmployee"/>
+            android:parentActivityName=".HomeEmployee" />
         <activity
             android:name=".ManageEmployee"
             android:label="Manage Employee Profile"
-            android:parentActivityName=".HomeEmployee"/>
+            android:parentActivityName=".HomeEmployee" />
         <activity
             android:name=".HomeEmployee"
-            android:label="Employee Dashboard"/>
-        <!-- Company Module-->
+            android:label="Employee Dashboard" /> <!-- Company Module -->
         <activity
             android:name=".DeactivateEmployee"
             android:label="Deactivate Employee"
-            android:parentActivityName=".HomeCompany"/>
+            android:parentActivityName=".HomeCompany" />
         <activity
             android:name=".ViewCompReports"
             android:label="View Reports"
-            android:parentActivityName=".HomeCompany"/>
+            android:parentActivityName=".HomeCompany" />
         <activity
             android:name=".RegisterEmployee"
             android:label="Register Employee"
-            android:parentActivityName=".ManageEmployee"/>
+            android:parentActivityName=".ManageEmployee" />
         <activity
             android:name=".ManageCompany"
             android:label="Manage Company"
-            android:parentActivityName=".HomeSuperAdmin"/>
+            android:parentActivityName=".HomeSuperAdmin" />
         <activity
             android:name=".HomeCompany"
-            android:label="Company Dashboard" />
-        <!-- Super Admin Module-->
+            android:label="Company Dashboard" /> <!-- Super Admin Module -->
         <activity
             android:name=".DeactivateCompany"
             android:label="Deactivate Company"
-            android:parentActivityName=".HomeSuperAdmin"/>
+            android:parentActivityName=".HomeSuperAdmin" />
         <activity
             android:name=".RegisterCompany"
             android:label="Register Company"
             android:parentActivityName=".ManageCompany" />
         <activity
             android:name=".HomeSuperAdmin"
-            android:label="Super Admin Dashboard"/>
+            android:label="Super Admin Dashboard" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
@@ -71,7 +69,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.salesrecord.MainActivity" />
         </activity>
-
         <activity
             android:name=".MainActivity"
             android:theme="@style/SplashScreen.NoActionBar">
