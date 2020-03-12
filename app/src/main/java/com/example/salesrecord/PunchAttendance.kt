@@ -72,15 +72,11 @@ class PunchAttendance : AppCompatActivity() {
         }
 
         btnAtt2.setOnClickListener {
-            Toast.makeText(this@PunchAttendance, "Location", Toast.LENGTH_LONG).show()
+           // Toast.makeText(this@PunchAttendance, "Location", Toast.LENGTH_LONG).show()
             //att1 = 1
             //att2 = 1
             callService(att1 = 1, att2 = 1)
         }
-
-        /* *
-        * fingerprint authentication
-        * */
     }
 
     fun callService(att1: Int, att2: Int){

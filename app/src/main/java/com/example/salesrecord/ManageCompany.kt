@@ -59,9 +59,12 @@ class ManageCompany : AppCompatActivity() {
         //back button on actionbar
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
+        var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+        var id = preference.getString("uname","Wrong").toString()
+        callService(id)
+
         disableEdits()
         btnUpdateComp.setOnClickListener {
-            var comp_id=etUpdateComp.text.toString()
             var comp_name=UpCompName.text.toString()
             var comp_email=UpCompEmail.text.toString()
             var comp_city= UpCompCity.text.toString()
@@ -72,14 +75,10 @@ class ManageCompany : AppCompatActivity() {
             var comp_gstno= UpCompGSTno.text.toString()
             var comp_website=UpCompWebsite.text.toString()
 
-            callServiceUpdate(comp_id,comp_name,comp_email,comp_city,comp_pincode,comp_phno,comp_person,comp_licno,comp_gstno,comp_website)
+            callServiceUpdate(id,comp_name,comp_email,comp_city,comp_pincode,comp_phno,comp_person,comp_licno,comp_gstno,comp_website)
             //Toast.makeText(this,"Company details updated Successfully",Toast.LENGTH_LONG).show()
         }
 
-        btnSearchComp.setOnClickListener {
-            var id = etUpdateComp.text.toString();
-            callService(id)
-        }
     }
 
     fun callService(id:String){
@@ -218,12 +217,8 @@ class ManageCompany : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.edit){
-            if(etUpdateComp.text.toString() == ""){
-                Toast.makeText(this@ManageCompany, "Find employee First.",Toast.LENGTH_LONG).show()
-            }else {
-                Toast.makeText(this@ManageCompany, "Enabled Editing", Toast.LENGTH_LONG).show()
-                enableEdits()
-            }
+            Toast.makeText(this@ManageCompany, "Enabled Editing", Toast.LENGTH_LONG).show()
+            enableEdits()
         }
         return super.onOptionsItemSelected(item)
     }
