@@ -1,6 +1,8 @@
 package com.example.salesrecord
 
 import android.app.DatePickerDialog
+import android.content.Context
+import android.content.SharedPreferences
 import android.icu.text.UnicodeSetSpanner
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -63,6 +65,7 @@ class ManageEmployee : AppCompatActivity() {
         //back button on actionbar
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
+        //callService(id)
         disableEdits()
         var c=Calendar.getInstance()
         var year = c.get(Calendar.YEAR)
@@ -99,7 +102,6 @@ class ManageEmployee : AppCompatActivity() {
 
         btnSearchEmp.setOnClickListener {
             var id = etUpdateEmp.text.toString();
-            callService(id)
         }
     }
 

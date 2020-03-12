@@ -67,6 +67,8 @@ class LoginActivity : AppCompatActivity() {
                                 var editor=preference.edit()
                                 editor.putString("uname",LoginUsername.text.toString());
                                 editor.commit()
+                                //Toast.makeText(this@LoginActivity,LoginUsername.text.toString(), Toast.LENGTH_LONG).show()
+
                                 Toast.makeText(this@LoginActivity,"Logged In Successfully.!", Toast.LENGTH_LONG).show()
                                 var i= Intent(this@LoginActivity,HomeSuperAdmin::class.java)
                                 startActivity(i)
@@ -79,6 +81,8 @@ class LoginActivity : AppCompatActivity() {
                                 var editor=preference.edit()
                                 editor.putString("uname",LoginUsername.text.toString());
                                 editor.commit()
+                                Toast.makeText(this@LoginActivity,LoginUsername.text.toString(), Toast.LENGTH_LONG).show()
+
                                 Toast.makeText(this@LoginActivity,"Logged In Successfully.!", Toast.LENGTH_LONG).show()
                                 var i= Intent(this@LoginActivity,HomeCompany::class.java)
                                 startActivity(i)
@@ -91,6 +95,7 @@ class LoginActivity : AppCompatActivity() {
                                 var editor=preference.edit()
                                 editor.putString("uname",LoginUsername.text.toString());
                                 editor.commit()
+
                                 Toast.makeText(this@LoginActivity,"Logged In Successfully.!", Toast.LENGTH_LONG).show()
                                 var i= Intent(this@LoginActivity,HomeEmployee::class.java)
                                 startActivity(i)

@@ -25,6 +25,8 @@ class PunchAttendance : AppCompatActivity() {
     private var locationManager : LocationManager? = null
     var att1:Int = 0
     var att2:Int = 0
+    var em_id = ""
+    var comp_id = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +67,8 @@ class PunchAttendance : AppCompatActivity() {
 
             //att1=1
             //att2=0
-            callService(att1 = 1, att2 = 0)
+            callService( att1 = 1, att2 = 0)
+            //emp_id, comp_id,
         }
 
         btnAtt2.setOnClickListener {
@@ -81,11 +84,12 @@ class PunchAttendance : AppCompatActivity() {
     }
 
     fun callService(att1: Int, att2: Int){
+        // comp_id:String
         try{
             var client= OkHttpClient()
 
             var formBody= FormBody.Builder()
-                //.add("comp_id",comp_id.tOString())
+                .add("comp_id",comp_id)
                 .add("att1",att1.toString())
                 .add("att2", att2.toString())
                 .build()
