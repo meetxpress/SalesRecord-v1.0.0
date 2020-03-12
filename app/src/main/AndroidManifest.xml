@@ -24,14 +24,21 @@
         <activity
             android:name=".PunchAttendance"
             android:label="Attendance"
-            android:parentActivityName=".HomeEmployee" />
+            android:parentActivityName=".HomeEmployee">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ManageEmployee"
             android:label="Manage Employee Profile"
             android:parentActivityName=".HomeEmployee" />
         <activity
             android:name=".HomeEmployee"
-            android:label="Employee Dashboard" /> <!-- Company Module -->
+            android:label="Employee Dashboard" />
+        <!-- Company Module -->
         <activity
             android:name=".DeactivateEmployee"
             android:label="Deactivate Employee"
@@ -50,7 +57,8 @@
             android:parentActivityName=".HomeSuperAdmin" />
         <activity
             android:name=".HomeCompany"
-            android:label="Company Dashboard" /> <!-- Super Admin Module -->
+            android:label="Company Dashboard" />
+        <!-- Super Admin Module -->
         <activity
             android:name=".DeactivateCompany"
             android:label="Deactivate Company"
