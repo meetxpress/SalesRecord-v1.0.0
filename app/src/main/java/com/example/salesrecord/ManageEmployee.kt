@@ -23,7 +23,6 @@ import java.util.*
 class ManageEmployee : AppCompatActivity() {
 
     fun nulling(){
-        etUpdateEmp.setText("")
         UpEmpName.setText("")
         UpEmpDoB.setText("")
         UpEmpAadharNo.setText("")
@@ -59,13 +58,17 @@ class ManageEmployee : AppCompatActivity() {
 
     var emp_gen:String=""
     var eDob:String=""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manage_employee)
         //back button on actionbar
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
-        //callService(id)
+        var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+        var id = preference.getString("uname","Wrong").toString()
+        callService(id)
+
         disableEdits()
         var c=Calendar.getInstance()
         var year = c.get(Calendar.YEAR)
@@ -78,10 +81,9 @@ class ManageEmployee : AppCompatActivity() {
                 UpEmpDoB.setText(eDob).toString()
             }, year, month, day)
             dpd.show()
-            //Toast.makeText(this@RegisterEmployee, eDob.toString(), Toast.LENGTH_LONG).show()
         }
+
         btnUpdateEmp.setOnClickListener {
-            var emp_id=etUpdateEmp.text.toString()
             var emp_name=UpEmpName.text.toString()
             RadioBtnGroup.setOnCheckedChangeListener { group, checkedId ->
                 val radio: RadioButton = findViewById(checkedId)
@@ -96,12 +98,7 @@ class ManageEmployee : AppCompatActivity() {
             var emp_city=UpEmpCity.text.toString()
             var emp_pincode=UpEmpPincode.text.toString()
             var emp_state=UpEmpState.text.toString()
-            callServiceUpdate(emp_id, emp_name, emp_add, emp_gen, emp_dob, emp_aadhar, emp_phno1, emp_email, emp_city, emp_pincode, emp_state)
-            //Toast.makeText(this,"Company details updated Successfully",Toast.LENGTH_LONG).show()
-        }
-
-        btnSearchEmp.setOnClickListener {
-            var id = etUpdateEmp.text.toString();
+            callServiceUpdate(id, emp_name, emp_add, emp_gen, emp_dob, emp_aadhar, emp_phno1, emp_email, emp_city, emp_pincode, emp_state)
         }
     }
 
@@ -181,7 +178,6 @@ class ManageEmployee : AppCompatActivity() {
     }
 
     fun callServiceUpdate(emp_id:String, emp_name:String, emp_add:String, emp_gen:String, emp_dob:String, emp_aadhar:String, emp_phno1:String, emp_email:String, emp_city:String, emp_pincode:String, emp_state:String){
-        //Toast.makeText(this@ManageEmployee, emp_dob, Toast.LENGTH_SHORT).show()
         try{
             var client= OkHttpClient()
 
@@ -251,12 +247,8 @@ class ManageEmployee : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.edit){
-            if(etUpdateEmp.text.toString() == ""){
-                Toast.makeText(this@ManageEmployee, "Find employee First.",Toast.LENGTH_LONG).show()
-            }else{
-                Toast.makeText(this@ManageEmployee,"Enabled Editing",Toast.LENGTH_LONG).show()
-                enableEdits()
-            }
+            Toast.makeText(this@ManageEmployee,"Enabled Editing",Toast.LENGTH_LONG).show()
+            enableEdits()
         }
         return super.onOptionsItemSelected(item)
     }

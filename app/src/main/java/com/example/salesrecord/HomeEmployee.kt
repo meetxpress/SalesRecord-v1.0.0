@@ -4,10 +4,16 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.RadioButton
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_home_employee.*
+import kotlinx.android.synthetic.main.activity_manage_employee.*
+import okhttp3.*
+import org.json.JSONObject
+import java.io.IOException
 
 class HomeEmployee : AppCompatActivity() {
 
@@ -28,22 +34,6 @@ class HomeEmployee : AppCompatActivity() {
             var i = Intent(this@HomeEmployee, PunchAttendance::class.java)
             startActivity(i)
             Toast.makeText(this@HomeEmployee, "Punch Attendance", Toast.LENGTH_LONG).show()
-        }
-
-        btnEmpViewAttendance.setOnClickListener {
-            Toast.makeText(this@HomeEmployee, "View Employee Attendance", Toast.LENGTH_LONG).show()
-            /*
-            var i = Intent(this@HomeEmployee, ViewEmpAttendance::class.java)
-            startActivity(i)
-            */
-        }
-
-        btnEmpViewReport.setOnClickListener {
-            Toast.makeText(this@HomeEmployee, "View Employee Reports", Toast.LENGTH_LONG).show()
-            /*
-            var i = Intent(this@HomeEmployee, ViewEmpReports::class.java)
-            startActivity(i)
-            */
         }
     }
 
