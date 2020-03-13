@@ -34,8 +34,12 @@ class HomeCompany : AppCompatActivity() {
         }
 
         btnDeleteEmp.setOnClickListener{
-           // Toast.makeText(this,"View Report Button!",Toast.LENGTH_LONG).show()
             var i = Intent(this@HomeCompany, DeactivateEmployee::class.java)
+            startActivity(i)
+        }
+
+        btnAddShop.setOnClickListener{
+            var i = Intent(this@HomeCompany, RegisterShop::class.java)
             startActivity(i)
         }
     }

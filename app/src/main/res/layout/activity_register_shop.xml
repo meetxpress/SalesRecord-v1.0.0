@@ -12,7 +12,7 @@
         tools:context=".RegisterEmployee">
 
         <TextView
-            android:id="@+id/TitleShop"
+            android:id="@+id/titleShop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/ShopName"
+            android:id="@+id/shopName"
             android:layout_width="0dp"
             android:layout_height="52dp"
             android:layout_marginStart="32dp"
@@ -41,10 +41,10 @@
             android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TitleShop" />
+            app:layout_constraintTop_toBottomOf="@+id/titleShop" />
 
         <EditText
-            android:id="@+id/ShopLocation"
+            android:id="@+id/shopLocLat"
             android:layout_width="0dp"
             android:layout_height="52dp"
             android:layout_marginStart="32dp"
@@ -52,15 +52,32 @@
             android:layout_marginEnd="158dp"
             android:background="@drawable/formback"
             android:ems="10"
-            android:hint=" Shop Location*"
+            android:hint=" Shop Location(Latitude)*"
             android:inputType="number"
             android:maxLength="12"
             android:textSize="20sp"
             android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ShopName" />
+            app:layout_constraintTop_toBottomOf="@+id/shopName" />
 
+        <EditText
+            android:id="@+id/shopLocLong"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="158dp"
+            android:background="@drawable/formback"
+            android:ems="10"
+            android:hint=" Location(Longitude)*"
+            android:inputType="number"
+            android:maxLength="12"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shopLocLat" />
         <Button
             android:id="@+id/btnGetShopLoc"
             android:layout_width="0dp"
@@ -75,8 +92,8 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ShopLocation"
-            app:layout_constraintTop_toBottomOf="@+id/ShopName" />
+            app:layout_constraintStart_toEndOf="@+id/shopLocLong"
+            app:layout_constraintTop_toBottomOf="@+id/shopName" />
 
         <TextView
             android:id="@+id/textNotice"
@@ -92,7 +109,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ShopLocation" />
+            app:layout_constraintTop_toBottomOf="@+id/shopLocLong" />
 
         <Button
             android:id="@+id/btnRegisterShop"

@@ -19,8 +19,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         btnLogin.setOnClickListener {
-            if((LoginUsername.text.toString().trim() == "") and (LoginPassword.text.toString().trim() == "")){
-                Toast.makeText(this,"Please Enter Username and Password to Login!",Toast.LENGTH_LONG).show()
+            if((LoginUsername.text.toString().trim() == "") or (LoginPassword.text.toString().trim() == "")){
+                Toast.makeText(this@LoginActivity,"Please Enter Username and Password to Login!",Toast.LENGTH_LONG).show()
             }
             else {
                 var user=LoginUsername.text.toString()

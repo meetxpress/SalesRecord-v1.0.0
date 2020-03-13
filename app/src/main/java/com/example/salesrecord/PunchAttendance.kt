@@ -50,6 +50,7 @@ class PunchAttendance : AppCompatActivity() {
         //back button on actionbar
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
+        //biometric module
         executor = ContextCompat.getMainExecutor(this)
         biometricPrompt = BiometricPrompt(this, executor,
             object : BiometricPrompt.AuthenticationCallback() {
@@ -78,7 +79,6 @@ class PunchAttendance : AppCompatActivity() {
 
         val date=Calendar.getInstance()
         date1.text = (SimpleDateFormat("d - M - Y").format(date.time))
-
 
         btnAtt1.setOnClickListener {
             val stf = SimpleDateFormat("hh:mm")
