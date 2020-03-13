@@ -64,8 +64,8 @@ class PunchAttendance : AppCompatActivity() {
                     result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
                     flag=1
-                  //  Toast.makeText(applicationContext, "Authentication succeeded! Flag:$flag", Toast.LENGTH_SHORT).show()
-                    disableBtn()
+                    //Toast.makeText(applicationContext, "Authentication succeeded! Flag:$flag", Toast.LENGTH_SHORT).show()
+                    //disableBtn()
                 }
 
                 override fun onAuthenticationFailed() {
