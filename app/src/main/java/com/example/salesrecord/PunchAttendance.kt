@@ -35,6 +35,7 @@ class PunchAttendance : AppCompatActivity() {
 
     private var hasGps = false
     private var hasNetwork = false
+    private var flag = 0
     private var locationGps: Location? = null
 
     private lateinit var locationManager: LocationManager
@@ -51,8 +52,8 @@ class PunchAttendance : AppCompatActivity() {
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
         //biometric module
-        executor = ContextCompat.getMainExecutor(this)
-        biometricPrompt = BiometricPrompt(this, executor,
+        executor = ContextCompat.getMainExecutor(this@PunchAttendance)
+        biometricPrompt = BiometricPrompt(this@PunchAttendance, executor,
             object : BiometricPrompt.AuthenticationCallback() {
                 override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
                     super.onAuthenticationError(errorCode, errString)
@@ -62,7 +63,9 @@ class PunchAttendance : AppCompatActivity() {
                 override fun onAuthenticationSucceeded(
                     result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
-                    Toast.makeText(applicationContext, "Authentication succeeded!", Toast.LENGTH_SHORT).show()
+                    flag=1
+                  //  Toast.makeText(applicationContext, "Authentication succeeded! Flag:$flag", Toast.LENGTH_SHORT).show()
+                    disableBtn()
                 }
 
                 override fun onAuthenticationFailed() {
@@ -85,33 +88,20 @@ class PunchAttendance : AppCompatActivity() {
             val curTime = stf.format(Date())
             textView2.text = "Time: $curTime"
 
-            att1 = 'P'
-            att2 = 'A'
-            callService(att1, att2)
-            getLocation()
-            Toast.makeText(this@PunchAttendance, "$att1 & $att2" , Toast.LENGTH_LONG).show()
-            att1=' '
-            att2=' '
-
             biometricPrompt.authenticate(promptInfo)
-            callService(att1, att2)
+            if(flag == 1){
+                //Toast.makeText(this@PunchAttendance, "$flag and calling disableBtn()" , Toast.LENGTH_LONG).show()
+                disableBtn()
+            }
         }
 
         btnAtt2.setOnClickListener {
-            /*val stf = SimpleDateFormat("hh:mm")
+            val stf = SimpleDateFormat("hh:mm")
             val curTime = stf.format(Date())
             textView2.text = "Time: $curTime"
 
-            att1 = 'P'
-            att2 = 'P'
-            callService(att1, att2)
-            getLocation()
-            Toast.makeText(this@PunchAttendance, "$att1 & $att2" , Toast.LENGTH_LONG).show()
-            att1 = ' '
-            att2 = ' '*/
-
             biometricPrompt.authenticate(promptInfo)
-            callService(att1,att2)
+//            callService(att1,att2)
         }
     }
 
@@ -171,10 +161,10 @@ class PunchAttendance : AppCompatActivity() {
         }
     }
 
-    private fun enableView() {
-        btnAtt2.isEnabled = true
-        btnAtt2.alpha = 1F
-        Toast.makeText(this, "Done", Toast.LENGTH_SHORT).show()
+    fun disableBtn(){
+        Toast.makeText(this@PunchAttendance, "Punch-In done Successfully." , Toast.LENGTH_LONG).show()
+        btnAtt1.isEnabled = false
+        btnAtt1.isClickable = false
     }
 
     @SuppressLint("MissingPermission")
