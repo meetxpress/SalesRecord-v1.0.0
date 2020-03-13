@@ -29,7 +29,6 @@ class PunchAttendance : AppCompatActivity() {
     var att1:Char = ' '
     var att2:Char = ' '
     var emp_id = ""
-    //var comp_id = ""
 
     //var LocLat: BigDecimal = 0
     //var LocLong: BigDecimal = 0

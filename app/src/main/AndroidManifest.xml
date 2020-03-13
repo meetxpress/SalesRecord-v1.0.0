@@ -18,9 +18,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".RegisterShop"></activity>
         <activity
             android:name=".forgotPassword"
-            android:label="Forgot Password"/>
+            android:label="Forgot Password" />
         <activity
             android:name=".PunchAttendance"
             android:label="Attendance"
@@ -37,8 +38,7 @@
             android:parentActivityName=".HomeEmployee" />
         <activity
             android:name=".HomeEmployee"
-            android:label="Employee Dashboard" />
-        <!-- Company Module -->
+            android:label="Employee Dashboard" /> <!-- Company Module -->
         <activity
             android:name=".DeactivateEmployee"
             android:label="Deactivate Employee"
@@ -57,8 +57,7 @@
             android:parentActivityName=".HomeSuperAdmin" />
         <activity
             android:name=".HomeCompany"
-            android:label="Company Dashboard" />
-        <!-- Super Admin Module -->
+            android:label="Company Dashboard" /> <!-- Super Admin Module -->
         <activity
             android:name=".DeactivateCompany"
             android:label="Deactivate Company"
