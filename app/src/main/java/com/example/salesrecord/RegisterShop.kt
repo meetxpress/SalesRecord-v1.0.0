@@ -43,7 +43,7 @@ class RegisterShop : AppCompatActivity() {
         }
 
         btnRegisterShop.setOnClickListener{
-            Toast.makeText(this@RegisterShop, "$cmpId", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@RegisterShop, cmpId, Toast.LENGTH_LONG).show()
             if((shopName.text.toString() == " ") || (shopLocLat.text.toString() == " ") || (shopLocLong.text.toString() == " ") || (cmpId == "")){
                 Toast.makeText(this@RegisterShop, "Required fields are missing.", Toast.LENGTH_LONG).show()
             }else{
@@ -68,7 +68,7 @@ class RegisterShop : AppCompatActivity() {
                     LocationListener {
                     override fun onLocationChanged(location: Location?) {
                         if (location != null) {
-                            var lon=locationGps!!.latitude.toLong()
+                            //var lon=locationGps!!.latitude.toLong()
                             LocLat = locationGps!!.latitude.toBigDecimal()
                             LocLong = locationGps!!.longitude.toBigDecimal()
 
