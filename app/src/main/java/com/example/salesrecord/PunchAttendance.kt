@@ -4,21 +4,24 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.hardware.biometrics.BiometricManager
 import android.hardware.biometrics.BiometricPrompt.AuthenticationResult
+import android.icu.text.UnicodeSet.from
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
 import android.provider.Settings
+import android.transition.TransitionInflater
+import android.transition.TransitionInflater.from
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.biometric.BiometricManager
-import androidx.biometric.BiometricManager.*
 import androidx.biometric.BiometricPrompt
 import androidx.biometric.BiometricPrompt.PromptInfo
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import kotlinx.android.synthetic.main.activity_punch_attendance.*
 import okhttp3.*
 import org.json.JSONObject
@@ -26,6 +29,7 @@ import java.io.IOException
 import java.math.BigDecimal
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.Date.from
 import java.util.concurrent.Executor
 
 private const val PERMISSION_REQUEST = 10
@@ -44,7 +48,7 @@ class PunchAttendance : AppCompatActivity() {
 
     var LocLat:BigDecimal = 0.toBigDecimal()
     var LocLong:BigDecimal = 0.toBigDecimal()
-    var flag:String = "0"
+    var flag:Int = 1
 
     private var hasGps = false
     private var hasNetwork = false
@@ -82,9 +86,10 @@ class PunchAttendance : AppCompatActivity() {
                 override fun onAuthenticationSucceeded(
                     result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
-                    runOnUiThread{
-                        flag = "1"
+                    runOnUiThread {
+                        flag += 1
                         Toast.makeText(this@PunchAttendance, "$flag", Toast.LENGTH_LONG).show()
+                        getLocation()
                     }
                 }
 
@@ -92,7 +97,8 @@ class PunchAttendance : AppCompatActivity() {
                     super.onAuthenticationFailed()
                     Toast.makeText(applicationContext, "Authentication failed", Toast.LENGTH_SHORT).show()
                 }
-            })
+            }
+        )
 
         promptInfo = PromptInfo.Builder()
             .setTitle("Biometric login for my app")
@@ -105,49 +111,59 @@ class PunchAttendance : AppCompatActivity() {
             var curTime = stf.format(Date())
             textView2.text = "Time: $curTime"
 
-            //biometricPrompt.authenticate(promptInfo)
-            btnAtt1.isEnabled = false
-            btnAtt1.isClickable = false
-            Log.v("cp", "CheckPoint")
+            biometricPrompt.authenticate(promptInfo)
+            val biometricManager = BiometricManager.from(this)
+            when (biometricManager.canAuthenticate()) {
+                BiometricManager.BIOMETRIC_SUCCESS ->
+                    Log.d("MY_APP_TAG", "App can authenticate using biometrics.")
+            })
+            if(flag == 2){
+                btnAtt1.isEnabled = false
+                btnAtt1.isClickable = false
+                Log.v("cp", "CheckPoint")
 
-            getLocation()
-            pi_date = "$tdate"
-            pi_time = "$curTime"
-            //pi_locLat =
-            //pi_locLong =
+                pi_date = "$tdate"
+                pi_time = "$curTime"
+                //getLocation()
+                Toast.makeText(this@PunchAttendance, "Punch-In done Successfully." , Toast.LENGTH_LONG).show()
+                //pi_locLat =
+                //pi_locLong =
 
-            var builder = AlertDialog.Builder(this@PunchAttendance)
-            builder.setMessage("\npi_date : $pi_date\npi_time : $pi_time\npi_locLat : $pi_locLat\npi_locLong : $pi_locLong")
-            builder.show()
-            Toast.makeText(this@PunchAttendance, "Punch-In done Successfully." , Toast.LENGTH_LONG).show()
+                var builder = AlertDialog.Builder(this@PunchAttendance)
+                builder.setMessage("\npi_date : $pi_date\npi_time : $pi_time\npi_locLat : $pi_locLat\npi_locLong : $pi_locLong")
+                builder.show()
+                Log.v("done", "Done")
+            }
         }
 
         btnAtt2.setOnClickListener{
-            val stf = SimpleDateFormat("hh:mm")
-            val curTime = stf.format(Date())
-            textView6.text = "Time: $curTime"
-            getLocation()
-            po_time = "$curTime"
-
-            var builder = AlertDialog.Builder(this@PunchAttendance)
-            builder.setMessage("\npi_date : $pi_date" +
-                    "\npi_time : $po_time" +
-                    "\npi_locLat : $po_locLat" +
-                    "\npi_locLong : $po_locLong")
-            builder.show()
+            var stf = SimpleDateFormat("hh:mm")
+            var curTime2 = stf.format(Date())
+            textView6.text = "Time: $curTime2"
 
             biometricPrompt.authenticate(promptInfo)
-            if(flag == "2"){
-                Log.v("p2", flag)
+            if(flag != 2){
+                btnAtt2.isEnabled = false
+                btnAtt2.isClickable = false
+                Log.v("cp2", "CheckPoint")
+
+                //pi_date = "$tdate"
+                po_time = "$curTime2"
+                //getLocation()
                 Toast.makeText(this@PunchAttendance, "Punch-Out done Successfully." , Toast.LENGTH_LONG).show()
-               // callService(emp_id, pi_date, pi_time, pi_locLat,pi_locLong, po_time, po_locLat, po_locLong)
-            } else{
-                Toast.makeText(this@PunchAttendance, "Punch-In Failed." , Toast.LENGTH_LONG).show()
+                //pi_locLat =
+                //pi_locLong = textView32.text
+
+                var builder = AlertDialog.Builder(this@PunchAttendance)
+                builder.setMessage("\npo_date : $pi_date\npo_time : $po_time\npo_locLat : $po_locLat\npo_locLong : $po_locLong")
+                builder.show()
+                Log.v("done2", "Done2")
             }
+            flag = 0
         }
     }
-
-    /*fun callService(emp_id, pi_date, pi_time, pi_locLat, pi_locLong, po_time, po_locLat, po_locLong){
+/*
+    fun callService(emp_id, pi_date, pi_time, pi_locLat, pi_locLong, po_time, po_locLat, po_locLong){
         try{
             var client= OkHttpClient()
 
@@ -205,8 +221,8 @@ class PunchAttendance : AppCompatActivity() {
         } catch(e: Exception){
             e.printStackTrace()
         }
-    }*/
-
+    }
+*/
     @SuppressLint("MissingPermission")
     //getting location in Lang-Long
     fun getLocation() {
@@ -227,9 +243,13 @@ class PunchAttendance : AppCompatActivity() {
                             runOnUiThread {
                                 pi_locLat = locationGps!!.latitude.toBigDecimal()
                                 pi_locLong= locationGps!!.longitude.toBigDecimal()
+                                Log.v("loc","Done")
+                                // = "$pi_locLat"
+                                // = "$pi_locLong"
                             }
+
                             val builder = AlertDialog.Builder(this@PunchAttendance)
-                            builder.setMessage("\nLatitude : $pi_locLat\nLongitude : $pi_locLong")
+                            //builder.setMessage("\nLatitude : "+textView31.text.toString()+"\nLongitude : "+textView32.text.toString())
                             builder.show()
                         }
                     }

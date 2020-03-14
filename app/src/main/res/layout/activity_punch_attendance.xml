@@ -112,7 +112,8 @@
                                     android:text="Location"
                                     android:textColor="#000000"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:visibility="visible"/>
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
 
@@ -176,7 +177,7 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
+
         </GridLayout>
     </LinearLayout>
-
 </ScrollView>
