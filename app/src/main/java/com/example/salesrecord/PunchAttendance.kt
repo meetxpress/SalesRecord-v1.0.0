@@ -86,11 +86,7 @@ class PunchAttendance : AppCompatActivity() {
                 override fun onAuthenticationSucceeded(
                     result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
-                    runOnUiThread {
-                        flag += 1
-                        Toast.makeText(this@PunchAttendance, "$flag", Toast.LENGTH_LONG).show()
-                        getLocation()
-                    }
+                    flag += 1
                 }
 
                 override fun onAuthenticationFailed() {
@@ -112,12 +108,7 @@ class PunchAttendance : AppCompatActivity() {
             textView2.text = "Time: $curTime"
 
             biometricPrompt.authenticate(promptInfo)
-            val biometricManager = BiometricManager.from(this)
-            when (biometricManager.canAuthenticate()) {
-                BiometricManager.BIOMETRIC_SUCCESS ->
-                    Log.d("MY_APP_TAG", "App can authenticate using biometrics.")
-            })
-            if(flag == 2){
+            if(flag == 1){
                 btnAtt1.isEnabled = false
                 btnAtt1.isClickable = false
                 Log.v("cp", "CheckPoint")
@@ -125,13 +116,10 @@ class PunchAttendance : AppCompatActivity() {
                 pi_date = "$tdate"
                 pi_time = "$curTime"
                 //getLocation()
-                Toast.makeText(this@PunchAttendance, "Punch-In done Successfully." , Toast.LENGTH_LONG).show()
-                //pi_locLat =
-                //pi_locLong =
+                pi_locLat = 37.421998333.toBigDecimal()
+                pi_locLong = (-122.0840000).toBigDecimal()
 
-                var builder = AlertDialog.Builder(this@PunchAttendance)
-                builder.setMessage("\npi_date : $pi_date\npi_time : $pi_time\npi_locLat : $pi_locLat\npi_locLong : $pi_locLong")
-                builder.show()
+                Toast.makeText(this@PunchAttendance, "Punch-In done Successfully." , Toast.LENGTH_LONG).show()
                 Log.v("done", "Done")
             }
         }
@@ -142,28 +130,25 @@ class PunchAttendance : AppCompatActivity() {
             textView6.text = "Time: $curTime2"
 
             biometricPrompt.authenticate(promptInfo)
-            if(flag != 2){
+            if(flag == 2){
                 btnAtt2.isEnabled = false
                 btnAtt2.isClickable = false
                 Log.v("cp2", "CheckPoint")
 
-                //pi_date = "$tdate"
                 po_time = "$curTime2"
                 //getLocation()
                 Toast.makeText(this@PunchAttendance, "Punch-Out done Successfully." , Toast.LENGTH_LONG).show()
-                //pi_locLat =
-                //pi_locLong = textView32.text
+                po_locLat = 37.421998333.toBigDecimal()
+                po_locLong = (-122.0840000).toBigDecimal()
 
-                var builder = AlertDialog.Builder(this@PunchAttendance)
-                builder.setMessage("\npo_date : $pi_date\npo_time : $po_time\npo_locLat : $po_locLat\npo_locLong : $po_locLong")
-                builder.show()
+                callService(emp_id, pi_date, pi_time, pi_locLat.toString(), pi_locLong.toString(), po_time, po_locLat.toString(), po_locLong.toString())
                 Log.v("done2", "Done2")
             }
             flag = 0
         }
     }
-/*
-    fun callService(emp_id, pi_date, pi_time, pi_locLat, pi_locLong, po_time, po_locLat, po_locLong){
+
+    fun callService(emp_id:String, pi_date:String, pi_time:String, pi_locLat:String, pi_locLong:String, po_time:String, po_locLat:String, po_locLong:String){
         try{
             var client= OkHttpClient()
 
@@ -171,15 +156,26 @@ class PunchAttendance : AppCompatActivity() {
                 .add("emp_id", emp_id)
                 .add("pi_date", pi_date)
                 .add("pi_time", pi_time)
-                .add("pi_loc", pi_locLat)
-                .add("pi_loc", pi_locLong)
+                .add("pi_locLat", pi_locLat)
+                .add("pi_locLong", pi_locLong)
                 .add("po_time", po_time)
-                .add("po_loc", po_locLat)
-                .add("po_loc", po_locLong)
+                .add("po_locLat", po_locLat)
+                .add("po_locLong", po_locLong)
                 .build()
 
+            /*
+                Log.v("emp_id", emp_id)
+                Log.v("pi_date", pi_date)
+                Log.v("pi_time", pi_time)
+                Log.v("pi_locLat", pi_locLat)
+                Log.v("pi_locLong", pi_locLong)
+                Log.v("po_time", po_time)
+                Log.v("po_locLat", po_locLat)
+                Log.v("po_locLong", po_locLong)
+            */
+
             var req= Request.Builder()
-                .url("http://10.0.2.2:80/SalesRecord/attendance.php")
+                .url("http://192.168.43.231/SalesRecord/attendance.php")
                 .post(formBody)
                 .build()
 
@@ -202,12 +198,7 @@ class PunchAttendance : AppCompatActivity() {
                         if(flag == 1){
                             Log.v("f1", flag.toString())
                             runOnUiThread{
-                                Toast.makeText(this@PunchAttendance,"Attendance1 is punched.", Toast.LENGTH_LONG).show()
-                            }
-                        }else if(flag == 2){
-                            Log.v("f2", flag.toString())
-                            runOnUiThread{
-                                Toast.makeText(this@PunchAttendance,"Attendance2 is punched.", Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@PunchAttendance,"Attendance is punched.", Toast.LENGTH_LONG).show()
                             }
                         }else{
                             Log.v("ff", flag.toString())
@@ -222,7 +213,7 @@ class PunchAttendance : AppCompatActivity() {
             e.printStackTrace()
         }
     }
-*/
+
     @SuppressLint("MissingPermission")
     //getting location in Lang-Long
     fun getLocation() {
@@ -236,24 +227,27 @@ class PunchAttendance : AppCompatActivity() {
                     LocationListener {
                     override fun onLocationChanged(location: Location?) {
                         if (location != null) {
-                            //var lon=locationGps!!.latitude.toLong()
-                            //LocLat = locationGps!!.latitude.toBigDecimal()
-                            //LocLong = locationGps!!.longitude.toBigDecimal()
-
                             runOnUiThread {
                                 pi_locLat = locationGps!!.latitude.toBigDecimal()
                                 pi_locLong= locationGps!!.longitude.toBigDecimal()
                                 Log.v("loc","Done")
-                                // = "$pi_locLat"
-                                // = "$pi_locLong"
                             }
 
-                            val builder = AlertDialog.Builder(this@PunchAttendance)
+                            //val builder = AlertDialog.Builder(this@PunchAttendance)
                             //builder.setMessage("\nLatitude : "+textView31.text.toString()+"\nLongitude : "+textView32.text.toString())
-                            builder.show()
+                            //builder.show()
                         }
                     }
-                    override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
+                    override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
+                        runOnUiThread {
+                            pi_locLat = locationGps!!.latitude.toBigDecimal()
+                            pi_locLong= locationGps!!.longitude.toBigDecimal()
+                            Log.v("loc","Done")
+
+                            pi_locLat=locationGps!!.latitude.toBigDecimal()
+                            pi_locLong=locationGps!!.longitude.toBigDecimal()
+                        }
+                    }
                     override fun onProviderEnabled(provider: String?) {}
                     override fun onProviderDisabled(provider: String?) {}
                 })
