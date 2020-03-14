@@ -126,7 +126,7 @@ class PunchAttendance : AppCompatActivity() {
             val stf = SimpleDateFormat("hh:mm")
             val curTime = stf.format(Date())
             textView6.text = "Time: $curTime"
-            //getLocation()
+            getLocation()
             po_time = "$curTime"
 
             var builder = AlertDialog.Builder(this@PunchAttendance)
