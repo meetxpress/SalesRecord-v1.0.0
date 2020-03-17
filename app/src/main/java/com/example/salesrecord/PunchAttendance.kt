@@ -115,11 +115,18 @@ class PunchAttendance : AppCompatActivity() {
 
                 pi_date = "$tdate"
                 pi_time = "$curTime"
+                //getLocation(pi_locLat.toString() ,pi_locLong.toString())
+
                 //getLocation()
                 pi_locLat = 37.421998333.toBigDecimal()
                 pi_locLong = (-122.0840000).toBigDecimal()
 
                 Toast.makeText(this@PunchAttendance, "Punch-In done Successfully." , Toast.LENGTH_LONG).show()
+
+                val builder = AlertDialog.Builder(this@PunchAttendance)
+                builder.setMessage("\nLatitude : $pi_locLat\nLongitude : $pi_locLong")
+                builder.show()
+
                 Log.v("done", "Done")
             }
         }
@@ -163,16 +170,14 @@ class PunchAttendance : AppCompatActivity() {
                 .add("po_locLong", po_locLong)
                 .build()
 
-            /*
-                Log.v("emp_id", emp_id)
+                /*Log.v("emp_id", emp_id)
                 Log.v("pi_date", pi_date)
                 Log.v("pi_time", pi_time)
                 Log.v("pi_locLat", pi_locLat)
                 Log.v("pi_locLong", pi_locLong)
                 Log.v("po_time", po_time)
                 Log.v("po_locLat", po_locLat)
-                Log.v("po_locLong", po_locLong)
-            */
+                Log.v("po_locLong", po_locLong)*/
 
             var req= Request.Builder()
                 .url("http://192.168.43.231/SalesRecord/attendance.php")
@@ -220,42 +225,40 @@ class PunchAttendance : AppCompatActivity() {
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         hasGps = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
         hasNetwork = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
-        if (hasGps || hasNetwork) {
-            if (hasGps) {
-                Log.d("CodeAndroidLocation", "hasGps")
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1F, object :
-                    LocationListener {
-                    override fun onLocationChanged(location: Location?) {
-                        if (location != null) {
-                            runOnUiThread {
-                                pi_locLat = locationGps!!.latitude.toBigDecimal()
-                                pi_locLong= locationGps!!.longitude.toBigDecimal()
-                                Log.v("loc","Done")
-                            }
-
-                            //val builder = AlertDialog.Builder(this@PunchAttendance)
-                            //builder.setMessage("\nLatitude : "+textView31.text.toString()+"\nLongitude : "+textView32.text.toString())
-                            //builder.show()
-                        }
-                    }
-                    override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
+        if (hasGps) {
+            Log.d("CodeAndroidLocation", "hasGps")
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1F, object :
+                LocationListener {
+                override fun onLocationChanged(location: Location?) {
+                    if (location != null) {
                         runOnUiThread {
                             pi_locLat = locationGps!!.latitude.toBigDecimal()
                             pi_locLong= locationGps!!.longitude.toBigDecimal()
                             Log.v("loc","Done")
-
-                            pi_locLat=locationGps!!.latitude.toBigDecimal()
-                            pi_locLong=locationGps!!.longitude.toBigDecimal()
                         }
-                    }
-                    override fun onProviderEnabled(provider: String?) {}
-                    override fun onProviderDisabled(provider: String?) {}
-                })
 
-                val localGpsLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
-                if (localGpsLocation != null){
-                    locationGps = localGpsLocation
+                        //val builder = AlertDialog.Builder(this@PunchAttendance)
+                        //builder.setMessage("\nLatitude : "+textView31.text.toString()+"\nLongitude : "+textView32.text.toString())
+                        //builder.show()
+                    }
                 }
+                override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
+                    runOnUiThread {
+                        pi_locLat = locationGps!!.latitude.toBigDecimal()
+                        pi_locLong= locationGps!!.longitude.toBigDecimal()
+                        Log.v("loc","Done")
+
+                        pi_locLat=locationGps!!.latitude.toBigDecimal()
+                        pi_locLong=locationGps!!.longitude.toBigDecimal()
+                    }
+                }
+                override fun onProviderEnabled(provider: String?) {}
+                override fun onProviderDisabled(provider: String?) {}
+            })
+
+            val localGpsLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+            if (localGpsLocation != null){
+                locationGps = localGpsLocation
             }
         } else {
             startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
