@@ -1,6 +1,7 @@
 package com.example.salesrecord
 
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -24,6 +25,9 @@ class RegisterEmployee : AppCompatActivity() {
 
         //back button on actionbar
         supportActionBar?.setDisplayShowCustomEnabled(true)
+
+        var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+        var comp_id=preference.getString("uname","Wrong").toString()
 
         var c=Calendar.getInstance()
         var year = c.get(Calendar.YEAR)
@@ -68,28 +72,49 @@ class RegisterEmployee : AppCompatActivity() {
                 var eState=EmpState.text.toString()
                 var eStatus=EmpStatus.selectedItem.toString()
 
-                RadioBtnGroup.setOnCheckedChangeListener { group, checkedId ->
-                    val radio: RadioButton = findViewById(checkedId)
-                    eGen = radio.text.substring(0,1)
-                   // Toast.makeText(this@RegisterEmployee, eGen, Toast.LENGTH_SHORT).show()
-                }
-                callService(eName, ePass, eDob, eGen, eAadhar, ePhno1, ePhno2, eMail, eAdd, ePincode, eCity, eState, eStatus)
+                callService(comp_id, eName, ePass, eDob, eGen, eAadhar, ePhno1, ePhno2, eMail, eAdd, ePincode, eCity, eState, eStatus)
             }
         }
     }
+    fun onRadioButtonClicked(view: View) {
+        if (view is RadioButton) {
+            // Is the button now checked?
+            val checked = view.isChecked
 
-    fun callService(eName:String, ePass:String, eDob:String, eGen:String, eAadhar:String, ePhno1:String, ePhno2:String, eMail:String, eAdd:String, ePincode:String, eCity:String, eState:String, eStatus:String){
+            // Check which radio button was clicked
+            when (view.getId()) {
+                R.id.rb_male ->
+                    if (checked) {
+                        eGen=rb_male.text.substring(0,1)
+                    }
+                R.id.rb_female ->
+                    if (checked) {
+                        eGen=rb_female.text.substring(0,1)
+                    }
+
+                R.id.rb_transgender ->
+                    if (checked) {
+                        eGen=rb_transgender.text.substring(0,1)
+                    }
+
+            }
+        }
+        Toast.makeText(this@RegisterEmployee, eGen, Toast.LENGTH_SHORT).show()
+
+    }
+
+    fun callService(comp_id:String, eName:String, ePass:String, eDob:String, eGen:String, eAadhar:String, ePhno1:String, ePhno2:String, eMail:String, eAdd:String, ePincode:String, eCity:String, eState:String, eStatus:String){
         try{
             var client=OkHttpClient()
 
             var formBody=FormBody.Builder()
+                .add("comp_id",comp_id)
                 .add("eName",eName)
                 .add("ePass",ePass)
                 .add("eGen",eGen)
                 .add("eDob",eDob)
                 .add("eAadhar",eAadhar)
                 .add("ePhno1",ePhno1)
-                //.add("ePhno2",ePhno2)
                 .add("eMail",eMail)
                 .add("eAdd",eAdd)
                 .add("ePincode",ePincode)
@@ -97,6 +122,20 @@ class RegisterEmployee : AppCompatActivity() {
                 .add("eState",eState)
                 .add("eStatus",eStatus)
                 .build()
+
+                /*Log.v("comp_id",comp_id)
+                Log.v("eName",eName)
+                Log.v("ePass",ePass)
+                Log.v("eGen",eGen)
+                Log.v("eDob",eDob)
+                Log.v("eAadhar",eAadhar)
+                Log.v("ePhno1",ePhno1)
+                Log.v("eMail",eMail)
+                Log.v("eAdd",eAdd)
+                Log.v("ePincode",ePincode)
+                Log.v("eCity",eCity)
+                Log.v("eState",eState)
+                Log.v("eStatus",eStatus)*/
 
             var request=Request.Builder()
                 .url("http://192.168.43.231/SalesRecord/addEmployee.php")

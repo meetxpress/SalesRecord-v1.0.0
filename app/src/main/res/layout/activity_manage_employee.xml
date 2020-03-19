@@ -54,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
                 android:checked="true"
+                android:onClick="onRadioButtonClicked"
                 android:text="Male"/>
 
             <RadioButton
@@ -61,6 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
+                android:onClick="onRadioButtonClicked"
                 android:text="Female"/>
 
             <RadioButton
@@ -68,6 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
+                android:onClick="onRadioButtonClicked"
                 android:text="Transgender"/>
         </RadioGroup>
 

@@ -40,9 +40,7 @@
         <activity
             android:name=".PunchAttendance"
             android:label="Attendance"
-            android:parentActivityName=".HomeEmployee" >
-
-        </activity>
+            android:parentActivityName=".HomeEmployee" />
         <activity
             android:name=".ManageEmployee"
             android:label="Manage Employee Profile"
@@ -65,7 +63,7 @@
         <activity
             android:name=".RegisterEmployee"
             android:label="Register Employee"
-            android:parentActivityName=".ManageEmployee" />
+            android:parentActivityName=".ManageEmployee"/>
         <activity
             android:name=".ManageCompany"
             android:label="Manage Company"

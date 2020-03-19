@@ -85,11 +85,6 @@ class ManageEmployee : AppCompatActivity() {
 
         btnUpdateEmp.setOnClickListener {
             var emp_name=UpEmpName.text.toString()
-            RadioBtnGroup.setOnCheckedChangeListener { group, checkedId ->
-                val radio: RadioButton = findViewById(checkedId)
-                emp_gen=radio.text.substring(0)
-                Toast.makeText(this@ManageEmployee, "${radio.text}", Toast.LENGTH_SHORT).show()
-            }
             var emp_dob: String =UpEmpDoB.text.toString()
             var emp_aadhar=UpEmpAadharNo.text.toString()
             var emp_phno1 =UpEmpPhno1.text.toString()
@@ -129,7 +124,7 @@ class ManageEmployee : AppCompatActivity() {
 
                         //filling data in EditText
                         var eName=js.getString("emp_name")
-                        var eGen=js.getString("emp_gen")
+                        emp_gen=js.getString("emp_gen")
                         var eDob = js.getString("emp_dob")
                         var eAadhar = js.getString("emp_aadharno")
                         var ePhno1 = js.getString("emp_mob1")
@@ -145,13 +140,6 @@ class ManageEmployee : AppCompatActivity() {
                             Log.v("fs", flag.toString())
                             runOnUiThread{
                                 Toast.makeText(this@ManageEmployee,"Data Found", Toast.LENGTH_LONG).show()
-
-                                //var emp_name=UpEmpName.text.toString()
-                                RadioBtnGroup.setOnCheckedChangeListener { group, checkedId ->
-                                    val radio: RadioButton = findViewById(checkedId)
-                                    emp_gen = radio.text.toString()
-                                    Toast.makeText(this@ManageEmployee,"${radio.text}",Toast.LENGTH_SHORT).show()
-                                }
 
                                 UpEmpName.setText(eName).toString()
                                 UpEmpDoB.setText(eDob).toString()
@@ -238,6 +226,31 @@ class ManageEmployee : AppCompatActivity() {
         } catch(e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    fun onRadioButtonClicked(view: View) {
+        if (view is RadioButton) {
+            // Is the button now checked?
+            val checked = view.isChecked
+
+            // Check which radio button was clicked
+            when (view.getId()) {
+                R.id.up_rb_male ->
+                    if (checked) {
+                        emp_gen=up_rb_male.text.substring(0,1)
+                    }
+                R.id.up_rb_female ->
+                    if (checked) {
+                        emp_gen=up_rb_female.text.substring(0,1)
+                    }
+
+                R.id.up_rb_transgender ->
+                    if (checked) {
+                        emp_gen=up_rb_transgender.text.substring(0,1)
+                    }
+            }
+        }
+        Toast.makeText(this@ManageEmployee, emp_gen, Toast.LENGTH_SHORT).show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
