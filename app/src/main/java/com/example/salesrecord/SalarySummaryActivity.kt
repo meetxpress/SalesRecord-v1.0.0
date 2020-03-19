@@ -1,5 +1,6 @@
 package com.example.salesrecord
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -18,24 +19,27 @@ class SalarySummaryActivity : AppCompatActivity() {
         //back button on actionbar
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
+        var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+        var emp_id=preference.getString("uname","Wrong").toString()
+
         btnShowTarget.setOnClickListener {
-            callService("300001")
+            callService(emp_id)
         }
         btnRefreshSal.setOnClickListener {
-            callServiceSalary("300001")
+            callServiceSalary(emp_id)
         }
     }
 
-    fun callService(id:String){
+    fun callService(emp_id:String){
         try{
             var client= OkHttpClient()
 
             var formBody= FormBody.Builder()
-                .add("emp_id",id)
+                .add("emp_id",emp_id)
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.132/SalesRecord/fetchtarget1.php")
+                .url("http://192.168.43.231/SalesRecord/fetchtarget1.php")
                 .post(formBody)
                 .build()
 
@@ -76,12 +80,12 @@ class SalarySummaryActivity : AppCompatActivity() {
         }
     }
 
-    fun callServiceSalary(id:String){
+    fun callServiceSalary(emp_id:String){
         try{
             var client= OkHttpClient()
 
             var formBody= FormBody.Builder()
-                .add("emp_id",id)
+                .add("emp_id",emp_id)
                 .build()
 
             var req= Request.Builder()
@@ -91,7 +95,7 @@ class SalarySummaryActivity : AppCompatActivity() {
 
             client.newCall(req).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
-                    Log.e("Exception",e.toString())
+                    Log.e("Exception1",e.toString())
                 }
 
                 override fun onResponse(call: Call, response: Response) {
@@ -103,16 +107,16 @@ class SalarySummaryActivity : AppCompatActivity() {
 
                         //filling data in EditText
                         var esal=js.getString("esal")
-                        Log.v("res",str)
+                        Log.v("res1",str)
 
                         if(flag == 1){
-                            Log.v("fs", flag.toString())
+                            Log.v("fs1", flag.toString())
                             runOnUiThread{
                                 Toast.makeText(this@SalarySummaryActivity,"Salary Refreshed", Toast.LENGTH_LONG).show()
                                 tvbasicsal.setText(esal).toString()
                             }
                         }else{
-                            Log.v("ff", flag.toString())
+                            Log.v("ff1", flag.toString())
                             runOnUiThread{
                                 Toast.makeText(this@SalarySummaryActivity,"Error!", Toast.LENGTH_LONG).show()
                             }

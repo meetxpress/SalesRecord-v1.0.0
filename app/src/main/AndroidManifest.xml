@@ -47,13 +47,7 @@
             android:parentActivityName=".HomeEmployee" />
         <activity
             android:name=".HomeEmployee"
-            android:label="Employee Dashboard">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="Employee Dashboard"/>
         <activity
             android:name=".RegisterShop"
             android:label="Register Shop"

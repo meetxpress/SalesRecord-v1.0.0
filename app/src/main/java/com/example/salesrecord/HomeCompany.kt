@@ -42,6 +42,11 @@ class HomeCompany : AppCompatActivity() {
             var i = Intent(this@HomeCompany, RegisterShop::class.java)
             startActivity(i)
         }
+
+        btnAssignTarget.setOnClickListener{
+            var i = Intent(this@HomeCompany, AssignTargetActivity::class.java)
+            startActivity(i)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

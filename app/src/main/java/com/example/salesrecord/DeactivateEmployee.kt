@@ -64,11 +64,10 @@ class DeactivateEmployee : AppCompatActivity() {
                                 Toast.makeText(this@DeactivateEmployee,"Data Found", Toast.LENGTH_LONG).show()
 
                                 val builder = AlertDialog.Builder(this@DeactivateEmployee)
-                                builder.setTitle("Deactivate Company")
+                                builder.setTitle("Deactivate Employee")
                                 builder.setMessage("Are you sure you want to deactivate this Employee?" +
                                         "\n\n" +
                                         "\nName: $emp_name " +
-                                        //"\nCompany Id: $comp_id" +
                                         "\nPhone No.: $emp_mob1" +
                                         "\nAddress: $emp_address")
 

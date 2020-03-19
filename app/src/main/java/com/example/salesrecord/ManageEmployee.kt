@@ -66,8 +66,8 @@ class ManageEmployee : AppCompatActivity() {
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
-        var id = preference.getString("uname","Wrong").toString()
-        callService(id)
+        var emp_id = preference.getString("uname","Wrong").toString()
+        callService(emp_id)
 
         disableEdits()
         var c=Calendar.getInstance()
@@ -98,16 +98,16 @@ class ManageEmployee : AppCompatActivity() {
             var emp_city=UpEmpCity.text.toString()
             var emp_pincode=UpEmpPincode.text.toString()
             var emp_state=UpEmpState.text.toString()
-            callServiceUpdate(id, emp_name, emp_add, emp_gen, emp_dob, emp_aadhar, emp_phno1, emp_email, emp_city, emp_pincode, emp_state)
+            callServiceUpdate(emp_id, emp_name, emp_add, emp_gen, emp_dob, emp_aadhar, emp_phno1, emp_email, emp_city, emp_pincode, emp_state)
         }
     }
 
-    fun callService(id:String){
+    fun callService(emp_id:String){
         try{
             var client= OkHttpClient()
 
             var formBody= FormBody.Builder()
-                .add("emp_id", id)
+                .add("emp_id", emp_id)
                 .build()
 
             var req= Request.Builder()
@@ -149,7 +149,7 @@ class ManageEmployee : AppCompatActivity() {
                                 //var emp_name=UpEmpName.text.toString()
                                 RadioBtnGroup.setOnCheckedChangeListener { group, checkedId ->
                                     val radio: RadioButton = findViewById(checkedId)
-                                    var emp_gen = radio.text
+                                    emp_gen = radio.text.toString()
                                     Toast.makeText(this@ManageEmployee,"${radio.text}",Toast.LENGTH_SHORT).show()
                                 }
 
@@ -196,7 +196,7 @@ class ManageEmployee : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://10.0.2.2:80/SalesRecord/updateEmp.php")
+                .url("http://192.168.43.231/SalesRecord/updateEmp.php")
                 .post(formBody)
                 .build()
 

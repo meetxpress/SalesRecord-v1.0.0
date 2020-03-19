@@ -19,7 +19,6 @@ class sharedPreference: AppCompatActivity() {
             var edit=per.edit()
             edit.clear()
             edit.commit()
-
             Toast.makeText(this@sharedPreference,"Logged out Successfully!", Toast.LENGTH_LONG).show()
             var inte= Intent(this@sharedPreference, LoginActivity::class.java)
             startActivity(inte)
