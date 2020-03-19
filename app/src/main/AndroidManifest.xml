@@ -20,18 +20,15 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".RoutineTaskActivity"
-            android:parentActivityName=".HomeEmployee">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".SalarySummaryActivity"
+            android:label="Routine Task"
             android:parentActivityName=".HomeEmployee"/>
         <activity
+            android:name=".SalarySummaryActivity"
+            android:label="Salary Summery"
+            android:parentActivityName=".HomeEmployee" />
+        <activity
             android:name=".AssignTargetActivity"
+            android:label="Assign Target"
             android:parentActivityName=".HomeCompany"/>
         <activity
             android:name=".forgotPassword"
