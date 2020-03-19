@@ -20,7 +20,7 @@
             }
 
         } 
-        
+    
         if(($_POST['att1'] == 'P') && ($_POST['att2'] == 'P')){
             $qry=mysqli_query($con, "UPDATE attendance SET att1 = 'P', att2 = 'P' where emp_id = '".$_POST['emp_id']."'");
             if($qry){  

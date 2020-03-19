@@ -91,7 +91,7 @@ class ManageCompany : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://10.0.2.2:80/SalesRecord/updatecompbtn.php")
+                .url("http://192.168.43.231/SalesRecord/updatecompbtn.php")
                 .post(formBody)
                 .build()
 
@@ -166,7 +166,7 @@ class ManageCompany : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://10.0.2.2:80/SalesRecord/updatecomp.php")
+                .url("http://192.168.43.231/SalesRecord/updatecomp.php")
                 .post(formBody)
                 .build()
 

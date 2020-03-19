@@ -19,6 +19,21 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".RoutineTaskActivity"
+            android:parentActivityName=".HomeEmployee">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SalarySummaryActivity"
+            android:parentActivityName=".HomeEmployee"/>
+        <activity
+            android:name=".AssignTargetActivity"
+            android:parentActivityName=".HomeCompany"/>
+        <activity
             android:name=".forgotPassword"
             android:label="Forgot Password" />
         <activity
@@ -32,7 +47,6 @@
         <activity
             android:name=".HomeEmployee"
             android:label="Employee Dashboard" />
-        <!-- Company Module -->
         <activity
             android:name=".RegisterShop"
             android:label="Register Shop"
@@ -56,7 +70,6 @@
         <activity
             android:name=".HomeCompany"
             android:label="Company Dashboard" />
-        <!-- Super Admin Module -->
         <activity
             android:name=".DeactivateCompany"
             android:label="Deactivate Company"

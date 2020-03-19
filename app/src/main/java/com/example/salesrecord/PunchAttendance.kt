@@ -71,7 +71,7 @@ class PunchAttendance : AppCompatActivity() {
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
         //setting date and time as title of the card
-        val tdate= (SimpleDateFormat("d - M - Y").format(Calendar.getInstance().time))
+        val tdate= (SimpleDateFormat("d-M-Y").format(Calendar.getInstance().time))
         date1.text = tdate
 
         //biometric module
@@ -117,11 +117,14 @@ class PunchAttendance : AppCompatActivity() {
                 pi_time = "$curTime"
                 //getLocation(pi_locLat.toString() ,pi_locLong.toString())
 
-                //getLocation()
+                getLocation()
                 pi_locLat = 37.421998333.toBigDecimal()
                 pi_locLong = (-122.0840000).toBigDecimal()
 
-                Toast.makeText(this@PunchAttendance, "Punch-In done Successfully." , Toast.LENGTH_LONG).show()
+                //pi_locLat.toString()
+                //pi_locLong.toString()
+
+               // Toast.makeText(this@PunchAttendance, "Punch-In done Successfully." , Toast.LENGTH_LONG).show()
 
                 val builder = AlertDialog.Builder(this@PunchAttendance)
                 builder.setMessage("\nLatitude : $pi_locLat\nLongitude : $pi_locLong")
@@ -233,7 +236,7 @@ class PunchAttendance : AppCompatActivity() {
                     if (location != null) {
                         runOnUiThread {
                             pi_locLat = locationGps!!.latitude.toBigDecimal()
-                            pi_locLong= locationGps!!.longitude.toBigDecimal()
+                            pi_locLong = locationGps!!.longitude.toBigDecimal()
                             Log.v("loc","Done")
                         }
 
@@ -244,12 +247,12 @@ class PunchAttendance : AppCompatActivity() {
                 }
                 override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
                     runOnUiThread {
-                        pi_locLat = locationGps!!.latitude.toBigDecimal()
-                        pi_locLong= locationGps!!.longitude.toBigDecimal()
+                        LocLat = locationGps!!.latitude.toBigDecimal()
+                        LocLong= locationGps!!.longitude.toBigDecimal()
                         Log.v("loc","Done")
 
-                        pi_locLat=locationGps!!.latitude.toBigDecimal()
-                        pi_locLong=locationGps!!.longitude.toBigDecimal()
+                        LocLat=locationGps!!.latitude.toBigDecimal()
+                        LocLong=locationGps!!.longitude.toBigDecimal()
                     }
                 }
                 override fun onProviderEnabled(provider: String?) {}

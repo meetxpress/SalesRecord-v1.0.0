@@ -99,7 +99,7 @@ class RegisterEmployee : AppCompatActivity() {
                 .build()
 
             var request=Request.Builder()
-                .url("http://10.0.2.2:80/SalesRecord/addEmployee.php")
+                .url("http://192.168.43.231/SalesRecord/addEmployee.php")
                 .post(formBody)
                 .build()
 

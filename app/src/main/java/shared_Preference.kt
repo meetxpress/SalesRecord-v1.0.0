@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.salesrecord.LoginActivity
 import com.example.salesrecord.R
 
-class shared_Preference: AppCompatActivity() {
+class sharedPreference: AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.exit_controlmenu,menu)
         return super.onCreateOptionsMenu(menu)
@@ -20,13 +20,13 @@ class shared_Preference: AppCompatActivity() {
             edit.clear()
             edit.commit()
 
-            Toast.makeText(this@shared_Preference,"Logged out Successfully!", Toast.LENGTH_LONG).show()
-            var inte= Intent(this@shared_Preference, LoginActivity::class.java)
+            Toast.makeText(this@sharedPreference,"Logged out Successfully!", Toast.LENGTH_LONG).show()
+            var inte= Intent(this@sharedPreference, LoginActivity::class.java)
             startActivity(inte)
             finish()
         }
         else{
-            Toast.makeText(this@shared_Preference,"Random Option!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@sharedPreference,"Random Option!", Toast.LENGTH_LONG).show()
         }
         return super.onOptionsItemSelected(item)
     }
