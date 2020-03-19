@@ -34,7 +34,7 @@ class DeactivateCompany : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://10.0.2.2:80/SalesRecord/btndeactivateComp.php")
+                .url("http://192.168.43.231/SalesRecord/btndeactivateComp.php")
                 .post(formBody)
                 .build()
 
@@ -50,12 +50,13 @@ class DeactivateCompany : AppCompatActivity() {
                         var flag=js.getInt("success")
                         var msg=js.getString("message")
 
-                        //filling data in EditText
+                        //filling data in alert box
                         var comp_name=js.getString("comp_name")
                         var comp_city=js.getString("comp_city")
                         var comp_mob1=js.getString("comp_mob1")
                         var comp_person=js.getString("comp_person")
                         var comp_licno=js.getString("comp_licno")
+                        var comp_status=js.getString("comp_status")
 
                         Log.v("res",str)
 
@@ -66,18 +67,19 @@ class DeactivateCompany : AppCompatActivity() {
 
                                 val builder = AlertDialog.Builder(this@DeactivateCompany)
                                 builder.setTitle("Deactivate Company")
-                                builder.setMessage("Are you sure you want to deactivate this company?" +
-                                        "\n\n" +
-                                        "\nName: $comp_name " +
+                                builder.setMessage("\nName: $comp_name " +
                                         "\nCity: $comp_city" +
                                         "\nPhone No.: $comp_mob1" +
                                         "\nContact Person: $comp_person" +
-                                        "\nLicense No: $comp_licno\n")
+                                        "\nLicense No: $comp_licno" +
+                                        "\nCompany Status: $comp_status" +
+                                        "\n\n" +
+                                        "Are you sure you want to Activate/Deactivate this company?")
 
                                 builder.setPositiveButton(android.R.string.yes) { _, _ ->
                                     runOnUiThread {
                                        // Toast.makeText(this@DeactivateCompany,android.R.string.yes, Toast.LENGTH_SHORT).show()
-                                        mainService(id)
+                                        mainService(id, comp_status)
                                     }
                                 }
 
@@ -103,16 +105,17 @@ class DeactivateCompany : AppCompatActivity() {
     }
 
     //for updating the status of company in database
-    fun mainService(id:String){
+    fun mainService(id:String, comp_status:String){
         try{
             var client2:OkHttpClient= OkHttpClient()
 
             var fBody= FormBody.Builder()
                 .add("cid",id)
+                .add("cStatus",comp_status)
                 .build()
 
             var req2= Request.Builder()
-                .url("http://10.0.2.2:80/SalesRecord/deactivateComp.php")
+                .url("http://192.168.43.231/SalesRecord/deactivateComp.php")
                 .post(fBody)
                 .build()
 
@@ -139,7 +142,7 @@ class DeactivateCompany : AppCompatActivity() {
                         if(flag == 1){
                             Log.v("fs", flag.toString())
                             runOnUiThread {
-                                Toast.makeText(this@DeactivateCompany,"Deactivated Successfully!", Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@DeactivateCompany,"Status changed Successfully!", Toast.LENGTH_LONG).show()
                             }
                         }else{
                             Log.v("ff", flag.toString())

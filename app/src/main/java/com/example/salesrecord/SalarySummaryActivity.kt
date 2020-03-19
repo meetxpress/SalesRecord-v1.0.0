@@ -24,8 +24,6 @@ class SalarySummaryActivity : AppCompatActivity() {
         btnRefreshSal.setOnClickListener {
             callServiceSalary("300001")
         }
-
-
     }
 
     fun callService(id:String){
@@ -34,7 +32,6 @@ class SalarySummaryActivity : AppCompatActivity() {
 
             var formBody= FormBody.Builder()
                 .add("emp_id",id)
-
                 .build()
 
             var req= Request.Builder()
@@ -64,7 +61,6 @@ class SalarySummaryActivity : AppCompatActivity() {
                             runOnUiThread{
                                 Toast.makeText(this@SalarySummaryActivity,"Target Refreshed", Toast.LENGTH_LONG).show()
                                 tvTarget.setText(atarget).toString()
-
                             }
                         }else{
                             Log.v("ff", flag.toString())
@@ -80,20 +76,16 @@ class SalarySummaryActivity : AppCompatActivity() {
         }
     }
 
-
-
-
     fun callServiceSalary(id:String){
         try{
             var client= OkHttpClient()
 
             var formBody= FormBody.Builder()
                 .add("emp_id",id)
-
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.132/SalesRecord/fetchsalary.php")
+                .url("http://192.168.43.231/SalesRecord/fetchsalary.php")
                 .post(formBody)
                 .build()
 
@@ -111,16 +103,13 @@ class SalarySummaryActivity : AppCompatActivity() {
 
                         //filling data in EditText
                         var esal=js.getString("esal")
-
                         Log.v("res",str)
 
                         if(flag == 1){
                             Log.v("fs", flag.toString())
                             runOnUiThread{
                                 Toast.makeText(this@SalarySummaryActivity,"Salary Refreshed", Toast.LENGTH_LONG).show()
-
                                 tvbasicsal.setText(esal).toString()
-
                             }
                         }else{
                             Log.v("ff", flag.toString())

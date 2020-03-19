@@ -240,7 +240,7 @@
                         android:id="@+id/btnAddShop"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:background="@drawable/manage_company"
+                        android:background="@drawable/add_shop"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.869"
@@ -267,7 +267,6 @@
                         app:layout_constraintVertical_bias="0.021" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-
         </GridLayout>
     </LinearLayout>
 </ScrollView>

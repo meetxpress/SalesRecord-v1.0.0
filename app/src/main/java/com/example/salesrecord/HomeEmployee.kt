@@ -25,7 +25,6 @@ class HomeEmployee : AppCompatActivity() {
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
         btnViewProfile.setOnClickListener {
-            Toast.makeText(this@HomeEmployee, "View Employee Profile", Toast.LENGTH_LONG).show()
             var i = Intent(this@HomeEmployee, ManageEmployee::class.java)
             startActivity(i)
         }
@@ -33,7 +32,21 @@ class HomeEmployee : AppCompatActivity() {
         btnEmpAttendance.setOnClickListener {
             var i = Intent(this@HomeEmployee, PunchAttendance::class.java)
             startActivity(i)
-            Toast.makeText(this@HomeEmployee, "Punch Attendance", Toast.LENGTH_LONG).show()
+        }
+
+        btnSalary.setOnClickListener {
+            var i = Intent(this@HomeEmployee, SalarySummaryActivity::class.java)
+            startActivity(i)
+        }
+
+        btnRoutineTask.setOnClickListener{
+            var i = Intent(this@HomeEmployee, RoutineTaskActivity::class.java)
+            startActivity(i)
+        }
+
+        btnViewEmpReport.setOnClickListener{
+            var i = Intent(this@HomeEmployee, ViewEmpReports::class.java)
+            startActivity(i)
         }
     }
 

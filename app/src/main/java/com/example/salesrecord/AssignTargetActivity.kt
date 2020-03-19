@@ -28,7 +28,6 @@ class AssignTargetActivity : AppCompatActivity() {
         var comp_id = preference.getString("uname","Wrong").toString()
 
         btnAssignTarget.setOnClickListener {
-
             //var assignmonth=etAssignMonth.text.toString()
             var atarget=etAssignTarget.text.toString()
             var atargetmonth=etAssignMonth.text.toString()
@@ -47,7 +46,7 @@ class AssignTargetActivity : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.132/SalesRecord/assigntarget1.php")
+                .url("http://192.168.43.231/SalesRecord/assigntarget1.php")
                 .post(formBody)
                 .build()
 
@@ -74,10 +73,8 @@ class AssignTargetActivity : AppCompatActivity() {
                         if(flag == 1){
                             Log.v("fs", flag.toString())
                             runOnUiThread{
-
                                 etAssignMonth.text.clear()
                                 etAssignTarget.text.clear()
-
                                 Toast.makeText(this@AssignTargetActivity,"Target Assigned", Toast.LENGTH_LONG).show()
                             }
                         }else{

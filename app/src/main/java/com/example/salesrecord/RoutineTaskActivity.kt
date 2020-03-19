@@ -28,10 +28,8 @@ class RoutineTaskActivity : AppCompatActivity() {
 
 
         btnRoutineSubmit.setOnClickListener {
-
             var rmonth=SimpleDateFormat("MM-YYYY").format(date.time)
             var rtarget=etRoutineTask.text.toString()
-
             callServiceSubmit(emp_id,rmonth,rtarget)
         }
     }
@@ -44,11 +42,10 @@ class RoutineTaskActivity : AppCompatActivity() {
                 .add("emp_id",emp_id)
                 .add("rmonth",rmonth)
                 .add("rtarget",rtarget)
-
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.132/SalesRecord/routinetask.php")
+                .url("http://192.168.43.231/SalesRecord/routinetask.php")
                 .post(formBody)
                 .build()
 
@@ -75,9 +72,7 @@ class RoutineTaskActivity : AppCompatActivity() {
                         if(flag == 1){
                             Log.v("fs", flag.toString())
                             runOnUiThread{
-
                                 etRoutineTask.text.clear()
-
                                 Toast.makeText(this@RoutineTaskActivity,"Work Submitted", Toast.LENGTH_LONG).show()
                             }
                         }else{
@@ -93,5 +88,4 @@ class RoutineTaskActivity : AppCompatActivity() {
             e.printStackTrace()
         }
     }
-    }
-
+}
