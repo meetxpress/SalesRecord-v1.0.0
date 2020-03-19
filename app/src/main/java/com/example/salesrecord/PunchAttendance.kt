@@ -4,24 +4,20 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.hardware.biometrics.BiometricManager
-import android.hardware.biometrics.BiometricPrompt.AuthenticationResult
-import android.icu.text.UnicodeSet.from
+import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
 import android.provider.Settings
-import android.transition.TransitionInflater
-import android.transition.TransitionInflater.from
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
 import androidx.biometric.BiometricPrompt.PromptInfo
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import kotlinx.android.synthetic.main.activity_punch_attendance.*
 import okhttp3.*
 import org.json.JSONObject
@@ -29,7 +25,6 @@ import java.io.IOException
 import java.math.BigDecimal
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.Date.from
 import java.util.concurrent.Executor
 
 private const val PERMISSION_REQUEST = 10
@@ -39,19 +34,21 @@ class PunchAttendance : AppCompatActivity() {
     var att2:Char = ' '
     var pi_date = " "
     var pi_time = " "
-    var pi_locLat:BigDecimal = 0.toBigDecimal()
-    var pi_locLong:BigDecimal = 0.toBigDecimal()
+    var pi_locLat:String=" "
+    var pi_locLong:String= " "
 
     var po_time = " "
-    var po_locLat:BigDecimal = 0.toBigDecimal()
-    var po_locLong:BigDecimal = 0.toBigDecimal()
+    var po_locLat:String=" "
+    var po_locLong:String = " "
 
     var LocLat:BigDecimal = 0.toBigDecimal()
     var LocLong:BigDecimal = 0.toBigDecimal()
     var flag:Int = 1
 
+    var x:String=" "
+    var y:String=" "
+
     private var hasGps = false
-    private var hasNetwork = false
     private var locationGps: Location? = null
 
     private lateinit var locationManager: LocationManager
@@ -59,7 +56,9 @@ class PunchAttendance : AppCompatActivity() {
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: PromptInfo
 
-    private var permissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
+
+
+   private var permissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_punch_attendance)
@@ -97,10 +96,12 @@ class PunchAttendance : AppCompatActivity() {
         )
 
         promptInfo = PromptInfo.Builder()
-            .setTitle("Biometric login for my app")
-            .setSubtitle("Log in using your biometric credential")
-            .setNegativeButtonText("Use account password")
+            .setTitle("Punch Your Attendance")
+            .setNegativeButtonText("Cancel")
             .build()
+
+       // Create persistent LocationManager reference
+       locationManager = (getSystemService(LOCATION_SERVICE) as LocationManager?)!!
 
         btnAtt1.setOnClickListener {
             var stf = SimpleDateFormat("hh:mm")
@@ -115,22 +116,22 @@ class PunchAttendance : AppCompatActivity() {
 
                 pi_date = "$tdate"
                 pi_time = "$curTime"
-                //getLocation(pi_locLat.toString() ,pi_locLong.toString())
 
-                getLocation()
-                pi_locLat = 37.421998333.toBigDecimal()
-                pi_locLong = (-122.0840000).toBigDecimal()
+                //getLocation()
+                //pi_locLat = 37.421998333.toBigDecimal()
+                //pi_locLong = (-122.0840000).toBigDecimal()
 
                 //pi_locLat.toString()
                 //pi_locLong.toString()
 
-               // Toast.makeText(this@PunchAttendance, "Punch-In done Successfully." , Toast.LENGTH_LONG).show()
+                Toast.makeText(this@PunchAttendance, "$x" , Toast.LENGTH_LONG).show()
 
-                val builder = AlertDialog.Builder(this@PunchAttendance)
-                builder.setMessage("\nLatitude : $pi_locLat\nLongitude : $pi_locLong")
-                builder.show()
+                //val builder = AlertDialog.Builder(this@PunchAttendance)
+                //builder.setMessage("\nLatitude : $pi_locLat\nLongitude : $pi_locLong")
+                //builder.show()
 
-                Log.v("done", "Done")
+                Log.v("x1", "$x")
+                Log.v("y1", "$y")
             }
         }
 
@@ -148,10 +149,10 @@ class PunchAttendance : AppCompatActivity() {
                 po_time = "$curTime2"
                 //getLocation()
                 Toast.makeText(this@PunchAttendance, "Punch-Out done Successfully." , Toast.LENGTH_LONG).show()
-                po_locLat = 37.421998333.toBigDecimal()
-                po_locLong = (-122.0840000).toBigDecimal()
+               // po_locLat = 37.421998333.toBigDecimal()
+              //  po_locLong = (-122.0840000).toBigDecimal()
 
-                callService(emp_id, pi_date, pi_time, pi_locLat.toString(), pi_locLong.toString(), po_time, po_locLat.toString(), po_locLong.toString())
+                callService(emp_id, pi_date, pi_time, pi_locLat, pi_locLong, po_time, po_locLat, po_locLong)
                 Log.v("done2", "Done2")
             }
             flag = 0
@@ -227,22 +228,32 @@ class PunchAttendance : AppCompatActivity() {
     fun getLocation() {
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         hasGps = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-        hasNetwork = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
         if (hasGps) {
             Log.d("CodeAndroidLocation", "hasGps")
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1F, object :
                 LocationListener {
                 override fun onLocationChanged(location: Location?) {
                     if (location != null) {
+                       // runOnUiThread {
+                            LocLat = locationGps!!.latitude.toBigDecimal()
+                            LocLong = locationGps!!.longitude.toBigDecimal()
                         runOnUiThread {
-                            pi_locLat = locationGps!!.latitude.toBigDecimal()
-                            pi_locLong = locationGps!!.longitude.toBigDecimal()
+                            add_LocLat.setText("$LocLat")
+                            add_LocLong.setText("$LocLong")
+
+                            pi_locLat=LocLat.toString()
+                            pi_locLong=LocLong.toString()
+
+
                             Log.v("loc","Done")
+                            Log.d("lati", " GPS Latitude : " + LocLat.toString())
+                            Log.d("long", " GPS Longitude : " + LocLong.toString())
                         }
 
                         //val builder = AlertDialog.Builder(this@PunchAttendance)
                         //builder.setMessage("\nLatitude : "+textView31.text.toString()+"\nLongitude : "+textView32.text.toString())
                         //builder.show()
+
                     }
                 }
                 override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
@@ -267,4 +278,5 @@ class PunchAttendance : AppCompatActivity() {
             startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
         }
     }
+
 }
