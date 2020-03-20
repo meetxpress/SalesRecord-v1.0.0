@@ -39,7 +39,9 @@ class RegisterShop : AppCompatActivity() {
         var cmpId=preference.getString("uname","Wrong").toString()
 
         btnGetShopLoc.setOnClickListener {
-            getLocation()
+            runOnUiThread {
+                getLocation()
+            }
         }
 
         btnRegisterShop.setOnClickListener{

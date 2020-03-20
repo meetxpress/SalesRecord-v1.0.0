@@ -57,12 +57,13 @@ class ManageEmployee : AppCompatActivity() {
         UpEmpState.isEnabled=false
     }
 
-    var emp_gen:String=""
-    var eDob:String=""
+    var emp_gen:String = ""
+    var eDob:String = " "
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manage_employee)
+
         //back button on actionbar
         supportActionBar?.setDisplayShowCustomEnabled(true)
 

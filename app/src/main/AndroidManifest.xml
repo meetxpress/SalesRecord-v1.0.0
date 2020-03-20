@@ -22,11 +22,11 @@
         <activity
             android:name=".changeCompPassword"
             android:label="Change Password"
-            android:parentActivityName=".HomeCompany"/>
+            android:parentActivityName=".HomeCompany" />
         <activity
             android:name=".changeEmpPassword"
             android:label="Change Password"
-            android:parentActivityName=".HomeEmployee"/>
+            android:parentActivityName=".HomeEmployee" />
         <activity
             android:name=".ViewEmpReports"
             android:label="View Reports"
@@ -34,7 +34,7 @@
         <activity
             android:name=".RoutineTaskActivity"
             android:label="Routine Task"
-            android:parentActivityName=".HomeEmployee"/>
+            android:parentActivityName=".HomeEmployee" />
         <activity
             android:name=".SalarySummaryActivity"
             android:label="Salary Summery"
@@ -53,7 +53,7 @@
         <activity
             android:name=".ManageEmployee"
             android:label="Edit Details"
-            android:parentActivityName=".HomeEmployee" />
+            android:parentActivityName=".HomeEmployee"/>
         <activity
             android:name=".HomeEmployee"
             android:label="Employee Dashboard" />

@@ -31,7 +31,6 @@ class ManageCompany : AppCompatActivity() {
     }
     fun enableEdits(){
         UpCompName.isEnabled=true
-        UpCompName.isVisible=true
         UpCompEmail.isEnabled=true
         UpCompCity.isEnabled=true
         UpCompPincode.isEnabled=true
