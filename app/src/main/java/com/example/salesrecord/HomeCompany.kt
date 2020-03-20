@@ -47,6 +47,11 @@ class HomeCompany : AppCompatActivity() {
             var i = Intent(this@HomeCompany, AssignTargetActivity::class.java)
             startActivity(i)
         }
+
+        btnViewLeaves.setOnClickListener{
+            var i = Intent(this@HomeCompany, ViewLeaves::class.java)
+            startActivity(i)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

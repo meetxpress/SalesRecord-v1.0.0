@@ -23,7 +23,7 @@
             android:alignmentMode="alignMargins"
             android:columnCount="2"
             android:columnOrderPreserved="false"
-            android:rowCount="3">
+            android:rowCount="4">
 
             <!-- Manage Company-->
             <androidx.cardview.widget.CardView
@@ -313,6 +313,55 @@
                         app:layout_constraintHorizontal_bias="0.894"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/btnMngEmp"
+                        app:layout_constraintVertical_bias="0.021" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- View Leave applications-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="15dp"
+                android:elevation="5dp"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <Button
+                        android:id="@+id/btnViewLeaves"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/add_shop"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.869"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.118"
+                        app:srcCompat="@drawable/manage_company" />
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center"
+                        android:text="View Leaves"
+                        android:textColor="#000000"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.894"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/btnViewLeaves"
                         app:layout_constraintVertical_bias="0.021" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

@@ -32,6 +32,7 @@ class ApplyForLeave : AppCompatActivity() {
 
         //back button on actionbar
         supportActionBar?.setDisplayShowCustomEnabled(true)
+var f=fd+","+ td
 
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         var emp_id = preference.getString("uname","Wrong").toString()
