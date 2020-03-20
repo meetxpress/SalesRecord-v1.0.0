@@ -61,7 +61,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:gravity="center"
-                        android:text="Manage Company"
+                        android:text="Edit Details"
                         android:textColor="#000000"
                         android:textSize="20sp"
                         android:textStyle="bold"

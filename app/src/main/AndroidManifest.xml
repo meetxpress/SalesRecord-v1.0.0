@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission. ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -43,7 +44,7 @@
             android:parentActivityName=".HomeEmployee" />
         <activity
             android:name=".ManageEmployee"
-            android:label="Manage Employee Profile"
+            android:label="Edit Details"
             android:parentActivityName=".HomeEmployee" />
         <activity
             android:name=".HomeEmployee"
@@ -66,7 +67,7 @@
             android:parentActivityName=".ManageEmployee"/>
         <activity
             android:name=".ManageCompany"
-            android:label="Manage Company"
+            android:label="Edit Details"
             android:parentActivityName=".HomeSuperAdmin" />
         <activity
             android:name=".HomeCompany"
