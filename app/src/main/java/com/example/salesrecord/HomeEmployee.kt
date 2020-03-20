@@ -48,6 +48,11 @@ class HomeEmployee : AppCompatActivity() {
             var i = Intent(this@HomeEmployee, ViewEmpReports::class.java)
             startActivity(i)
         }
+
+        btnApplyLeave.setOnClickListener{
+            var i = Intent(this@HomeEmployee, ApplyForLeave::class.java)
+            startActivity(i)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

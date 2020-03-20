@@ -20,6 +20,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ApplyForLeave"
+            android:label="Apply for Leave"
+            android:parentActivityName=".HomeEmployee"/>
+        <activity
             android:name=".changeCompPassword"
             android:label="Change Password"
             android:parentActivityName=".HomeCompany" />
