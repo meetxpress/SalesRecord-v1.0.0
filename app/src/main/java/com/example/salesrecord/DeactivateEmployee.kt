@@ -61,7 +61,7 @@ class DeactivateEmployee : AppCompatActivity() {
                         if(flag == 1){
                             Log.v("fs", flag.toString())
                             runOnUiThread{
-                                Toast.makeText(this@DeactivateEmployee,"Data Found", Toast.LENGTH_LONG).show()
+                                //Toast.makeText(this@DeactivateEmployee,"Data Found", Toast.LENGTH_LONG).show()
 
                                 val builder = AlertDialog.Builder(this@DeactivateEmployee)
                                 builder.setTitle("Deactivate Employee")
@@ -131,12 +131,12 @@ class DeactivateEmployee : AppCompatActivity() {
                         if(flag == 1){
                             Log.v("fs", flag.toString())
                             runOnUiThread {
-                                Toast.makeText(this@DeactivateEmployee,"Deactivated Successfully!", Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@DeactivateEmployee, message, Toast.LENGTH_LONG).show()
                             }
                         }else{
                             Log.v("ff", flag.toString())
                             runOnUiThread {
-                                Toast.makeText(this@DeactivateEmployee,"An Error Occurred!", Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@DeactivateEmployee, message, Toast.LENGTH_LONG).show()
                             }
                         }
                     }

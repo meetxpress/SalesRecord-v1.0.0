@@ -123,7 +123,7 @@ class ManageCompany : AppCompatActivity() {
                         if(flag == 1){
                             Log.v("fs", flag.toString())
                             runOnUiThread{
-                                Toast.makeText(this@ManageCompany,"Data Found", Toast.LENGTH_LONG).show()
+                                //Toast.makeText(this@ManageCompany,"Data Found", Toast.LENGTH_LONG).show()
                                 UpCompName.setText(comp_name).toString()
                                 UpCompEmail.setText(comp_email).toString()
                                 UpCompCity.setText(comp_city).toString()
@@ -219,6 +219,11 @@ class ManageCompany : AppCompatActivity() {
         if(item.itemId == R.id.edit){
             Toast.makeText(this@ManageCompany, "Enabled Editing", Toast.LENGTH_LONG).show()
             enableEdits()
+        }
+
+        if(item.itemId == R.id.changePass){
+            var i=Intent(this@ManageCompany, changeCompPassword::class.java)
+            startActivity(i)
         }
         return super.onOptionsItemSelected(item)
     }

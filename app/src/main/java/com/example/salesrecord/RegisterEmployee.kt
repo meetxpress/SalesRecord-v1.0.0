@@ -164,7 +164,7 @@ class RegisterEmployee : AppCompatActivity() {
                         if(flag == 1){
                             runOnUiThread {
                                 Log.v("fs", flag.toString())
-                                Toast.makeText(this@RegisterEmployee,"Successful.!", Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@RegisterEmployee, message, Toast.LENGTH_LONG).show()
                                 var i= Intent(this@RegisterEmployee,HomeCompany::class.java)
                                 startActivity(i)
                                 finish()
@@ -172,7 +172,7 @@ class RegisterEmployee : AppCompatActivity() {
                         }else{
                             runOnUiThread {
                                 Log.v("ff", flag.toString())
-                                Toast.makeText(this@RegisterEmployee,"Failed", Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@RegisterEmployee, message, Toast.LENGTH_LONG).show()
                             }
                         }
                     }

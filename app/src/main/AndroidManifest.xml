@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission. ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -20,13 +20,21 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".changeCompPassword"
+            android:label="Change Password"
+            android:parentActivityName=".HomeCompany"/>
+        <activity
+            android:name=".changeEmpPassword"
+            android:label="Change Password"
+            android:parentActivityName=".HomeEmployee"/>
+        <activity
             android:name=".ViewEmpReports"
             android:label="View Reports"
-            android:parentActivityName=".HomeEmployee"/>
+            android:parentActivityName=".HomeEmployee" />
         <activity
             android:name=".RoutineTaskActivity"
             android:label="Routine Task"
-            android:parentActivityName=".HomeEmployee" />
+            android:parentActivityName=".HomeEmployee"/>
         <activity
             android:name=".SalarySummaryActivity"
             android:label="Salary Summery"
@@ -48,7 +56,7 @@
             android:parentActivityName=".HomeEmployee" />
         <activity
             android:name=".HomeEmployee"
-            android:label="Employee Dashboard"/>
+            android:label="Employee Dashboard" />
         <activity
             android:name=".RegisterShop"
             android:label="Register Shop"
@@ -64,7 +72,7 @@
         <activity
             android:name=".RegisterEmployee"
             android:label="Register Employee"
-            android:parentActivityName=".ManageEmployee"/>
+            android:parentActivityName=".ManageEmployee" />
         <activity
             android:name=".ManageCompany"
             android:label="Edit Details"

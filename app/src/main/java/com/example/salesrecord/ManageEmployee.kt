@@ -2,6 +2,7 @@ package com.example.salesrecord
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.icu.text.UnicodeSetSpanner
 import androidx.appcompat.app.AppCompatActivity
@@ -262,6 +263,11 @@ class ManageEmployee : AppCompatActivity() {
         if(item.itemId == R.id.edit){
             Toast.makeText(this@ManageEmployee,"Enabled Editing",Toast.LENGTH_LONG).show()
             enableEdits()
+        }
+
+        if(item.itemId == R.id.changePass){
+            var i= Intent(this@ManageEmployee, changeEmpPassword::class.java)
+            startActivity(i)
         }
         return super.onOptionsItemSelected(item)
     }
