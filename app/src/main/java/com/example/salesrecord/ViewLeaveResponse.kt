@@ -14,9 +14,8 @@ import java.io.IOException
 class ViewLeaveResponse : AppCompatActivity() {
 
     var arrUser = ArrayList<PocoLeavesResponses>()
-    var userobj:PocoLeavesResponses = PocoLeavesResponses("","","","","","")
+    var userobj:PocoLeavesResponses = PocoLeavesResponses("", "", "","","","", "")
 
-    var emp_id:String = " "
     lateinit var adap:ArrayAdapter<PocoLeavesResponses>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,10 +26,9 @@ class ViewLeaveResponse : AppCompatActivity() {
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
-        emp_id = preference.getString("uname","Wrong").toString()
+        var emp_id = preference.getString("uname","Wrong").toString()
 
         btnRefreshLeaveRes.setOnClickListener{
-            Toast.makeText(this, emp_id, Toast.LENGTH_SHORT).show()
             callService(emp_id)
             adap = ArrayAdapter<PocoLeavesResponses>(this@ViewLeaveResponse, android.R.layout.simple_list_item_1, arrUser)
             dispLeaveRes.adapter = adap
@@ -51,6 +49,7 @@ class ViewLeaveResponse : AppCompatActivity() {
                 .post(formBody)
                 .build()
 
+            Log.v("r1","Middle")
             client.newCall(request).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     Log.d("Exception",e.toString())
@@ -73,6 +72,7 @@ class ViewLeaveResponse : AppCompatActivity() {
                             Log.v("loop", "In loop")
                             var ua = uarr.getJSONObject(i)
 
+                            var leave_id = ua.getInt("leave_id").toString()
                             var fromDate = ua.getString("fromDate")
                             var toDate = ua.getString("toDate")
                             var type1 = ua.getString("type1")
@@ -87,7 +87,7 @@ class ViewLeaveResponse : AppCompatActivity() {
                             Log.v("reason",reason)
                             Log.v("status",status)
 
-                            userobj = PocoLeavesResponses(fromDate, toDate, type1, type2, reason, status)
+                            userobj = PocoLeavesResponses(leave_id, fromDate, toDate, type1, type2, reason, status)
                             arrUser.add(userobj)
                             Log.d("arr", arrUser.toString())
                             runOnUiThread {

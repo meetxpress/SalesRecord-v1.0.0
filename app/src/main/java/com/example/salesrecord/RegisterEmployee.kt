@@ -138,7 +138,7 @@ class RegisterEmployee : AppCompatActivity() {
                 Log.v("eStatus",eStatus)*/
 
             var request=Request.Builder()
-                .url("http://192.168.43.231/SalesRecord/addEmployee.php")
+                .url("http://10.0.2.2:80/SalesRecord/addEmployee.php")
                 .post(formBody)
                 .build()
 
