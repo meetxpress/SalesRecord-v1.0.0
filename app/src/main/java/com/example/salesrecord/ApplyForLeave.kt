@@ -32,7 +32,6 @@ class ApplyForLeave : AppCompatActivity() {
 
         //back button on actionbar
         supportActionBar?.setDisplayShowCustomEnabled(true)
-var f=fd+","+ td
 
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         var emp_id = preference.getString("uname","Wrong").toString()
@@ -110,7 +109,7 @@ var f=fd+","+ td
                 .build()
 
             var request= Request.Builder()
-                .url("http://10.0.2.2:80/SalesRecord/apply_leave.php")
+                .url("http://192.168.43.231/SalesRecord/apply_leave.php")
                 .post(formBody)
                 .build()
 
@@ -137,7 +136,7 @@ var f=fd+","+ td
                             runOnUiThread {
                                 Log.v("fs", flag.toString())
                                 Toast.makeText(this@ApplyForLeave, message, Toast.LENGTH_LONG).show()
-                                var i= Intent(this@ApplyForLeave,HomeCompany::class.java)
+                                var i= Intent(this@ApplyForLeave,HomeEmployee::class.java)
                                 startActivity(i)
                                 finish()
                             }
