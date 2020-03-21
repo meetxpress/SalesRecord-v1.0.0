@@ -88,6 +88,11 @@ var f=fd+","+ td
             var i = Intent(this@ApplyForLeave,HomeEmployee::class.java)
             startActivity(i)
         }
+
+        btnViewLeaveResponse.setOnClickListener{
+            var i = Intent(this@ApplyForLeave,ViewLeaveResponse::class.java)
+            startActivity(i)
+        }
     }
 
     fun callService(emp_id:String, fDate:String, tDate:String, type:String, type2:String, reason:String, status:String) {

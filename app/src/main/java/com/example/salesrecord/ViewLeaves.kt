@@ -4,8 +4,6 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -16,15 +14,15 @@ import java.io.IOException
 
 class ViewLeaves : AppCompatActivity() {
 
-    var arrUser = ArrayList<Leaves>()
-    var userobj:Leaves = Leaves("","","","","","","","")
+    var arrUser = ArrayList<PocoLeaves>()
+    var userobj:PocoLeaves = PocoLeaves("","","","","","","","")
 
     var status:String = " "
     var emp_id:String=" "
     var comp_id:String=""
     var leave_id:String=" "
 
-    lateinit var adap:ArrayAdapter<Leaves>
+    lateinit var adap:ArrayAdapter<PocoLeaves>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_leaves)
@@ -37,7 +35,7 @@ class ViewLeaves : AppCompatActivity() {
 
         btnRefreshLeave.setOnClickListener{
             callService(comp_id)
-            adap = ArrayAdapter<Leaves>(this@ViewLeaves, android.R.layout.simple_list_item_1, arrUser)
+            adap = ArrayAdapter<PocoLeaves>(this@ViewLeaves, android.R.layout.simple_list_item_1, arrUser)
             dispLeaves.adapter = adap
             adap.notifyDataSetChanged()
         }
@@ -77,11 +75,11 @@ class ViewLeaves : AppCompatActivity() {
                 .build()
 
             val request = Request.Builder()
-            .url("http://10.0.2.2:80/SalesRecord/view_leaves.php")
+            .url("http://192.168.43.231/SalesRecord/view_leaves.php")
                 .post(formBody)
                 .build()
-            client.newCall(request).enqueue(object : Callback {
 
+            client.newCall(request).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
                     Log.d("Exception",e.toString())
                 }
@@ -112,7 +110,7 @@ class ViewLeaves : AppCompatActivity() {
                             var reason = ua.getString("reason")
                             var status = ua.getString("status")
 
-                            userobj = Leaves(emp_id, leave_id, fromDate, toDate, type1, type2, reason, status)
+                            userobj = PocoLeaves(emp_id, leave_id, fromDate, toDate, type1, type2, reason, status)
                             arrUser.add(userobj)
                             Log.d("arr", arrUser.toString())
                             runOnUiThread {
@@ -139,7 +137,7 @@ class ViewLeaves : AppCompatActivity() {
                 .build()
 
             val request = Request.Builder()
-                .url("http://10.0.2.2:80/SalesRecord/approve_leaves.php")
+                .url("http://192.168.43.231/SalesRecord/approve_leaves.php")
                 .post(formBody)
                 .build()
 
@@ -164,13 +162,13 @@ class ViewLeaves : AppCompatActivity() {
                         if(flag==1){
                             Log.v("fs",flag.toString())
                             runOnUiThread {
-                                Toast.makeText(this@ViewLeaves, message, Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@ViewLeaves, "Approved", Toast.LENGTH_SHORT).show()
                                 dispLeaves.adapter=null
                             }
                         }else{
                             Log.v("fs",flag.toString())
                             runOnUiThread {
-                                Toast.makeText(this@ViewLeaves, message, Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@ViewLeaves, "Rejected", Toast.LENGTH_SHORT).show()
                                 dispLeaves.adapter=null
                             }
                         }

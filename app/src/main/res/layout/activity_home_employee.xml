@@ -312,7 +312,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:gravity="center"
-                        android:text="Routine Task"
+                        android:text="Leave"
                         android:textColor="#000000"
                         android:textSize="20sp"
                         android:textStyle="bold"
