@@ -22,7 +22,7 @@
         <activity
             android:name=".ViewLeaves"
             android:label="View Leave Applications"
-            android:parentActivityName=".HomeCompany" />
+            android:parentActivityName=".HomeCompany"/>
         <activity
             android:name=".ApplyForLeave"
             android:label="Apply for Leave"

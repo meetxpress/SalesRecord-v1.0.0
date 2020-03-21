@@ -14,6 +14,9 @@ import java.io.IOException
 class ViewLeaves : AppCompatActivity() {
 
     var arrUser = ArrayList<Leaves>()
+    var userobj:Leaves = Leaves("","","","","","","")
+
+    lateinit var adap:ArrayAdapter<Leaves>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_leaves)
@@ -21,15 +24,16 @@ class ViewLeaves : AppCompatActivity() {
         //back button on actionbar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        var preference=getSharedPreferences("myPref", Context.MODE_PRIVATE)
-        var comp_id=preference.getString("uname","Wrong").toString()
+        var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+        var comp_id = preference.getString("uname","Wrong").toString()
 
         btnRefreshLeave.setOnClickListener{
             callservice(comp_id)
-             Toast.makeText(this@ViewLeaves, "Calling service",Toast.LENGTH_LONG).show()
-
-            var adap = ArrayAdapter<Leaves>(this@ViewLeaves, android.R.layout.simple_list_item_1, arrUser)
+             Toast.makeText(this@ViewLeaves, comp_id,Toast.LENGTH_LONG).show()
+            adap = ArrayAdapter<Leaves>(this@ViewLeaves, android.R.layout.simple_list_item_1, arrUser)
             dispLeaves.adapter = adap
+
+            adap.notifyDataSetChanged()
         }
     }
 
@@ -42,7 +46,7 @@ class ViewLeaves : AppCompatActivity() {
                 .build()
 
             val request = Request.Builder()
-                .url("http://192.168.43.231/SalesRecord/view_leaves.php")
+            .url("http://10.0.2.2:80/SalesRecord/view_leaves.php")
                 .post(formBody)
                 .build()
             client.newCall(request).enqueue(object : Callback {
@@ -59,14 +63,14 @@ class ViewLeaves : AppCompatActivity() {
                         var obj = JSONObject(data)
                         var flag= obj.getInt("success")
                         var msg= obj.getString("message")
-                        var uarr= obj.getJSONArray("res")
+                        var uarr= obj.getJSONArray("Leave")
 
                         Log.d("flag",flag.toString())
                         Log.d("msg",msg.toString())
 
                         for(i in 0 until uarr.length()) {
-                            Log.v("loop","In loop")
-                            var ua=uarr.getJSONObject(i)
+                            Log.v("loop", "In loop")
+                            var ua = uarr.getJSONObject(i)
 
                             var emp_id = ua.getString("emp_id")
                             var fromDate = ua.getString("fromDate")
@@ -75,8 +79,24 @@ class ViewLeaves : AppCompatActivity() {
                             var type2 = ua.getString("type2")
                             var reason = ua.getString("reason")
                             var status = ua.getString("status")
-                            var userobj:Leaves=Leaves(emp_id, fromDate, toDate, type1, type2, reason, status)
+
+                            if((emp_id =="") &&
+                                (fromDate =="") &&
+                                (toDate =="") &&
+                                (type1  =="") &&
+                                (type2  =="") &&
+                                (reason =="") &&
+                                (status =="")
+                            ){
+
+                            }
+
+                            userobj = Leaves(emp_id, fromDate, toDate, type1, type2, reason, status)
                             arrUser.add(userobj)
+                            Log.d("arr", arrUser.toString())
+                            runOnUiThread {
+                                adap.notifyDataSetChanged()
+                            }
                         }
                     }
                 }

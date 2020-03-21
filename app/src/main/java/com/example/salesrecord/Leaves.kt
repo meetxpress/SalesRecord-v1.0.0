@@ -1,7 +1,13 @@
 package com.example.salesrecord
 
+import android.util.Log
+
 class Leaves(var emp_id:String, var fromDate:String, var toDate:String, var type1:String, var type2:String, var reason:String, var status:String){
     override fun toString(): String {
-        return "Employee Id: $emp_id\nDate(From): $fromDate\nDate(To): $toDate\nType(from Date): $type1\nType(to Date): $type2\nReason: $reason"
+        Log.d("lF","I Leave File")
+        return "Employee Id: $emp_id" +
+                "\nDate(From): $fromDate \tType: $type1" +
+                "\nDate(To): $toDate     \tType: $type2" +
+                "\nReason: $reason"
     }
 }

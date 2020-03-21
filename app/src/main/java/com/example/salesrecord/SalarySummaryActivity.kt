@@ -89,7 +89,7 @@ class SalarySummaryActivity : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.231/SalesRecord/fetchsalary.php")
+                .url("http://192.168.43.231/SalesRecord/getsal.php")
                 .post(formBody)
                 .build()
 
@@ -101,19 +101,26 @@ class SalarySummaryActivity : AppCompatActivity() {
                 override fun onResponse(call: Call, response: Response) {
                     response.use {
                         var str=response.body!!.string()
+                        Log.v("str",str)
                         var js= JSONObject(str)
                         var flag=js.getInt("success")
                         var msg=js.getString("message")
 
                         //filling data in EditText
-                        var esal=js.getString("esal")
-                        Log.v("res1",str)
+
+                        var emp_bsal=js.getInt("emp_bsal")
+                        var emp_inc=js.getInt("emp_inc")
+                        var emp_totsal=js.getString("emp_totsal")
+                        Log.v("res",str)
 
                         if(flag == 1){
                             Log.v("fs1", flag.toString())
                             runOnUiThread{
                                 Toast.makeText(this@SalarySummaryActivity,"Salary Refreshed", Toast.LENGTH_LONG).show()
-                                tvbasicsal.setText(esal).toString()
+
+                                tvbasicsal.setText(emp_bsal)
+                                tvInc.setText(emp_inc).toString()
+                                tvtotsal.setText(emp_totsal).toString()
                             }
                         }else{
                             Log.v("ff1", flag.toString())

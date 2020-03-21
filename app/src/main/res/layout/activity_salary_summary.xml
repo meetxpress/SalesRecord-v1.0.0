@@ -171,7 +171,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
                 <TextView
-                    android:id="@+id/textView20"
+                    android:id="@+id/tvtotsal"
                     android:layout_width="168dp"
                     android:layout_height="44dp"
                     android:layout_marginTop="125dp"
@@ -197,7 +197,7 @@
                      app:layout_constraintEnd_toEndOf="parent"
                      app:layout_constraintHorizontal_bias="0.452"
                      app:layout_constraintStart_toStartOf="parent"
-                     app:layout_constraintTop_toBottomOf="@+id/textView20" />
+                     app:layout_constraintTop_toBottomOf="@+id/tvtotsal" />
 
             </androidx.cardview.widget.CardView>
         </GridLayout>
