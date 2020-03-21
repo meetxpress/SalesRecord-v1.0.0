@@ -338,7 +338,7 @@
                         android:id="@+id/btnViewLeaves"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:background="@drawable/add_shop"
+                        android:background="@drawable/view_leave"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.869"

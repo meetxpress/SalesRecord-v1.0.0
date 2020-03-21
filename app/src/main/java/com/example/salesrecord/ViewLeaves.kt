@@ -4,8 +4,11 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_view_leaves.*
 import okhttp3.*
 import org.json.JSONObject
@@ -14,7 +17,12 @@ import java.io.IOException
 class ViewLeaves : AppCompatActivity() {
 
     var arrUser = ArrayList<Leaves>()
-    var userobj:Leaves = Leaves("","","","","","","")
+    var userobj:Leaves = Leaves("","","","","","","","")
+
+    var status:String = " "
+    var emp_id:String=" "
+    var comp_id:String=""
+    var leave_id:String=" "
 
     lateinit var adap:ArrayAdapter<Leaves>
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,19 +33,42 @@ class ViewLeaves : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
-        var comp_id = preference.getString("uname","Wrong").toString()
+        comp_id = preference.getString("uname","Wrong").toString()
 
         btnRefreshLeave.setOnClickListener{
-            callservice(comp_id)
-             Toast.makeText(this@ViewLeaves, comp_id,Toast.LENGTH_LONG).show()
+            callService(comp_id)
             adap = ArrayAdapter<Leaves>(this@ViewLeaves, android.R.layout.simple_list_item_1, arrUser)
             dispLeaves.adapter = adap
-
             adap.notifyDataSetChanged()
+        }
+
+        dispLeaves.setOnItemClickListener { adapterView, _, position: Int, _: Long ->
+            val ss = adapterView.getItemAtPosition(position).toString()
+            val builder = AlertDialog.Builder(this@ViewLeaves)
+
+            builder.setTitle("Leave Application")
+            builder.setMessage(ss)
+
+            builder.setPositiveButton("Approve") { _, _ ->
+                runOnUiThread {
+                    //Toast.makeText(this@ViewLeaves, "Accepted", Toast.LENGTH_SHORT).show()
+                    status="Approve"
+                    callMainService(emp_id, leave_id, status)
+                }
+            }
+
+            builder.setNegativeButton("Reject") { _, _ ->
+                runOnUiThread {
+                    //Toast.makeText(this@ViewLeaves, "Rejected", Toast.LENGTH_SHORT).show()
+                    status="Reject"
+                    callMainService(emp_id, leave_id, status)
+                }
+            }
+            builder.show()
         }
     }
 
-    fun callservice(comp_id:String) {
+    fun callService(comp_id:String) {
         try{
             val client = OkHttpClient()
 
@@ -72,7 +103,8 @@ class ViewLeaves : AppCompatActivity() {
                             Log.v("loop", "In loop")
                             var ua = uarr.getJSONObject(i)
 
-                            var emp_id = ua.getString("emp_id")
+                            emp_id = ua.getString("emp_id")
+                            leave_id = ua.getString("leave_id")
                             var fromDate = ua.getString("fromDate")
                             var toDate = ua.getString("toDate")
                             var type1 = ua.getString("type1")
@@ -80,18 +112,7 @@ class ViewLeaves : AppCompatActivity() {
                             var reason = ua.getString("reason")
                             var status = ua.getString("status")
 
-                            if((emp_id =="") &&
-                                (fromDate =="") &&
-                                (toDate =="") &&
-                                (type1  =="") &&
-                                (type2  =="") &&
-                                (reason =="") &&
-                                (status =="")
-                            ){
-
-                            }
-
-                            userobj = Leaves(emp_id, fromDate, toDate, type1, type2, reason, status)
+                            userobj = Leaves(emp_id, leave_id, fromDate, toDate, type1, type2, reason, status)
                             arrUser.add(userobj)
                             Log.d("arr", arrUser.toString())
                             runOnUiThread {
@@ -106,4 +127,60 @@ class ViewLeaves : AppCompatActivity() {
             Log.d("Exception",e.toString())
         }
     }
+
+    fun callMainService(emp_id:String, leave_id:String, status:String){
+        try{
+            val client = OkHttpClient()
+
+            val formBody=FormBody.Builder()
+                .add("emp_id",emp_id)
+                .add("leave_id",leave_id)
+                .add("status",status)
+                .build()
+
+            val request = Request.Builder()
+                .url("http://10.0.2.2:80/SalesRecord/approve_leaves.php")
+                .post(formBody)
+                .build()
+
+            client.newCall(request).enqueue(object : Callback {
+
+                override fun onFailure(call: Call, e: IOException) {
+                    Log.d("Exception",e.toString())
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    response.use {
+                        var data = response.body!!.string()
+                        Log.v("retrive", data)
+
+                        var obj = JSONObject(data)
+                        var flag= obj.getInt("success")
+                        var message= obj.getString("message")
+
+                        Log.v("flag",flag.toString())
+                        Log.v("msg",message.toString())
+
+                        if(flag==1){
+                            Log.v("fs",flag.toString())
+                            runOnUiThread {
+                                Toast.makeText(this@ViewLeaves, message, Toast.LENGTH_SHORT).show()
+                                dispLeaves.adapter=null
+                            }
+                        }else{
+                            Log.v("fs",flag.toString())
+                            runOnUiThread {
+                                Toast.makeText(this@ViewLeaves, message, Toast.LENGTH_SHORT).show()
+                                dispLeaves.adapter=null
+                            }
+                        }
+                        callService(comp_id)
+                    }
+                }
+            })
+        } catch(e:Exception){
+            e.printStackTrace()
+        }
+    }
+
 }
