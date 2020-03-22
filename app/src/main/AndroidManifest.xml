@@ -22,7 +22,7 @@
         <activity
             android:name=".EmpLeaveReport"
             android:label="View Leave Report"
-            android:parentActivityName=".ViewEmpReports"/>
+            android:parentActivityName=".ViewEmpReports"></activity>
         <activity
             android:name=".EmpSalaryReport"
             android:label="View Salary Report"

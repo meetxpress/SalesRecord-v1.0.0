@@ -15,14 +15,13 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class EmpLeaveReport : AppCompatActivity() {
-
     var arrUser = ArrayList<PocoEmpLeaveReport>()
-    var userobj:PocoEmpLeaveReport = PocoEmpLeaveReport("", "",  "")
+    var userobj:PocoEmpLeaveReport = PocoEmpLeaveReport("", "", "")
 
     lateinit var adap: ArrayAdapter<PocoEmpLeaveReport>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_emp_salary_report)
+        setContentView(R.layout.activity_emp_leave_report)
 
         //back button on actionbar
         supportActionBar?.setDisplayShowCustomEnabled(true)
@@ -30,7 +29,7 @@ class EmpLeaveReport : AppCompatActivity() {
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         var emp_id = preference.getString("uname","Wrong").toString()
 
-        //leaveDate.setText(SimpleDateFormat("MM-YYYY").format(Calendar.getInstance().time)).toString()
+        leaveDate.setText(SimpleDateFormat("M-YYYY").format(Calendar.getInstance().time)).toString()
         Log.v("id",emp_id)
 
         btnGenerateLeave.setOnClickListener {
@@ -74,15 +73,15 @@ class EmpLeaveReport : AppCompatActivity() {
                         Log.v("res",str)
                         var js= JSONObject(str)
                         var flag=js.getInt("success")
-                        var arr= js.getJSONArray("Salary")
+                        var arr= js.getJSONArray("Leaves")
 
                         for(i in 0 until arr.length()) {
                             var ua = arr.getJSONObject(i)
 
-                            var lCount = ua.getString("l_count")
+                            var lcount = ua.getString("l_count")
                             var AlCount = ua.getString("a_count")
 
-                            userobj = PocoEmpLeaveReport(lmy, lCount, AlCount)
+                            userobj = PocoEmpLeaveReport(lmy, lcount, AlCount)
                             arrUser.add(userobj)
                             Log.d("arr", arrUser.toString())
                             runOnUiThread {
