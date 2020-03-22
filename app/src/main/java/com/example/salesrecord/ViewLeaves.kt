@@ -34,6 +34,7 @@ class ViewLeaves : AppCompatActivity() {
         comp_id = preference.getString("uname","Wrong").toString()
 
         btnRefreshLeave.setOnClickListener{
+            arrUser.clear()
             callService(comp_id)
             adap = ArrayAdapter<PocoLeaves>(this@ViewLeaves, android.R.layout.simple_list_item_1, arrUser)
             dispLeaves.adapter = adap

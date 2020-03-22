@@ -31,6 +31,7 @@ class ViewLeaveResponse : AppCompatActivity() {
 
         btnRefreshLeaveRes.setOnClickListener{
             runOnUiThread{
+                arrUser2.clear()
                 callService(emp_id)
                 adap = ArrayAdapter<PocoLeavesResponses>(this@ViewLeaveResponse, android.R.layout.simple_list_item_1, arrUser2)
                 displayLeaveRes.adapter = adap
@@ -96,70 +97,4 @@ class ViewLeaveResponse : AppCompatActivity() {
             e.printStackTrace()
         }
     }
-    /*fun callService(emp_id:String) {
-        try{
-            val client = OkHttpClient()
-
-            val formBody= FormBody.Builder()
-                .add("emp_id", emp_id)
-                .build()
-
-            val request = Request.Builder()
-                .url("http://10.0.2.2:80/SalesRecord/view_leaves_responses.php")
-                .post(formBody)
-                .build()
-
-            Log.v("r1","Middle")
-            client.newCall(request).enqueue(object : Callback {
-                override fun onFailure(call: Call, e: IOException) {
-                    Log.d("Exception",e.toString())
-                }
-
-                override fun onResponse(call: Call, response: Response) {
-                    response.use {
-                        Log.v("r2","onResponse")
-                        var data = response.body!!.string()
-                        Log.d("retrive", data)
-
-                        var obj = JSONObject(data)
-                        var flag= obj.getInt("success")
-                        var msg= obj.getString("message")
-                        var uarr= obj.getJSONArray("Leave")
-
-                        Log.v("flag",flag.toString())
-                        Log.v("msg",msg.toString())
-
-                        for(i in 0 until uarr.length()) {
-                            Log.v("lop", "In loop")
-                            var ua = uarr.getJSONObject(i)
-
-                            var leave_id = ua.getString("leave_id")
-                            var fromDate = ua.getString("fromDate")
-                            var toDate = ua.getString("toDate")
-                            var type1 = ua.getString("type1")
-                            var type2 = ua.getString("type2")
-                            var reason = ua.getString("reason")
-                            var status = ua.getString("status")
-
-                            Log.v("fromDate",fromDate)
-                            Log.v("toDate",toDate)
-                            Log.v("type1",type1 )
-                            Log.v("type2",type2 )
-                            Log.v("reason",reason)
-                            Log.v("status",status)
-
-                            userobj = PocoLeavesResponses(leave_id, fromDate, toDate, type1, type2, reason, status)
-                            arrUser2.add(userobj)
-                            Log.d("arr", arrUser2.toString())
-                            runOnUiThread {
-                                adap.notifyDataSetChanged()
-                            }
-                        }
-                    }
-                }
-            })
-        }catch (e: Exception) {
-            Log.d("Exception", e.toString())
-        }
-    }*/
 }

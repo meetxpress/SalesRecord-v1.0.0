@@ -61,7 +61,7 @@
             android:layout_marginEnd="16dp"
             android:ems="10"
             android:hint="Enter User ID"
-            android:inputType="textEmailAddress"
+            android:inputType="number"
             android:maxLength="6"
             android:textColor="#FFFFFF"
             android:textColorHint="#FFFFFF"
