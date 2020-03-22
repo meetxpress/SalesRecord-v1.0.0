@@ -37,7 +37,7 @@ class ApplyForLeave : AppCompatActivity() {
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         var emp_id = preference.getString("uname","Wrong").toString()
 
-        val tdate= (SimpleDateFormat("d-M-Y").format(Calendar.getInstance().time))
+        val tdate= (SimpleDateFormat("dd-MM-YYYY").format(Calendar.getInstance().time))
 
         var c = Calendar.getInstance()
         var year = c.get(Calendar.YEAR)

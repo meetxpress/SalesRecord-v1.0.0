@@ -44,7 +44,7 @@ class ViewEmpReports : AppCompatActivity() {
                 startActivity(i)
             }else if(ss == "Leave Report"){
                 //callLeaveReportService(emp_id)
-                var i=Intent(this@ViewEmpReports, ::class.java)
+                var i=Intent(this@ViewEmpReports, EmpLeaveReport::class.java)
                 startActivity(i)
             }
         }
