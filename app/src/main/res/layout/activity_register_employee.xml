@@ -287,6 +287,38 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/EmpState"/>
 
+        <EditText
+            android:id="@+id/searchShopId"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="150dp"
+            android:background="@drawable/formback"
+            android:ems="10"
+            android:hint=" Search Shop ID*"
+            android:inputType="number"
+            android:maxLength="9"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintTop_toBottomOf="@+id/EmpStatus"/>
+
+        <Button
+            android:id="@+id/btnSearchShopId"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/btngrade"
+            android:text="Search"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/searchShopId"
+            app:layout_constraintTop_toBottomOf="@+id/EmpStatus" />
+
         <TextView
             android:id="@+id/textNotice"
             android:layout_width="0dp"
@@ -301,7 +333,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EmpStatus" />
+            app:layout_constraintTop_toBottomOf="@+id/btnSearchShopId" />
 
         <Button
             android:id="@+id/btnRegisterEmp"

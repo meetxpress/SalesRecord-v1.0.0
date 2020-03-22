@@ -1,5 +1,6 @@
 package com.example.salesrecord
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
@@ -16,8 +17,9 @@ import java.util.*
 
 class RegisterEmployee : AppCompatActivity() {
 
-    var eGen:String=""
-    var eDob:String=""
+    var eGen:String = " "
+    var eDob:String = " "
+    var shop_id:String = " "
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +29,7 @@ class RegisterEmployee : AppCompatActivity() {
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
-        var comp_id=preference.getString("uname","Wrong").toString()
+        var comp_id = preference.getString("uname","Wrong").toString()
 
         var c=Calendar.getInstance()
         var year = c.get(Calendar.YEAR)
@@ -43,6 +45,11 @@ class RegisterEmployee : AppCompatActivity() {
             //Toast.makeText(this@RegisterEmployee, eDob.toString(), Toast.LENGTH_LONG).show()
         }
 
+        btnSearchShopId.setOnClickListener{
+            shop_id=searchShopId.text.toString()
+            callSearchsShopService(shop_id, comp_id)
+        }
+
         btnRegisterEmp.setOnClickListener {
             if((EmpName.toString().length <0) and
                 (EmpPassword.toString().length <0) and
@@ -55,7 +62,8 @@ class RegisterEmployee : AppCompatActivity() {
                 (EmpPincode.toString().length <0) and
                 (EmpCity.toString().length <0) and
                 (EmpState.toString().length <0) and
-                (EmpStatus.toString().length <0))
+                (EmpStatus.toString().length <0) and
+                (shop_id.length <0))
             {
                 Toast.makeText(this@RegisterEmployee,"Required Fields are missing.",Toast.LENGTH_LONG).show()
             } else {
@@ -72,7 +80,7 @@ class RegisterEmployee : AppCompatActivity() {
                 var eState=EmpState.text.toString()
                 var eStatus=EmpStatus.selectedItem.toString()
 
-                callService(comp_id, eName, ePass, eDob, eGen, eAadhar, ePhno1, ePhno2, eMail, eAdd, ePincode, eCity, eState, eStatus)
+                callService(comp_id, eName, ePass, eDob, eGen, eAadhar, ePhno1, ePhno2, eMail, eAdd, ePincode, eCity, eState, eStatus, shop_id)
             }
         }
     }
@@ -103,7 +111,73 @@ class RegisterEmployee : AppCompatActivity() {
 
     }
 
-    fun callService(comp_id:String, eName:String, ePass:String, eDob:String, eGen:String, eAadhar:String, ePhno1:String, ePhno2:String, eMail:String, eAdd:String, ePincode:String, eCity:String, eState:String, eStatus:String){
+    fun callSearchsShopService(shop_id:String, comp_id:String){
+        try{
+            var client= OkHttpClient()
+
+            var formBody= FormBody.Builder()
+                .add("shop_id",shop_id)
+                .add("comp_id",comp_id)
+                .build()
+
+            var req= Request.Builder()
+                .url("http://192.168.43.231/SalesRecord/btnSearchShop.php")
+                .post(formBody)
+                .build()
+
+            client.newCall(req).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    Log.e("Exception",e.toString())
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    response.use {
+                        var str=response.body!!.string()
+                        var js= JSONObject(str)
+                        var flag=js.getInt("success")
+                        var msg=js.getString("message")
+
+                        //filling data in EditText
+                        var shop_name=js.getString("shop_name")
+                        Log.v("res1",str)
+
+                        if(flag == 1){
+                            Log.v("fs1", flag.toString())
+                            runOnUiThread{
+                                //Toast.makeText(this@DeactivateEmployee,"Data Found", Toast.LENGTH_LONG).show()
+
+                                val builder = AlertDialog.Builder(this@RegisterEmployee)
+                                builder.setTitle("Shop Details")
+                                builder.setMessage("Confirm the details of the shop you searched." +
+                                        "\n\n" +
+                                        "\nShop Id: $shop_id " +
+                                        "\nShop Name.: $shop_name")
+
+                                builder.setPositiveButton("Confirm") { _, _ ->
+
+                                }
+
+                                builder.setNegativeButton("Reset") {_, _ ->
+                                    searchShopId.setText(" ")
+                                    searchShopId.hint = " Search Shop ID*"
+                                }
+                                builder.show()
+                            }
+                        }else{
+                            Log.v("ff1", flag.toString())
+                            runOnUiThread{
+                                Toast.makeText(this@RegisterEmployee,"No Shop found.", Toast.LENGTH_LONG).show()
+                            }
+                        }
+                    }
+                }
+            })
+        } catch(e: Exception){
+            e.printStackTrace()
+        }
+    }
+
+    fun callService(comp_id:String, eName:String, ePass:String, eDob:String, eGen:String, eAadhar:String, ePhno1:String, ePhno2:String, eMail:String, eAdd:String, ePincode:String, eCity:String, eState:String, eStatus:String, shop_id:String){
         try{
             var client=OkHttpClient()
 
@@ -121,6 +195,7 @@ class RegisterEmployee : AppCompatActivity() {
                 .add("eCity",eCity)
                 .add("eState",eState)
                 .add("eStatus",eStatus)
+                .add("shop_id",shop_id)
                 .build()
 
                 /*Log.v("comp_id",comp_id)
@@ -138,7 +213,7 @@ class RegisterEmployee : AppCompatActivity() {
                 Log.v("eStatus",eStatus)*/
 
             var request=Request.Builder()
-                .url("http://10.0.2.2:80/SalesRecord/addEmployee.php")
+                .url("http://192.168.43.231/SalesRecord/addEmployee.php")
                 .post(formBody)
                 .build()
 

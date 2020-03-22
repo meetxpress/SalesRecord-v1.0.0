@@ -19,10 +19,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".AssignShopToEmployee"></activity>
         <activity
             android:name=".ViewLeaveResponse"
             android:label="View Leave"
-            android:parentActivityName=".HomeEmployee"/>
+            android:parentActivityName=".HomeEmployee" />
         <activity
             android:name=".ViewLeaves"
             android:label="View Leave Applications"
