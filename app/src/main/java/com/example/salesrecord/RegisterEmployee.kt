@@ -133,29 +133,26 @@ class RegisterEmployee : AppCompatActivity() {
                 override fun onResponse(call: Call, response: Response) {
                     response.use {
                         var str=response.body!!.string()
+                        Log.v("str",str)
                         var js= JSONObject(str)
                         var flag=js.getInt("success")
                         var msg=js.getString("message")
-
-                        //filling data in EditText
-                        var shop_name=js.getString("shop_name")
-                        Log.v("res1",str)
 
                         if(flag == 1){
                             Log.v("fs1", flag.toString())
                             runOnUiThread{
                                 //Toast.makeText(this@DeactivateEmployee,"Data Found", Toast.LENGTH_LONG).show()
 
+                                var shop_name=js.getString("shop_name")
+                                Log.v("res1",str)
+
                                 val builder = AlertDialog.Builder(this@RegisterEmployee)
                                 builder.setTitle("Shop Details")
                                 builder.setMessage("Confirm the details of the shop you searched." +
-                                        "\n\n" +
                                         "\nShop Id: $shop_id " +
                                         "\nShop Name.: $shop_name")
 
-                                builder.setPositiveButton("Confirm") { _, _ ->
-
-                                }
+                                builder.setPositiveButton("Confirm") { _, _ -> }
 
                                 builder.setNegativeButton("Reset") {_, _ ->
                                     searchShopId.setText(" ")
@@ -224,7 +221,7 @@ class RegisterEmployee : AppCompatActivity() {
 
                 override fun onResponse(call: Call, response: Response) {
                     response.use{
-                        Log.v("check","abcde");
+                        Log.v("check","abcde")
                         if (!response.isSuccessful) throw IOException("Unexpected code $response")
                         var str=response.body!!.string()
                         Log.v("test",str)
