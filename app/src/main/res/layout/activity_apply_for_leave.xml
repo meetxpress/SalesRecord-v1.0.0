@@ -67,33 +67,17 @@
         app:layout_constraintStart_toEndOf="@+id/toDate"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
-    <EditText
-        android:id="@+id/leave"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="200dp"
-        android:background="@drawable/formback"
-        android:enabled="false"
-        android:focusable="false"
-        android:hint=" Leave Type*"
-        android:textSize="20sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toDate" />
-
     <Spinner
         android:id="@+id/spinner2"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:layout_marginStart="230dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:entries="@array/reason"
         android:scrollbarSize="4dp"
+        android:background="@drawable/formback"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/leave"
         app:layout_constraintTop_toBottomOf="@+id/spinner1" />
 
     <TextView

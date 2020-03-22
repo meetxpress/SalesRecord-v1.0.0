@@ -56,8 +56,6 @@ class PunchAttendance : AppCompatActivity() {
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: PromptInfo
 
-
-
    private var permissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

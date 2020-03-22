@@ -19,6 +19,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".EmpLeaveReport"></activity>
+        <activity
+            android:name=".EmpSalaryReport"
+            android:label="View Salary Report"
+            android:parentActivityName=".ViewEmpReports" />
         <activity
             android:name=".ViewLeaveResponse"
             android:label="View Leave"
@@ -42,13 +47,7 @@
         <activity
             android:name=".ViewEmpReports"
             android:label="View Reports"
-            android:parentActivityName=".HomeEmployee">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:parentActivityName=".HomeEmployee" />
         <activity
             android:name=".RoutineTaskActivity"
             android:label="Routine Task"
@@ -74,7 +73,13 @@
             android:parentActivityName=".HomeEmployee" />
         <activity
             android:name=".HomeEmployee"
-            android:label="Employee Dashboard" />
+            android:label="Employee Dashboard">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".RegisterShop"
             android:label="Register Shop"

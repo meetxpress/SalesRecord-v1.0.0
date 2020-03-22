@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_register_employee.*
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
+import java.text.SimpleDateFormat
 import java.util.*
 
 class ApplyForLeave : AppCompatActivity() {
@@ -36,13 +37,15 @@ class ApplyForLeave : AppCompatActivity() {
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         var emp_id = preference.getString("uname","Wrong").toString()
 
+        val tdate= (SimpleDateFormat("d-M-Y").format(Calendar.getInstance().time))
+
         var c = Calendar.getInstance()
         var year = c.get(Calendar.YEAR)
         var month = c.get(Calendar.MONTH)
         var day = c.get(Calendar.DAY_OF_MONTH)
         fromDate.setOnClickListener {
             var dpd=DatePickerDialog(this@ApplyForLeave,DatePickerDialog.OnDateSetListener{view, mYear, mMonth, mDay->
-                fd=("$mYear-$mMonth-$mDay")
+                fd=("$mDay-$mMonth-$mYear")
                 fromDate.setText(fd).toString()
             }, year, month, day)
             dpd.show()
@@ -54,13 +57,12 @@ class ApplyForLeave : AppCompatActivity() {
         var day1 = c1.get(Calendar.DAY_OF_MONTH)
         toDate.setOnClickListener {
             var tDate = DatePickerDialog(this@ApplyForLeave, DatePickerDialog.OnDateSetListener { view1, mYear1, mMonth1, mDay1 ->
-                    td = ("$mYear1-$mMonth1-$mDay1")
+                    td = ("$mDay1-$mMonth1-$mYear1")
                     toDate.setText(td).toString()
 
                 }, year1, month1, day1)
 
             tDate.show()
-            //Toast.makeText(this@RegisterEmployee, eDob.toString(), Toast.LENGTH_LONG).show()
         }
 
         btnSubmit.setOnClickListener {
@@ -79,7 +81,7 @@ class ApplyForLeave : AppCompatActivity() {
                 var fDate = fromDate.text.toString()
                 var tDate = toDate.text.toString()
                 //Toast.makeText(this,"Leave Applied Successfully.", Toast.LENGTH_LONG).show()
-                callService(emp_id, fDate, tDate, type, type2, reason, "Pending")
+                callService(emp_id, fDate, tDate, type, type2, reason, "Pending",tdate)
             }
         }
 
@@ -94,7 +96,7 @@ class ApplyForLeave : AppCompatActivity() {
         }
     }
 
-    fun callService(emp_id:String, fDate:String, tDate:String, type:String, type2:String, reason:String, status:String) {
+    fun callService(emp_id:String, fDate:String, tDate:String, type:String, type2:String, reason:String, status:String, tdate:String) {
         try {
             var client= OkHttpClient()
 
@@ -106,6 +108,7 @@ class ApplyForLeave : AppCompatActivity() {
                 .add("type2",type2)
                 .add("reason",reason)
                 .add("status",status)
+                .add("tdate",tdate)
                 .build()
 
             var request= Request.Builder()
