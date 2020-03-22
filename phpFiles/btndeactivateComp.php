@@ -16,6 +16,7 @@
 			$res["comp_mob1"] = $row["comp_mob1"];
 			$res["comp_person"] = $row["comp_person"];
 			$res["comp_licno"] = $row["comp_licno"];
+			$res["comp_status"] = $row["comp_status"];
 			
 			echo json_encode($res);
 		}else{
