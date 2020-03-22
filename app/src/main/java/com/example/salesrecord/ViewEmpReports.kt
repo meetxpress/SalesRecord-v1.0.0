@@ -38,12 +38,11 @@ class ViewEmpReports : AppCompatActivity() {
 
         displayEmpRecord.setOnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
             ss = displayEmpRecord.getItemAtPosition(position).toString()
-            Toast.makeText(this@ViewEmpReports, ss, Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this@ViewEmpReports, ss, Toast.LENGTH_SHORT).show()
             if(ss == "Salary Report"){
                 var i=Intent(this@ViewEmpReports, EmpSalaryReport::class.java)
                 startActivity(i)
             }else if(ss == "Leave Report"){
-                //callLeaveReportService(emp_id)
                 var i=Intent(this@ViewEmpReports, EmpLeaveReport::class.java)
                 startActivity(i)
             }

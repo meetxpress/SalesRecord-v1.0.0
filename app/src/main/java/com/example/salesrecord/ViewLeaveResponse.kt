@@ -18,7 +18,6 @@ class ViewLeaveResponse : AppCompatActivity() {
     var userobj:PocoLeavesResponses = PocoLeavesResponses("", "", "","","","", "")
 
     lateinit var adap:ArrayAdapter<PocoLeavesResponses>
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_leave_response)

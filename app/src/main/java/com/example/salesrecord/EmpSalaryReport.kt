@@ -26,18 +26,17 @@ class EmpSalaryReport : AppCompatActivity() {
 
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         var emp_id = preference.getString("uname","Wrong").toString()
-        //var yr= salYear.text.toString()
 
         btnGenerateResult.setOnClickListener {
             if(salYear.text.toString() == " "){
-                Toast.makeText(this@EmpSalaryReport,emp_id, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@EmpSalaryReport,"Required Fields are missing.", Toast.LENGTH_SHORT).show()
                 Log.v("id",emp_id)
             }else{
-                Toast.makeText(this@EmpSalaryReport,salYear.text.toString(), Toast.LENGTH_SHORT).show()
                 Log.v("yr",salYear.text.toString())
+                //arrUser.clear()
                 callService(emp_id, salYear.text.toString())
                 adap = ArrayAdapter<PocoSalary>(this@EmpSalaryReport, android.R.layout.simple_list_item_1, arrUser)
-                dispSalary.adapter = adap
+                dispSalaryReport.adapter = adap
                 adap.notifyDataSetChanged()
             }
         }
@@ -70,7 +69,6 @@ class EmpSalaryReport : AppCompatActivity() {
                         var flag=js.getInt("success")
                         var arr= js.getJSONArray("Salary")
 
-
                         for(i in 0 until arr.length()) {
                             var ua = arr.getJSONObject(i)
 
@@ -83,6 +81,13 @@ class EmpSalaryReport : AppCompatActivity() {
                             Log.d("arr", arrUser.toString())
                             runOnUiThread {
                                 adap.notifyDataSetChanged()
+                            }
+                        }
+                        runOnUiThread{
+                            if(flag == 1){
+                                Toast.makeText(this@EmpSalaryReport, "Report is Generated.",Toast.LENGTH_SHORT).show()
+                            }else{
+                                Toast.makeText(this@EmpSalaryReport, "No Data Found.",Toast.LENGTH_SHORT).show()
                             }
                         }
                     }

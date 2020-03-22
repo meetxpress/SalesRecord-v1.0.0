@@ -40,7 +40,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:id="@+id/dispSalary"
+        android:id="@+id/dispSalaryReport"
         android:layout_width="390dp"
         android:layout_height="587dp"
         android:layout_marginStart="24dp"

@@ -98,7 +98,7 @@ class ViewLeaves : AppCompatActivity() {
                         Log.d("flag",flag.toString())
                         Log.d("msg",msg.toString())
 
-                        for(i in 0..uarr.length() - 1) {
+                        for(i in 0 until uarr.length()) {
                             Log.v("loop", "In loop")
                             var ua = uarr.getJSONObject(i)
 

@@ -19,7 +19,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".EmpLeaveReport"></activity>
+        <activity
+            android:name=".EmpLeaveReport"
+            android:label="View Leave Report"
+            android:parentActivityName=".ViewEmpReports"/>
         <activity
             android:name=".EmpSalaryReport"
             android:label="View Salary Report"
