@@ -53,6 +53,7 @@ class HomeEmployee : AppCompatActivity() {
             var i = Intent(this@HomeEmployee, ApplyForLeave::class.java)
             startActivity(i)
         }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

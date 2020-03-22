@@ -84,6 +84,7 @@ class RegisterEmployee : AppCompatActivity() {
             }
         }
     }
+
     fun onRadioButtonClicked(view: View) {
         if (view is RadioButton) {
             // Is the button now checked?
