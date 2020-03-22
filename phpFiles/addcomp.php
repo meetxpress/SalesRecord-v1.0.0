@@ -14,12 +14,12 @@
 		//$res["abc"]="insert into company_master ( comp_name, comp_password, comp_email, comp_city, comp_pincode, comp_mob1, comp_mob2, comp_person, comp_licno, comp_gstno, comp_website) values ('".$_POST['name']."','xdgxgd ','".$_POST['email']."','".$_POST['city']."', ".$_POST['pincode'].",'".$_POST['phno1']."','237462873','".$_POST['contact_person']."', '".$_POST['lic_no']."','12345678','asbc.com')";
 		if($qry){
 			$res["success"]=1;
-			$res["message"]="Data Inserted Successfully.";
+			$res["message"]="Company Regsiterd Successfully.";
 			
 			echo json_encode($res);
 		}else{
 			$res["success"]=0;					
-			$res["message"]="Can't Insert Data.";
+			$res["message"]="Can't Register Company.";
 				
 			echo json_encode($res);
 		}		
