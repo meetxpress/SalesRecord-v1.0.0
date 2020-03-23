@@ -7,8 +7,6 @@
 		$rtarget=$_POST['rtarget'];
 		$rdate=$_POST['rdate'];
 		
-		
-		
 
 		$con=mysqli_connect('localhost', 'root', '', 'salesrecord') or die(mysqli_error());		
 		
@@ -76,13 +74,26 @@
 			{
 				$qry1=mysqli_query($con,"UPDATE emp_target SET atarget=atarget-'$rtarget' where comp_id='$comp_id' and atargetmonth='$rmonth'");
 				
+				$rt1=mysqli_query($con,"select rt_date from emp_routinetask where emp_id='$emp_id'");
+					
+					if(mysqli_num_rows($rt1) > 0 )
+					{
+						$rt2 = mysqli_fetch_assoc($rt1);
+					}
+					
+					if($rt2["rt_date"] ==$rdate)
+					{
+						$rt3=mysqli_query($con,"UPDATE emp_routinetask SET rt_unit=rt_unit+'$rtarget' where emp_id='$emp_id' and rt_date='$rdate'");
+					}
+					else
+					{
+						$qry2=mysqli_query($con,"insert into emp_routinetask (emp_id,rt_date,rt_unit) values ('$emp_id','$rdate','$rtarget')");
+					}
+					
 				
 		
-				$qry2=mysqli_query($con,"insert into emp_routinetask (emp_id,rt_date,rt_unit) values ('$emp_id','$rdate','$rtarget')");
 				
-			
-				
-				if($qry1 and $qry2)
+				if(($qry1) and ($rt3 or $qry2))
 				{
 					$res["success"] = 1;
 					$res["message"] = "Work submitted Successfully.";
@@ -100,11 +111,27 @@
 			else if(($row["atargetmonth"]==$rmonth) and ($row["atarget"] <= 0))
 			{
 				
-				//$qry1=mysqli_query($con,"UPDATE emp_target SET atarget=atarget+'$rtarget' where comp_id='$comp_id' and atargetmonth='$rmonth'");
-				$qry2=mysqli_query($con,"insert into emp_routinetask (emp_id,rt_date,rt_unit) values ('$emp_id','$rdate','$rtarget')");
 				
 				
-				if($qry1 and $qry2)
+				$rt4 =mysqli_query($con,"select rt_date from emp_routinetask where emp_id='$emp_id'");
+					
+					if(mysqli_num_rows($rt4) > 0 )
+					{
+						$rt5 = mysqli_fetch_assoc($rt4);
+					}
+					
+					if($rt5["rt_date"] ==$rdate)
+					{
+						$rt6=mysqli_query($con,"UPDATE emp_routinetask SET rt_unit=rt_unit+'$rtarget' where emp_id='$emp_id' and rt_date='$rdate'");
+					}
+					else
+					{
+						$rt7=mysqli_query($con,"insert into emp_routinetask (emp_id,rt_date,rt_unit) values ('$emp_id','$rdate','$rtarget')");
+					}
+			
+				
+				
+				if(rt6 or rt7)
 				{
 					$res["success"] = 1;
 					$res["message"] = "Work uploaded Successfully.";
@@ -157,9 +184,9 @@
 			$rs1 = mysqli_fetch_assoc($qs1);
 		}
 		
-		echo $rs1["p_target"] ."<br>";
+		/* echo $rs1["p_target"] ."<br>";
 		echo $rs1["p_month"] ."<br>";
-		echo $rmonth ."<br>";
+		echo $rmonth ."<br>"; */
 		
 		if(($rs1["p_target"] <= 0) and ($rs1["p_month"] == $rmonth))
 		{

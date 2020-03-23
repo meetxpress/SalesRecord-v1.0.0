@@ -20,9 +20,29 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".CompAttendanceReport"
+            android:label="Company Attendance Report"
+            android:parentActivityName=".HomeCompany"/>
+        <activity
+            android:name=".CompLeaveReport"
+            android:label="Company Leave Report"
+            android:parentActivityName=".HomeCompany"/>
+        <activity
+            android:name=".CompSalaryReport"
+            android:label="Company Salary Report"
+            android:parentActivityName=".HomeCompany"/>
+        <activity
+            android:name=".CompSalesReport"
+            android:label="Company Sales Report"
+            android:parentActivityName=".HomeCompany"/>
+        <activity
+            android:name=".CompTargetReport"
+            android:label="Company Target Report"
+            android:parentActivityName=".HomeCompany"/>
+        <activity
             android:name=".EmpLeaveReport"
             android:label="View Leave Report"
-            android:parentActivityName=".ViewEmpReports"></activity>
+            android:parentActivityName=".ViewEmpReports" />
         <activity
             android:name=".EmpSalaryReport"
             android:label="View Salary Report"
@@ -76,13 +96,7 @@
             android:parentActivityName=".HomeEmployee" />
         <activity
             android:name=".HomeEmployee"
-            android:label="Employee Dashboard">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="Employee Dashboard"/>
         <activity
             android:name=".RegisterShop"
             android:label="Register Shop"
@@ -105,7 +119,13 @@
             android:parentActivityName=".HomeSuperAdmin" />
         <activity
             android:name=".HomeCompany"
-            android:label="Company Dashboard" />
+            android:label="Company Dashboard">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".DeactivateCompany"
             android:label="Deactivate Company"
