@@ -18,7 +18,7 @@ class ViewCompReports : AppCompatActivity() {
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
-        var emp_id = preference.getString("uname","Wrong").toString()
+        var comp_id = preference.getString("uname","Wrong").toString()
 
         var reportArr = arrayOf("Target Report", " Sales Report", "Salary Report", "Leave Report", "Attendance Report")
         val adap = ArrayAdapter(this@ViewCompReports, android.R.layout.simple_list_item_1, reportArr)
