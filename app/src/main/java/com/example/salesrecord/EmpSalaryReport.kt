@@ -20,7 +20,6 @@ class EmpSalaryReport : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_emp_salary_report)
-
         //back button on actionbar
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
@@ -33,7 +32,6 @@ class EmpSalaryReport : AppCompatActivity() {
                 Log.v("id",emp_id)
             }else{
                 Log.v("yr",salYear.text.toString())
-                //arrUser.clear()
                 callService(emp_id, salYear.text.toString())
                 adap = ArrayAdapter<PocoSalary>(this@EmpSalaryReport, android.R.layout.simple_list_item_1, arrUser)
                 dispSalaryReport.adapter = adap
@@ -52,7 +50,7 @@ class EmpSalaryReport : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.231/SalesRecord/callSalaryReportService.php")
+                .url("http://192.168.43.231/SalesRecord/callEmpSalaryReportService.php")
                 .post(formBody)
                 .build()
 
@@ -84,7 +82,7 @@ class EmpSalaryReport : AppCompatActivity() {
                             }
                         }
                         runOnUiThread{
-                            if(flag == 1){
+                            if(flag==1){
                                 Toast.makeText(this@EmpSalaryReport, "Report is Generated.",Toast.LENGTH_SHORT).show()
                             }else{
                                 Toast.makeText(this@EmpSalaryReport, "No Data Found.",Toast.LENGTH_SHORT).show()

@@ -1,7 +1,6 @@
 package com.example.salesrecord
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -74,17 +73,14 @@ class AssignTargetActivity : AppCompatActivity() {
                         if(flag == 1){
                             Log.v("fs", flag.toString())
                             runOnUiThread{
-                                //etAssignMonth.text.clear()
-                               // etAssignTarget.text.clear()
-
-                                Toast.makeText(this@AssignTargetActivity, message , Toast.LENGTH_LONG).show()
-                                var i = Intent(this@AssignTargetActivity, HomeCompany::class.java)
-                                startActivity(i)
+                                etAssignMonth.text.clear()
+                                etAssignTarget.text.clear()
+                                Toast.makeText(this@AssignTargetActivity,"Target Assigned", Toast.LENGTH_LONG).show()
                             }
                         }else{
                             Log.v("ff", flag.toString())
                             runOnUiThread{
-                                Toast.makeText(this@AssignTargetActivity, message, Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@AssignTargetActivity,"An Error Occurred!", Toast.LENGTH_LONG).show()
                             }
                         }
                     }

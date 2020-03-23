@@ -29,12 +29,13 @@ class RoutineTaskActivity : AppCompatActivity() {
 
         btnRoutineSubmit.setOnClickListener {
             var rmonth=SimpleDateFormat("MM-YYYY").format(date.time)
+            var rdate=SimpleDateFormat("d-M-Y").format(Calendar.getInstance().time)
             var rtarget=etRoutineTask.text.toString()
-            callServiceSubmit(emp_id,rmonth,rtarget)
+            callServiceSubmit(emp_id,rmonth,rtarget,rdate)
         }
     }
 
-    fun callServiceSubmit(emp_id:String,rmonth:String,rtarget:String){
+    fun callServiceSubmit(emp_id:String,rmonth:String,rtarget:String,rdate:String){
         try{
             var client= OkHttpClient()
 
@@ -42,10 +43,11 @@ class RoutineTaskActivity : AppCompatActivity() {
                 .add("emp_id",emp_id)
                 .add("rmonth",rmonth)
                 .add("rtarget",rtarget)
+                .add("rdate",rdate)
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.231/SalesRecord/routinetask.php")
+                .url("http://192.168.43.231/SalesRecord/routinetask3.php")
                 .post(formBody)
                 .build()
 

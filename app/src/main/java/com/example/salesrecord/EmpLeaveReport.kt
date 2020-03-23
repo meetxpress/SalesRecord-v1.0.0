@@ -58,7 +58,7 @@ class EmpLeaveReport : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.231/SalesRecord/callLeaveReportService.php")
+                .url("http://192.168.43.231/SalesRecord/callEmpLeaveReportService.php")
                 .post(formBody)
                 .build()
 

@@ -9,6 +9,8 @@ import kotlinx.android.synthetic.main.activity_salary_summary.*
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 class SalarySummaryActivity : AppCompatActivity() {
 
@@ -16,26 +18,31 @@ class SalarySummaryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_salary_summary)
 
+
+        var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
+        var emp_id = preference.getString("uname","Wrong").toString()
+
+        val date= Calendar.getInstance()
         //back button on actionbar
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
-        var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
-        var emp_id=preference.getString("uname","Wrong").toString()
-
         btnShowTarget.setOnClickListener {
-            callService(emp_id)
+            var cmonth= SimpleDateFormat("MM-YYYY").format(date.time)
+            callService(emp_id,cmonth)
         }
         btnRefreshSal.setOnClickListener {
-            callServiceSalary(emp_id)
+            var smonth= SimpleDateFormat("MM-YYYY").format(date.time)
+            callServiceSalary(emp_id,smonth)
         }
     }
 
-    fun callService(emp_id:String){
+    fun callService(id:String,cmonth:String){
         try{
             var client= OkHttpClient()
 
             var formBody= FormBody.Builder()
-                .add("emp_id",emp_id)
+                .add("emp_id",id)
+                .add("cmonth",cmonth)
                 .build()
 
             var req= Request.Builder()
@@ -56,7 +63,7 @@ class SalarySummaryActivity : AppCompatActivity() {
                         var msg=js.getString("message")
 
                         //filling data in EditText
-                        var atarget=js.getString("atarget")
+                        var p_target=js.getString("p_target")
 
                         Log.v("res",str)
 
@@ -64,7 +71,7 @@ class SalarySummaryActivity : AppCompatActivity() {
                             Log.v("fs", flag.toString())
                             runOnUiThread{
                                 Toast.makeText(this@SalarySummaryActivity,"Target Refreshed", Toast.LENGTH_LONG).show()
-                                tvTarget.setText(atarget).toString()
+                                tvTarget.setText(p_target).toString()
                             }
                         }else{
                             Log.v("ff", flag.toString())
@@ -80,12 +87,13 @@ class SalarySummaryActivity : AppCompatActivity() {
         }
     }
 
-    fun callServiceSalary(emp_id:String){
+    fun callServiceSalary(id:String,smonth:String){
         try{
             var client= OkHttpClient()
 
             var formBody= FormBody.Builder()
-                .add("emp_id",emp_id)
+                .add("emp_id",id)
+                .add("smonth",smonth)
                 .build()
 
             var req= Request.Builder()
@@ -95,35 +103,34 @@ class SalarySummaryActivity : AppCompatActivity() {
 
             client.newCall(req).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
-                    Log.e("Exception1",e.toString())
+                    Log.e("Exception",e.toString())
                 }
 
                 override fun onResponse(call: Call, response: Response) {
                     response.use {
                         var str=response.body!!.string()
-                        Log.v("str",str)
-                        var js= JSONObject(str)
-                        var flag=js.getInt("success")
-                        var msg=js.getString("message")
+                        Log.v("x",str)
+                        var ojs= JSONObject(str)
+                        var flag=ojs.getInt("success")
+                        var msg=ojs.getString("message")
 
                         //filling data in EditText
-
-                        var emp_bsal=js.getInt("emp_bsal")
-                        var emp_inc=js.getInt("emp_inc")
-                        var emp_totsal=js.getString("emp_totsal")
-                        Log.v("res",str)
+                        var emp_bsal=ojs.getInt("emp_bsal")
+                        var emp_inc=ojs.getInt("emp_inc")
+                        var emp_totsal=ojs.getString("emp_totsal")
+                        Log.v("res",str.toString())
 
                         if(flag == 1){
-                            Log.v("fs1", flag.toString())
+                            Log.v("fs", flag.toString())
                             runOnUiThread{
                                 Toast.makeText(this@SalarySummaryActivity,"Salary Refreshed", Toast.LENGTH_LONG).show()
+                                tvbasicsal.setText(emp_bsal.toString()).toString()
+                                tvInc.setText(emp_inc.toString()).toString()
+                                tvtotsal.setText(emp_totsal.toString()).toString()
 
-                                tvbasicsal.setText(emp_bsal)
-                                tvInc.setText(emp_inc).toString()
-                                tvtotsal.setText(emp_totsal).toString()
                             }
                         }else{
-                            Log.v("ff1", flag.toString())
+                            Log.v("ff", flag.toString())
                             runOnUiThread{
                                 Toast.makeText(this@SalarySummaryActivity,"Error!", Toast.LENGTH_LONG).show()
                             }
