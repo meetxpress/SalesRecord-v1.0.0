@@ -69,7 +69,6 @@ class EmpSalaryReport : AppCompatActivity() {
 
                         for(i in 0 until arr.length()) {
                             var ua = arr.getJSONObject(i)
-
                             var emp_inc = ua.getString("emp_inc")
                             var emp_totsal = ua.getString("emp_totsal")
                             var emp_month = ua.getString("emp_month")

@@ -10,13 +10,16 @@ import kotlinx.android.synthetic.main.activity_comp_salary_report.*
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class CompSalaryReport : AppCompatActivity() {
 
-    var arrUser = ArrayList<PocoSalary>()
-    var userobj:PocoSalary = PocoSalary("", "", "")
+    var arrUser = ArrayList<PocoCompSalaryReport>()
+    var userobj:PocoCompSalaryReport = PocoCompSalaryReport("", "", "","")
 
-    lateinit var adap: ArrayAdapter<PocoSalary>
+    lateinit var adap: ArrayAdapter<PocoCompSalaryReport>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comp_salary_report)
@@ -26,30 +29,36 @@ class CompSalaryReport : AppCompatActivity() {
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         var comp_id = preference.getString("uname","Wrong").toString()
 
+        empSalMonth.setText(SimpleDateFormat("M-YYYY").format(Calendar.getInstance().time)).toString()
+
+
+
         btnGenCompSalary.setOnClickListener {
             if(empSalMonth.text.toString() == " "){
                 Toast.makeText(this@CompSalaryReport,"Required Fields are missing.", Toast.LENGTH_SHORT).show()
-                Log.v("id",comp_id)
             }else{
-                Log.v("yr",empSalMonth.text.toString())
                 callService(comp_id, empSalMonth.text.toString())
-                adap = ArrayAdapter<PocoSalary>(this@CompSalaryReport, android.R.layout.simple_list_item_1, arrUser)
+                adap = ArrayAdapter<PocoCompSalaryReport>(this@CompSalaryReport, android.R.layout.simple_list_item_1, arrUser)
                 displayCompSalaryReport.adapter = adap
                 adap.notifyDataSetChanged()
             }
         }
     }
-    fun callService(comp_id:String, smon:String){
+    fun callService(comp_id:String, yr:String){
         try{
             var client= OkHttpClient()
 
             var formBody= FormBody.Builder()
                 .add("comp_id",comp_id)
-                .add("smon",smon)
+                .add("yr", yr)
                 .build()
+            Log.v("id",comp_id)
+            Log.v("yr",yr)
+
+
 
             var req= Request.Builder()
-                .url("http://192.168.43.231/SalesRecord/callEmpSalaryReportService.php")
+                .url("http://192.168.49.231/SalesRecord/callEmpSalaryReportService.php")
                 .post(formBody)
                 .build()
 
@@ -69,11 +78,12 @@ class CompSalaryReport : AppCompatActivity() {
                         for(i in 0 until arr.length()) {
                             var ua = arr.getJSONObject(i)
 
+                            var eid=ua.getString("emp_id")
                             var emp_inc = ua.getString("emp_inc")
                             var emp_totsal = ua.getString("emp_totsal")
                             var emp_month = ua.getString("emp_month")
 
-                            userobj = PocoSalary(emp_inc, emp_totsal, emp_month)
+                            userobj = PocoCompSalaryReport(eid, emp_inc, emp_totsal, emp_month)
                             arrUser.add(userobj)
                             Log.d("arr", arrUser.toString())
                             runOnUiThread {

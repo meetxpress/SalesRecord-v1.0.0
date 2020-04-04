@@ -22,23 +22,23 @@
         <activity
             android:name=".CompAttendanceReport"
             android:label="Company Attendance Report"
-            android:parentActivityName=".HomeCompany"/>
+            android:parentActivityName=".ViewCompReports"/>
         <activity
             android:name=".CompLeaveReport"
             android:label="Company Leave Report"
-            android:parentActivityName=".HomeCompany"/>
+            android:parentActivityName=".ViewCompReports"/>
         <activity
             android:name=".CompSalaryReport"
             android:label="Company Salary Report"
-            android:parentActivityName=".HomeCompany"/>
+            android:parentActivityName=".ViewCompReports"/>
         <activity
             android:name=".CompSalesReport"
             android:label="Company Sales Report"
-            android:parentActivityName=".HomeCompany"/>
+            android:parentActivityName=".ViewCompReports"/>
         <activity
             android:name=".CompTargetReport"
             android:label="Company Target Report"
-            android:parentActivityName=".HomeCompany"/>
+            android:parentActivityName=".ViewCompReports"/>
         <activity
             android:name=".EmpLeaveReport"
             android:label="View Leave Report"
