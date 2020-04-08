@@ -9,11 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_comp_salary_report.*
 import okhttp3.*
 import org.json.JSONObject
+import java.io.DataOutputStream
 import java.io.IOException
 
 class CompSalaryReport : AppCompatActivity() {
     var arrUser = ArrayList<PocoCompSalaryReport>()
-    var userobj:PocoCompSalaryReport = PocoCompSalaryReport("", "", "","")
+    //var userobj:PocoCompSalaryReport = PocoCompSalaryReport("", 0, 0,"")
 
     lateinit var adap: ArrayAdapter<PocoCompSalaryReport>
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,7 +61,6 @@ class CompSalaryReport : AppCompatActivity() {
                     Log.e("Exception",e.toString())
                 }
 
-/*
                 override fun onResponse(call: Call, response: Response) {
                     response.use {
                         var str=response.body!!.string()
@@ -68,18 +68,18 @@ class CompSalaryReport : AppCompatActivity() {
                         var js= JSONObject(str)
                         var flag=js.getInt("success")
                         var arr= js.getJSONArray("Salary2")
-                        Log.v("len", arr.length().toString())
+                        Log.v("len1", arr.length().toString())
 
                         for(i in 0 until arr.length()) {
                             Log.v("i", i.toString())
                             var ua = arr.getJSONObject(i)
 
-                            var eid=ua.getString("emp_id") as String
-                            var emp_inc = ua.getString("emp_inc") as String
-                            var emp_totsal = ua.getString("emp_totsal") as String
-                            var emp_month = ua.getString("emp_month") as String
+                            var eid=ua.getString("emp_id")
+                            var emp_inc = ua.getInt("emp_inc")
+                            var emp_totsal = ua.getInt("emp_totsal")
+                            var emp_month = ua.getString("emp_month")
 
-                            userobj = PocoCompSalaryReport(eid, emp_inc, emp_totsal, emp_month)
+                            var userobj = PocoCompSalaryReport(eid, emp_inc, emp_totsal, emp_month)
                             arrUser.add(userobj)
                             Log.d("arr", arrUser.toString())
                             runOnUiThread {
@@ -91,37 +91,6 @@ class CompSalaryReport : AppCompatActivity() {
                                 Toast.makeText(this@CompSalaryReport, "Report is Generated.",Toast.LENGTH_SHORT).show()
                             }else{
                                 Toast.makeText(this@CompSalaryReport, "No Data Found.",Toast.LENGTH_SHORT).show()
-                            }
-                        }
-                    }
-                }
-*/
-
-                override fun onResponse(call: Call, response: Response) {
-                    response.use{
-                        var str=response.body!!.string()
-                        Log.v("str",str)
-
-                        var js = JSONObject(str)
-                        var flag= js.getInt("success")
-                        var message= js.getString("message")
-                        var arr= js.getJSONArray("Salary2")
-                        Log.v("al",arr.length().toString())
-
-                        for(i in 0 until arr.length()) {
-                            Log.v("i",i.toString())
-                            var ua=arr.getJSONObject(i)
-
-                            var eid=ua.getString("emp_id")
-                            var emp_inc = ua.getString("emp_inc")
-                            var emp_totsal = ua.getString("emp_totsal")
-                            var emp_month = ua.getString("emp_month")
-
-                            userobj = PocoCompSalaryReport(eid,  emp_inc, emp_totsal, emp_month)
-                            arrUser.add(userobj)
-                            Log.v("end","in the end")
-                            runOnUiThread {
-                                adap.notifyDataSetChanged()
                             }
                         }
                     }
