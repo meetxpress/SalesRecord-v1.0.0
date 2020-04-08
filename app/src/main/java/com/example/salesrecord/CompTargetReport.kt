@@ -14,10 +14,10 @@ import java.io.IOException
 
 class CompTargetReport : AppCompatActivity() {
 
-    var arrUser = ArrayList<PocoSalary>()
-    var userobj:PocoSalary = PocoSalary("", "", "")
+    var arrUser = ArrayList<PocoCompTargetReport>()
+    var userobj:PocoCompTargetReport = PocoCompTargetReport("","", "")
 
-    lateinit var adap: ArrayAdapter<PocoSalary>
+    lateinit var adap: ArrayAdapter<PocoCompTargetReport>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comp_target_report)
@@ -27,31 +27,34 @@ class CompTargetReport : AppCompatActivity() {
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         var comp_id = preference.getString("uname","Wrong").toString()
 
-        btnGenCompTarget.setOnClickListener{
-            if(targetDate.text.toString() == " "){
+        //targetMon.setText(SimpleDateFormat("M-YYYY").format(Calendar.getInstance().time)).toString()
+        targetMon.setText("03-2020")
+        btnGenCompTarget.setOnClickListener {
+            if(targetMon.text.toString() == " "){
                 Toast.makeText(this@CompTargetReport,"Required Fields are missing.", Toast.LENGTH_SHORT).show()
-                Log.v("id",comp_id)
             }else{
-                Log.v("yr",targetDate.text.toString())
-                callService(comp_id, targetDate.text.toString())
-                adap = ArrayAdapter<PocoSalary>(this@CompTargetReport, android.R.layout.simple_list_item_1, arrUser)
-                dispSalaryReport.adapter = adap
+                arrUser.clear()
+                callService(comp_id, targetMon.text.toString())
+                adap = ArrayAdapter<PocoCompTargetReport>(this@CompTargetReport, android.R.layout.simple_list_item_1, arrUser)
+                displayCompTargetReport.adapter = adap
                 adap.notifyDataSetChanged()
             }
         }
     }
 
-    fun callService(comp_id:String, td:String){
+    fun callService(comp_id:String, yr:String){
         try{
             var client= OkHttpClient()
 
             var formBody= FormBody.Builder()
                 .add("comp_id",comp_id)
-                .add("td",td)
+                .add("yr", yr)
                 .build()
+            Log.v("id",comp_id)
+            Log.v("yr",yr)
 
             var req= Request.Builder()
-                .url("http://192.168.43.231/SalesRecord/callCompTargetService.php")
+                .url("http://192.168.43.70/SalesRecord/callCompTargetService.php")
                 .post(formBody)
                 .build()
 
@@ -66,16 +69,16 @@ class CompTargetReport : AppCompatActivity() {
                         Log.v("res",str)
                         var js= JSONObject(str)
                         var flag=js.getInt("success")
-                        var arr= js.getJSONArray("Salary")
+                        var arr= js.getJSONArray("Target")
 
                         for(i in 0 until arr.length()) {
                             var ua = arr.getJSONObject(i)
 
-                            var emp_inc = ua.getString("emp_inc")
-                            var emp_totsal = ua.getString("emp_totsal")
-                            var emp_month = ua.getString("emp_month")
+                            var mon = ua.getString("mon") as String
+                            var atarget = ua.getString("atarget") as String
+                            var p_target = ua.getString("p_target") as String
 
-                            userobj = PocoSalary(emp_inc, emp_totsal, emp_month)
+                            userobj = PocoCompTargetReport(mon, atarget, p_target)
                             arrUser.add(userobj)
                             Log.d("arr", arrUser.toString())
                             runOnUiThread {
@@ -83,7 +86,7 @@ class CompTargetReport : AppCompatActivity() {
                             }
                         }
                         runOnUiThread{
-                            if(flag == 1){
+                            if(flag==1){
                                 Toast.makeText(this@CompTargetReport, "Report is Generated.",Toast.LENGTH_SHORT).show()
                             }else{
                                 Toast.makeText(this@CompTargetReport, "No Data Found.",Toast.LENGTH_SHORT).show()
@@ -96,4 +99,5 @@ class CompTargetReport : AppCompatActivity() {
             e.printStackTrace()
         }
     }
+
 }

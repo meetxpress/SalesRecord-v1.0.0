@@ -25,7 +25,7 @@ class EmpSalaryReport : AppCompatActivity() {
 
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         var emp_id = preference.getString("uname","Wrong").toString()
-
+        salYear.setText("2020")
         btnGenerateResult.setOnClickListener {
             if(salYear.text.toString() == " "){
                 Toast.makeText(this@EmpSalaryReport,"Required Fields are missing.", Toast.LENGTH_SHORT).show()
@@ -50,7 +50,7 @@ class EmpSalaryReport : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.231/SalesRecord/callEmpSalaryReportService.php")
+                .url("http://192.168.43.70/SalesRecord/callEmpSalaryReportService.php")
                 .post(formBody)
                 .build()
 

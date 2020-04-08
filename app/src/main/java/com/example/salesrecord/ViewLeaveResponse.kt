@@ -13,7 +13,6 @@ import java.io.IOException
 import java.lang.Exception
 
 class ViewLeaveResponse : AppCompatActivity() {
-
     var arrUser2 = ArrayList<PocoLeavesResponses>()
     var userobj:PocoLeavesResponses = PocoLeavesResponses("", "", "","","","", "")
 
@@ -48,7 +47,7 @@ class ViewLeaveResponse : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.231/SalesRecord/view_leave_responses.php")
+                .url("http://192.168.43.70/SalesRecord/view_leave_responses.php")
                 .post(formBody)
                 .build()
 
@@ -66,12 +65,10 @@ class ViewLeaveResponse : AppCompatActivity() {
                         var flag= js.getInt("success")
                         var message= js.getString("message")
                         var arr= js.getJSONArray("Leave")
-
-                        Log.d("flag",flag.toString())
-                        Log.d("msg",message.toString())
+                        Log.v("al",arr.length().toString())
 
                         for(i in 0 until arr.length()){
-                            Log.v("i",i.toString())
+                            Log.v("i", i.toString())
                             var la=arr.getJSONObject(i)
 
                             var leave_id=la.getString("leave_id")

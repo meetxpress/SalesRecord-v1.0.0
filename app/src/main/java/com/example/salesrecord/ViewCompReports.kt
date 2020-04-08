@@ -20,7 +20,7 @@ class ViewCompReports : AppCompatActivity() {
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         var comp_id = preference.getString("uname","Wrong").toString()
 
-        var reportArr = arrayOf("Target Report", " Sales Report", "Salary Report", "Leave Report", "Attendance Report")
+        var reportArr = arrayOf("Target Report", "Sales Report", "Salary Report", "Leave Report", "Attendance Report")
         val adap = ArrayAdapter(this@ViewCompReports, android.R.layout.simple_list_item_1, reportArr)
 
         displayCompRecord.adapter = adap
