@@ -1,15 +1,15 @@
 <?php
     $res = array();
-	if(isset($_POST['comp_id'])){
+	if(isset($_GET['comp_id'])){
         $con = mysqli_connect('localhost', 'root', '', 'salesrecord') or die(mysqli_error());  
 
         //getting company id using emp_id and assigning to variable
-        $qry1=mysqli_query($con,"select emp_id from employee_master where comp_id = '".$_POST['comp_id']."'");
+        $qry1=mysqli_query($con,"select emp_id from employee_master where comp_id = '".$_GET['comp_id']."'");
         if(mysqli_num_rows($qry1) > 0 ){ 
             $row1 = mysqli_fetch_assoc($qry1);
         }
         $emp_id = $row1['emp_id'];
-
+        
         //fetching data from the main table
         $qry2 = mysqli_query($con,"select * from leave_management where status='Pending'");
 		if($qry2){			

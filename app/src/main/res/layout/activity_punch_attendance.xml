@@ -27,11 +27,10 @@
 
             <!-- Card Row-1.1 -->
             <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
+                android:layout_width="621dp"
                 android:layout_height="wrap_content"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
-                android:layout_margin="15dp"
                 android:elevation="5dp"
                 app:cardCornerRadius="10dp">
 
@@ -65,7 +64,7 @@
                             android:layout_height="wrap_content"
                             android:layout_rowWeight="1"
                             android:layout_columnWeight="1"
-                            android:layout_margin="15dp"
+                            android:layout_margin="10dp"
                             android:elevation="5dp"
                             app:cardCornerRadius="10dp">
 
@@ -92,10 +91,10 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
                                     android:text="Punch"
-                                    android:textColor="#000000"/>
+                                    android:textColor="#000000" />
 
                                 <TextView
-                                    android:id="@+id/textView2"
+                                    android:id="@+id/time1"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
@@ -105,15 +104,22 @@
                                     android:textStyle="bold" />
 
                                 <TextView
-                                    android:id="@+id/textView3"
+                                    android:id="@+id/pi_loc_lat"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:text="Location"
+                                    android:hint="location"
+                                    android:maxLength="10"
                                     android:textColor="#000000"
                                     android:textSize="18sp"
-                                    android:textStyle="bold"
-                                    android:visibility="visible"/>
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/pi_loc_long"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLength="11"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
 
@@ -122,7 +128,7 @@
                             android:layout_height="wrap_content"
                             android:layout_rowWeight="1"
                             android:layout_columnWeight="1"
-                            android:layout_margin="15dp"
+                            android:layout_margin="10dp"
                             android:elevation="5dp"
                             app:cardCornerRadius="10dp">
 
@@ -149,7 +155,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
                                     android:text="Punch"
-                                    android:textColor="#000000"/>
+                                    android:textColor="#000000" />
 
                                 <TextView
                                     android:id="@+id/textView6"
@@ -162,13 +168,20 @@
                                     android:textStyle="bold" />
 
                                 <TextView
-                                    android:id="@+id/textView7"
+                                    android:id="@+id/po_loc_lat"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
                                     android:text="Location"
                                     android:textColor="#000000"
                                     android:textSize="18sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/po_loc_long"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="20sp"
                                     android:textStyle="bold" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
@@ -180,20 +193,5 @@
 
         </GridLayout>
 
-        <EditText
-            android:id="@+id/add_LocLat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
-
-        <EditText
-            android:id="@+id/add_LocLong"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
     </LinearLayout>
 </ScrollView>

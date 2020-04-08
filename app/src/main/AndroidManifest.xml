@@ -89,18 +89,22 @@
         <activity
             android:name=".PunchAttendance"
             android:label="Attendance"
-            android:parentActivityName=".HomeEmployee" />
+            android:parentActivityName=".HomeEmployee">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+
+        </activity>
         <activity
             android:name=".ManageEmployee"
             android:label="Edit Details"
             android:parentActivityName=".HomeEmployee" />
         <activity
             android:name=".HomeEmployee"
-            android:label="Employee Dashboard">
-
-
-
-        </activity>
+            android:label="Employee Dashboard"/>
         <activity
             android:name=".RegisterShop"
             android:label="Register Shop"
@@ -123,15 +127,7 @@
             android:parentActivityName=".HomeSuperAdmin" />
         <activity
             android:name=".HomeCompany"
-            android:label="Company Dashboard">
-
-
-
-
-
-
-
-        </activity>
+            android:label="Company Dashboard"/>
         <activity
             android:name=".DeactivateCompany"
             android:label="Deactivate Company"

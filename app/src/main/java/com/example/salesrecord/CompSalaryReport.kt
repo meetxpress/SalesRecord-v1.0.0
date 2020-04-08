@@ -68,6 +68,7 @@ class CompSalaryReport : AppCompatActivity() {
                         var js= JSONObject(str)
                         var flag=js.getInt("success")
                         var arr= js.getJSONArray("Salary2")
+
                         Log.v("len1", arr.length().toString())
 
                         for(i in 0 until arr.length()) {
