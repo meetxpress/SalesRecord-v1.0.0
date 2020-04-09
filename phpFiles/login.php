@@ -6,7 +6,7 @@
 		
 		$con=mysqli_connect('localhost', 'root', '', 'salesrecord') or die(mysqli_error());
 			
-		if(substr($_POST['username'], 0, 1) == 'a'){
+		if(substr($_POST['username'], 0, 3) == '999'){
 			$qry = mysqli_query($con,"select * from super_admin where username='$user' and password='$pass'");
 			if(mysqli_num_rows($qry) > 0){			
 				$res["success"] = 1;

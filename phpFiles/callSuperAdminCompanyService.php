@@ -1,6 +1,6 @@
 <?php
     $res=array();
-    if(isset($_GET['username'])){
+    if(isset($_POST['uname'])){
         $con = mysqli_connect('localhost', 'root', '', 'salesrecord') or die(mysqli_error());  
         $qry=mysqli_query($con,"select * from company_master");
 
