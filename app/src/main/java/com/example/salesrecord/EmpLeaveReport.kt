@@ -31,17 +31,17 @@ class EmpLeaveReport : AppCompatActivity() {
 
         //leaveDate.setText(SimpleDateFormat("M-YYYY").format(Calendar.getInstance().time)).toString()
         leaveDate.setText("03-2020")
-        Log.v("id",emp_id)
+        Log.v("id", emp_id)
 
         btnGenerateLeave.setOnClickListener {
-            var lmy=leaveDate.text.toString()
+            var yr=leaveDate.text.toString()
             if(leaveDate.text.toString() == " "){
                 Toast.makeText(this@EmpLeaveReport,"Required Fields are missing.", Toast.LENGTH_SHORT).show()
 
             } else{
                 Log.v("yr",leaveDate.text.toString())
                 arrUser.clear()
-                callService(emp_id, lmy)
+                callService(emp_id, yr)
                 adap = ArrayAdapter<PocoEmpLeaveReport>(this@EmpLeaveReport, android.R.layout.simple_list_item_1, arrUser)
                 dispLeaveReport.adapter = adap
                 adap.notifyDataSetChanged()
@@ -49,13 +49,13 @@ class EmpLeaveReport : AppCompatActivity() {
         }
     }
 
-    fun callService(emp_id:String, lmy:String){
+    fun callService(emp_id:String, yr:String){
         try{
             var client= OkHttpClient()
 
             var formBody= FormBody.Builder()
-                .add("emp_id",emp_id)
-                .add("lmy",lmy)
+                .add("emp_id", emp_id)
+                .add("yr", yr)
                 .build()
 
             var req= Request.Builder()
@@ -82,7 +82,7 @@ class EmpLeaveReport : AppCompatActivity() {
                             var lcount = ua.getString("l_count")
                             var AlCount = ua.getString("a_count")
 
-                            userobj = PocoEmpLeaveReport(lmy, lcount, AlCount)
+                            userobj = PocoEmpLeaveReport(yr, lcount, AlCount)
                             arrUser.add(userobj)
                             Log.d("arr", arrUser.toString())
                             runOnUiThread {

@@ -3,6 +3,7 @@ package com.example.salesrecord
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -28,8 +29,14 @@ class CompSalaryReport : AppCompatActivity() {
 
         //empSalMonth.setText(SimpleDateFormat("M-YYYY").format(Calendar.getInstance().time)).toString()
         empSalMonth.setText("03-2020")
+        empSalMonth.setOnClickListener{
+            arrUser.clear()
+        }
+
         btnGenCompSalary.setOnClickListener {
             runOnUiThread {
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
                 if(empSalMonth.text.toString() == " "){
                     Toast.makeText(this@CompSalaryReport,"Required Fields are missing.", Toast.LENGTH_SHORT).show()
                 }else{

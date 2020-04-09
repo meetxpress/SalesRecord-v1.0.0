@@ -18,7 +18,6 @@ class SalarySummaryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_salary_summary)
 
-
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         var emp_id = preference.getString("uname","Wrong").toString()
 
@@ -27,12 +26,15 @@ class SalarySummaryActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
         btnShowTarget.setOnClickListener {
-            var cmonth= SimpleDateFormat("MM-YYYY").format(date.time)
-            callService(emp_id,cmonth)
+            //var cmonth= SimpleDateFormat("MM-YYYY").format(date.time)
+            var cmonth="03-2020"
+            callService(emp_id, cmonth)
         }
         btnRefreshSal.setOnClickListener {
-            var smonth= SimpleDateFormat("MM-YYYY").format(date.time)
-            callServiceSalary(emp_id,smonth)
+            //var smonth= SimpleDateFormat("MM-YYYY").format(date.time)
+            var smonth="03-2020"
+
+            callServiceSalary(emp_id, smonth)
         }
     }
 
@@ -46,7 +48,7 @@ class SalarySummaryActivity : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.231/SalesRecord/fetchtarget1.php")
+                .url("http://192.168.43.70/SalesRecord/fetchtarget1.php")
                 .post(formBody)
                 .build()
 
@@ -97,7 +99,7 @@ class SalarySummaryActivity : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.231/SalesRecord/getsal.php")
+                .url("http://192.168.43.70/SalesRecord/getsal.php")
                 .post(formBody)
                 .build()
 

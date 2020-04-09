@@ -4,12 +4,14 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_home_super_admin.*
 
 class HomeSuperAdmin : AppCompatActivity() {
+    private var doubleBackToExitPressedOnce = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +25,10 @@ class HomeSuperAdmin : AppCompatActivity() {
         btnDeleteComp.setOnClickListener {
             var i = Intent(this@HomeSuperAdmin, DeactivateCompany::class.java)
             startActivity(i)
+        }
+
+        btnViewSuperAdminReport.setOnClickListener{
+            startActivity(Intent(this@HomeSuperAdmin, ViewSuperAdminReport::class.java))
         }
     }
 
@@ -46,5 +52,17 @@ class HomeSuperAdmin : AppCompatActivity() {
             Toast.makeText(this,"Random Option!",Toast.LENGTH_LONG).show()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            return
+        }
+        this@HomeSuperAdmin.doubleBackToExitPressedOnce = true
+        Toast.makeText(this@HomeSuperAdmin, "Please BACK again to exit.", Toast.LENGTH_SHORT).show()
+        Handler().postDelayed({
+            doubleBackToExitPressedOnce = false
+        }, 1000)
     }
 }

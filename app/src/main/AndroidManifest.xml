@@ -20,25 +20,33 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".SAdminCompanyReport"
+            android:label="Company Reports"
+            android:parentActivityName=".ViewSuperAdminReport"/>
+        <activity
+            android:name=".ViewSuperAdminReport"
+            android:label="Super Admin Report"
+            android:parentActivityName=".HomeSuperAdmin"/>
+        <activity
             android:name=".CompAttendanceReport"
             android:label="Company Attendance Report"
-            android:parentActivityName=".ViewCompReports"/>
+            android:parentActivityName=".ViewCompReports" />
         <activity
             android:name=".CompLeaveReport"
             android:label="Company Leave Report"
-            android:parentActivityName=".ViewCompReports"/>
+            android:parentActivityName=".ViewCompReports" />
         <activity
             android:name=".CompSalaryReport"
             android:label="Company Salary Report"
-            android:parentActivityName=".ViewCompReports"/>
+            android:parentActivityName=".ViewCompReports" />
         <activity
             android:name=".CompSalesReport"
             android:label="Company Sales Report"
-            android:parentActivityName=".ViewCompReports"/>
+            android:parentActivityName=".ViewCompReports" />
         <activity
             android:name=".CompTargetReport"
             android:label="Company Target Report"
-            android:parentActivityName=".ViewCompReports"/>
+            android:parentActivityName=".ViewCompReports" />
         <activity
             android:name=".EmpLeaveReport"
             android:label="View Leave Report"
@@ -85,26 +93,19 @@
             android:parentActivityName=".HomeCompany" />
         <activity
             android:name=".forgotPassword"
-            android:label="Forgot Password" />
+            android:label="Forgot Password"
+            android:parentActivityName=".LoginActivity" />
         <activity
             android:name=".PunchAttendance"
             android:label="Attendance"
-            android:parentActivityName=".HomeEmployee">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-
-        </activity>
+            android:parentActivityName=".HomeEmployee" />
         <activity
             android:name=".ManageEmployee"
             android:label="Edit Details"
             android:parentActivityName=".HomeEmployee" />
         <activity
             android:name=".HomeEmployee"
-            android:label="Employee Dashboard"/>
+            android:label="Employee Dashboard" />
         <activity
             android:name=".RegisterShop"
             android:label="Register Shop"
@@ -127,7 +128,7 @@
             android:parentActivityName=".HomeSuperAdmin" />
         <activity
             android:name=".HomeCompany"
-            android:label="Company Dashboard"/>
+            android:label="Company Dashboard" />
         <activity
             android:name=".DeactivateCompany"
             android:label="Deactivate Company"

@@ -4,12 +4,14 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_home_company.*
 
 class HomeCompany : AppCompatActivity() {
+    private var doubleBackToExitPressedOnce = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,5 +76,17 @@ class HomeCompany : AppCompatActivity() {
             Toast.makeText(this,"Random Option!",Toast.LENGTH_LONG).show()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            return
+        }
+        this@HomeCompany.doubleBackToExitPressedOnce = true
+        Toast.makeText(this@HomeCompany, "Please BACK again to exit.", Toast.LENGTH_SHORT).show()
+        Handler().postDelayed({
+            doubleBackToExitPressedOnce = false
+        }, 1000)
     }
 }

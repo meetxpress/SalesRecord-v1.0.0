@@ -113,7 +113,7 @@ class RegisterShop : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.231/SalesRecord/addShop.php")
+                .url("http://192.168.43.70/SalesRecord/addShop.php")
                 .post(formBody)
                 .build()
 

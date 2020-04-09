@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -16,6 +17,7 @@ import org.json.JSONObject
 import java.io.IOException
 
 class HomeEmployee : AppCompatActivity() {
+    private var doubleBackToExitPressedOnce = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,5 +78,17 @@ class HomeEmployee : AppCompatActivity() {
             Toast.makeText(this@HomeEmployee,"Random Option!",Toast.LENGTH_LONG).show()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            return
+        }
+        this@HomeEmployee.doubleBackToExitPressedOnce = true
+        Toast.makeText(this@HomeEmployee, "Please BACK again to exit.", Toast.LENGTH_SHORT).show()
+        Handler().postDelayed({
+            doubleBackToExitPressedOnce = false
+        }, 1000)
     }
 }

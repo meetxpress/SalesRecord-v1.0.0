@@ -29,9 +29,10 @@ class RoutineTaskActivity : AppCompatActivity() {
 
         btnRoutineSubmit.setOnClickListener {
             var rmonth=SimpleDateFormat("MM-YYYY").format(date.time)
+            //var rmonth="03-2020"
             var rdate=SimpleDateFormat("d-M-Y").format(Calendar.getInstance().time)
             var rtarget=etRoutineTask.text.toString()
-            callServiceSubmit(emp_id,rmonth,rtarget,rdate)
+            callServiceSubmit(emp_id, rmonth, rtarget, rdate)
         }
     }
 
@@ -47,7 +48,7 @@ class RoutineTaskActivity : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.231/SalesRecord/routinetask3.php")
+                .url("http://192.168.43.70/SalesRecord/routinetask3.php")
                 .post(formBody)
                 .build()
 

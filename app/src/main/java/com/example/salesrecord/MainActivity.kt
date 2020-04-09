@@ -28,11 +28,10 @@ class MainActivity : AppCompatActivity() {
                 var i=Intent(this@MainActivity, LoginActivity::class.java)
                 startActivity(i)
                 finish()
-            }
-            else{
+            } else{
                 /* if(str.equals("admin")) { */
                 var ss= str?.substring(0,1)
-                if(str == "admin"){
+                if(str == "999999"){
                     var i=Intent(this@MainActivity,HomeSuperAdmin::class.java)
                     startActivity(i)
                     finish()

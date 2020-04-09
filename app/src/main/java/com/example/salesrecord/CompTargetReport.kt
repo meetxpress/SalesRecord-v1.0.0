@@ -1,13 +1,15 @@
 package com.example.salesrecord
 
+import android.app.Activity
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_comp_target_report.*
-import kotlinx.android.synthetic.main.activity_emp_salary_report.*
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
@@ -29,7 +31,15 @@ class CompTargetReport : AppCompatActivity() {
 
         //targetMon.setText(SimpleDateFormat("M-YYYY").format(Calendar.getInstance().time)).toString()
         targetMon.setText("03-2020")
+
+        targetMon.setOnClickListener{
+            arrUser.clear()
+        }
+
         btnGenCompTarget.setOnClickListener {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+
             if(targetMon.text.toString() == " "){
                 Toast.makeText(this@CompTargetReport,"Required Fields are missing.", Toast.LENGTH_SHORT).show()
             }else{
@@ -99,5 +109,6 @@ class CompTargetReport : AppCompatActivity() {
             e.printStackTrace()
         }
     }
+
 
 }

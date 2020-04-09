@@ -3,6 +3,7 @@ package com.example.salesrecord
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +14,10 @@ import java.io.IOException
 import java.lang.Exception
 
 class LoginActivity : AppCompatActivity() {
+
     var flag:String = ""
+    var doubleBackToExitPressedOnce = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -27,6 +31,10 @@ class LoginActivity : AppCompatActivity() {
                 var pass=LoginPassword.text.toString()
                 callSevice(user,pass)
             }
+        }
+
+        forgotPass.setOnClickListener{
+            startActivity(Intent(this@LoginActivity, forgotPassword::class.java))
         }
     }
 
@@ -113,6 +121,18 @@ class LoginActivity : AppCompatActivity() {
         } catch(e: Exception){
             e.printStackTrace()
         }
+    }
+
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            return
+        }
+        this@LoginActivity.doubleBackToExitPressedOnce = true
+        Toast.makeText(this@LoginActivity, "Please BACK again to exit.", Toast.LENGTH_SHORT).show()
+        Handler().postDelayed({
+            doubleBackToExitPressedOnce = false
+        }, 1000)
     }
 
 }

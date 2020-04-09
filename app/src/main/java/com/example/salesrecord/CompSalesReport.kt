@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_comp_sales_report.*
@@ -27,7 +28,13 @@ class CompSalesReport : AppCompatActivity() {
 
         //empSalMonth.setText(SimpleDateFormat("M-YYYY").format(Calendar.getInstance().time)).toString()
         empSalesMonth.setText("03-2020")
+        empSalesMonth.setOnClickListener{
+            arrUser.clear()
+        }
+
         btnGenCompSales.setOnClickListener {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
             if(empSalesMonth.text.toString() == " "){
                 Toast.makeText(this@CompSalesReport,"Required Fields are missing.", Toast.LENGTH_SHORT).show()
             }else{

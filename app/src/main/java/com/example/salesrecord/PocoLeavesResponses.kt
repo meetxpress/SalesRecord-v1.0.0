@@ -7,6 +7,6 @@ class PocoLeavesResponses(var leave_id:String, var fromDate:String, var toDate:S
         Log.d("lF","I Leave File")
         return  "\nDate(From): $fromDate \tType: $type1" +
                 "\nDate(To): $toDate     \tType: $type2" +
-                "\nReason: $reason \tStatus: $status"
+                "\nReason: $reason \nStatus: $status"
     }
 }
