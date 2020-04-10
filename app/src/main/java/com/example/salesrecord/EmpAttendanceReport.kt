@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_emp_attendance_report.*
 import kotlinx.android.synthetic.main.activity_emp_leave_report.*
 import okhttp3.*
 import org.json.JSONObject
@@ -15,41 +16,41 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class EmpLeaveReport : AppCompatActivity() {
-    var arrUser = ArrayList<PocoEmpLeaveReport>()
-    var userobj:PocoEmpLeaveReport = PocoEmpLeaveReport("", "", "")
+class EmpAttendanceReport : AppCompatActivity() {
+    
+    var arrUser = ArrayList<PocoEmpAttendanceReport>()
+    var userobj:PocoEmpAttendanceReport = PocoEmpAttendanceReport("", "", "")
 
-    lateinit var adap: ArrayAdapter<PocoEmpLeaveReport>
+    lateinit var adap: ArrayAdapter<PocoEmpAttendanceReport>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_emp_leave_report)
+        setContentView(R.layout.activity_emp_attendance_report)
         //back button on actionbar
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         var emp_id = preference.getString("uname","Wrong").toString()
 
-        //leaveDate.setText(SimpleDateFormat("MM-YYYY").format(Calendar.getInstance().time)).toString()
-        leaveDate.setText("03-2020")
+        AttMonth.setText(SimpleDateFormat("MM-YYYY").format(Calendar.getInstance().time)).toString()
         Log.v("id", emp_id)
 
-        leaveDate.setOnClickListener{
+        AttMonth.setOnClickListener{
             arrUser.clear()
         }
 
-        btnGenerateLeave.setOnClickListener {
-            var yr=leaveDate.text.toString()
+        btnGenerateAttendance.setOnClickListener {
+            var yr=AttMonth.text.toString()
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
-            if(leaveDate.text.toString() == " "){
-                Toast.makeText(this@EmpLeaveReport,"Required Fields are missing.", Toast.LENGTH_SHORT).show()
+            if(AttMonth.text.toString() == " "){
+                Toast.makeText(this@EmpAttendanceReport,"Required Fields are missing.", Toast.LENGTH_SHORT).show()
 
             } else{
-                Log.v("yr",leaveDate.text.toString())
+                Log.v("yr",AttMonth.text.toString())
                 arrUser.clear()
                 callService(emp_id, yr)
-                adap = ArrayAdapter<PocoEmpLeaveReport>(this@EmpLeaveReport, android.R.layout.simple_list_item_1, arrUser)
-                dispLeaveReport.adapter = adap
+                adap = ArrayAdapter<PocoEmpAttendanceReport>(this@EmpAttendanceReport, android.R.layout.simple_list_item_1, arrUser)
+                dispAttendanceReport.adapter = adap
                 adap.notifyDataSetChanged()
             }
         }
@@ -65,7 +66,7 @@ class EmpLeaveReport : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.231/SalesRecord/callEmpLeaveReportService.php")
+                .url("http://192.168.43.231/SalesRecord/callEmpAttendanceReportService.php")
                 .post(formBody)
                 .build()
 
@@ -80,15 +81,15 @@ class EmpLeaveReport : AppCompatActivity() {
                         Log.v("res",str)
                         var js= JSONObject(str)
                         var flag=js.getInt("success")
-                        var arr= js.getJSONArray("Leaves")
+                        var arr= js.getJSONArray("Attendance")
 
                         for(i in 0 until arr.length()) {
                             var ua = arr.getJSONObject(i)
 
-                            var lcount = ua.getString("l_count")
-                            var AlCount = ua.getString("a_count")
+                            var tot_days = ua.getString("tot_days")
+                            var tot_att = ua.getString("tot_att")
 
-                            userobj = PocoEmpLeaveReport(yr, lcount, AlCount)
+                            userobj = PocoEmpAttendanceReport(yr, tot_days, tot_att)
                             arrUser.add(userobj)
                             Log.d("arr", arrUser.toString())
                             runOnUiThread {
@@ -97,9 +98,9 @@ class EmpLeaveReport : AppCompatActivity() {
                         }
                         runOnUiThread{
                             if(flag==1){
-                                Toast.makeText(this@EmpLeaveReport, "Report is Generated.",Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@EmpAttendanceReport, "Report is Generated.",Toast.LENGTH_SHORT).show()
                             }else{
-                                Toast.makeText(this@EmpLeaveReport, "No Data Found.",Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@EmpAttendanceReport, "No Data Found.",Toast.LENGTH_SHORT).show()
                             }
                         }
                     }

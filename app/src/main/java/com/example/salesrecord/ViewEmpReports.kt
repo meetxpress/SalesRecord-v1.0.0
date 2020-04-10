@@ -30,7 +30,7 @@ class ViewEmpReports : AppCompatActivity() {
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         var emp_id = preference.getString("uname","Wrong").toString()
 
-        var reportArr = arrayOf("Salary Report", "Leave Report")
+        var reportArr = arrayOf("Salary Report", "Leave Report", "Attendance Report")
         val adap = ArrayAdapter(this@ViewEmpReports, android.R.layout.simple_list_item_1, reportArr)
 
         displayEmpRecord.adapter = adap
@@ -44,6 +44,9 @@ class ViewEmpReports : AppCompatActivity() {
                 startActivity(i)
             }else if(ss == "Leave Report"){
                 var i=Intent(this@ViewEmpReports, EmpLeaveReport::class.java)
+                startActivity(i)
+            } else if(ss == "Attendance Report"){
+                var i=Intent(this@ViewEmpReports, EmpAttendanceReport::class.java)
                 startActivity(i)
             }
         }

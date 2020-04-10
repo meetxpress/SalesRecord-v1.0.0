@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_emp_salary_report.*
@@ -26,11 +27,19 @@ class EmpSalaryReport : AppCompatActivity() {
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         var emp_id = preference.getString("uname","Wrong").toString()
         salYear.setText("2020")
+
+        salYear.setOnClickListener{
+            arrUser.clear()
+        }
+
         btnGenerateResult.setOnClickListener {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
             if(salYear.text.toString() == " "){
                 Toast.makeText(this@EmpSalaryReport,"Required Fields are missing.", Toast.LENGTH_SHORT).show()
                 Log.v("id",emp_id)
             }else{
+                arrUser.clear()
                 Log.v("yr",salYear.text.toString())
                 callService(emp_id, salYear.text.toString())
                 adap = ArrayAdapter<PocoSalary>(this@EmpSalaryReport, android.R.layout.simple_list_item_1, arrUser)
@@ -50,7 +59,7 @@ class EmpSalaryReport : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.70/SalesRecord/callEmpSalaryReportService.php")
+                .url("http://192.168.43.231/SalesRecord/callEmpSalaryReportService.php")
                 .post(formBody)
                 .build()
 

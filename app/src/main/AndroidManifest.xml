@@ -19,14 +19,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".EmpAttendanceReport"></activity>
         <activity
             android:name=".SAdminCompanyReport"
             android:label="Company Reports"
-            android:parentActivityName=".ViewSuperAdminReport"/>
+            android:parentActivityName=".ViewSuperAdminReport" />
         <activity
             android:name=".ViewSuperAdminReport"
             android:label="Super Admin Report"
-            android:parentActivityName=".HomeSuperAdmin"/>
+            android:parentActivityName=".HomeSuperAdmin" />
         <activity
             android:name=".CompAttendanceReport"
             android:label="Company Attendance Report"
@@ -117,7 +118,7 @@
         <activity
             android:name=".ViewCompReports"
             android:label="View Reports"
-            android:parentActivityName=".HomeCompany"/>
+            android:parentActivityName=".HomeCompany" />
         <activity
             android:name=".RegisterEmployee"
             android:label="Register Employee"
