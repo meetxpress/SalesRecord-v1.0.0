@@ -117,7 +117,16 @@
         <activity
             android:name=".ViewCompReports"
             android:label="View Reports"
-            android:parentActivityName=".HomeCompany" />
+            android:parentActivityName=".HomeCompany">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+
+        </activity>
         <activity
             android:name=".RegisterEmployee"
             android:label="Register Employee"
