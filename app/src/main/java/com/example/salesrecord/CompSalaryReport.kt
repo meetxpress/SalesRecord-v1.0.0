@@ -15,7 +15,7 @@ import java.io.IOException
 
 class CompSalaryReport : AppCompatActivity() {
     var arrUser = ArrayList<PocoCompSalaryReport>()
-    //var userobj:PocoCompSalaryReport = PocoCompSalaryReport("", 0, 0,"")
+    var userobj:PocoCompSalaryReport = PocoCompSalaryReport("", 0, 0,"")
 
     lateinit var adap: ArrayAdapter<PocoCompSalaryReport>
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,11 +37,13 @@ class CompSalaryReport : AppCompatActivity() {
             runOnUiThread {
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
-                if(empSalMonth.text.toString() == " "){
+
+                var yr=empSalMonth.text.toString()
+                if(yr == " "){
                     Toast.makeText(this@CompSalaryReport,"Required Fields are missing.", Toast.LENGTH_SHORT).show()
                 }else{
                     arrUser.clear()
-                    callService(comp_id, empSalMonth.text.toString())
+                    callService(comp_id, yr)
                     adap = ArrayAdapter<PocoCompSalaryReport>(this@CompSalaryReport, android.R.layout.simple_list_item_1, arrUser)
                     displayCompSalaryReport.adapter = adap
                     adap.notifyDataSetChanged()
@@ -49,6 +51,7 @@ class CompSalaryReport : AppCompatActivity() {
             }
         }
     }
+
     fun callService(comp_id:String, yr:String){
         try{
             var client= OkHttpClient()
@@ -59,7 +62,7 @@ class CompSalaryReport : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.70/SalesRecord/callCompsalaryService.php")
+                .url("http://192.168.43.231/SalesRecord/callCompSalaryService.php")
                 .post(formBody)
                 .build()
 
@@ -87,7 +90,7 @@ class CompSalaryReport : AppCompatActivity() {
                             var emp_totsal = ua.getInt("emp_totsal")
                             var emp_month = ua.getString("emp_month")
 
-                            var userobj = PocoCompSalaryReport(eid, emp_inc, emp_totsal, emp_month)
+                            userobj = PocoCompSalaryReport(eid, emp_inc, emp_totsal, emp_month)
                             arrUser.add(userobj)
                             Log.d("arr", arrUser.toString())
                             runOnUiThread {

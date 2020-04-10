@@ -58,7 +58,7 @@ class CompLeaveReport : AppCompatActivity() {
             Log.v("yr",yr)
 
             var req= Request.Builder()
-                .url("http://192.168.43.70/SalesRecord/callCompLeaveService.php")
+                .url("http://192.168.43.231/SalesRecord/callCompLeaveService.php")
                 .post(formBody)
                 .build()
 

@@ -1,17 +1,14 @@
 <?php
 	$res=array();
-	if(isset ($_POST['emp_id']) && ($_POST['po_lat']) && ($_POST['po_long'])){
-		//&& ($_POST['po_date']) && ($_POST['po_time']) &&
+	if(isset ($_POST['emp_id']) && ($_POST['po_date']) && ($_POST['po_time']) && ($_POST['po_lat']) && ($_POST['po_long'])){
+	
 
 		/*
 		?emp_id=300001&po_lat=37.4219983&po_long=-122.08400
 		*/		
 		$emp_id=$_POST['emp_id'];
-		//$po_date=$_POST['po_date'];
-		//$po_time=$_POST['po_lat'];
-		
-		$po_date=date("d/m/Y");
-		$po_time=date("h:i");
+		$po_date=$_POST['po_date'];
+		$po_time=$_POST['po_time'];		
 		$po_lat=$_POST['po_lat'];
 		$po_long=$_POST['po_long'];
 		

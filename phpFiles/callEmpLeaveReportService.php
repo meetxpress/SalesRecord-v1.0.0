@@ -1,20 +1,20 @@
 <?php
     $res = array();
-	if(isset($_POST['emp_id']) && ($_POST['lmy'])){
+	if(isset($_POST['emp_id']) && ($_POST['yr'])){
         $count1 = 0;
         $count0 = 0;
 
         $con = mysqli_connect('localhost', 'root', '', 'salesrecord') or die(mysqli_error());  
         /*
          * getting leaveCount from database
-        */
-        $qry0=mysqli_query($con,"select SUBSTRING(currDate,4) as subStr from leave_management where emp_id = '".$_POST['emp_id']."'");
+                */
+        $qry0=mysqli_query($con,"select * from leave_management where emp_id = '".$_POST['emp_id']."'");
         if(mysqli_num_rows($qry0) > 0 ){ 
             while($row = mysqli_fetch_assoc($qry0)){
                 $count0++;
             }
         }
-        
+
         /*
          * getting approved leave from database
         */
@@ -27,13 +27,14 @@
                 $mon = $row['currDate'];
                 $year = substr($mon, 3);
 
-                if($_POST['lmy'] == $year){         
+                if($_POST['yr'] == $year){         
                     $count1++;
+                   
                 }
             }
             if($count1 != 0 ){
                 $res["success"] = 1;
-                $res["message"] = "Salary found Successfully.";
+                $res["message"] = "Leave found Successfully.";
 
                 $lev = array();
                 $lev["l_count"] = $count0;
@@ -43,10 +44,10 @@
                 echo json_encode($res);
             }else{
                 $res["success"] = 0;					
-                $res["message"] = "No data found";
+                $res["message"] = "No Leave found";
 
                 echo json_encode($res);
-            } 
+            }             
             $count1 = 0;
             $count0 = 0;
 		}else{

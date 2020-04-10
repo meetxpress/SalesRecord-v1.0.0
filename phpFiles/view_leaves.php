@@ -1,10 +1,10 @@
 <?php
     $res = array();
-	if(isset($_GET['comp_id'])){
+	if(isset($_POST['comp_id'])){
         $con = mysqli_connect('localhost', 'root', '', 'salesrecord') or die(mysqli_error());  
 
         //getting company id using emp_id and assigning to variable
-        $qry1=mysqli_query($con,"select emp_id from employee_master where comp_id = '".$_GET['comp_id']."'");
+        $qry1=mysqli_query($con,"select emp_id from employee_master where comp_id = '".$_POST['comp_id']."'");
         if(mysqli_num_rows($qry1) > 0 ){ 
             $row1 = mysqli_fetch_assoc($qry1);
         }

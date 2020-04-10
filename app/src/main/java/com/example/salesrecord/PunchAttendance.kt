@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
+import android.widget.Button
 import android.widget.Toast
 import androidx.biometric.BiometricPrompt
 import androidx.core.app.ActivityCompat
@@ -34,17 +35,28 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.Executor
 
-
 private const val PERMISSION_REQUEST = 10
 
 class PunchAttendance : AppCompatActivity() {
 
     var long1: String = " "
+    var flag:String = " "
+
     lateinit var locationManager: LocationManager
     private var hasGps = false
     private var hasNetwork = false
     private var locationGps: Location? = null
     private var locationNetwork: Location? = null
+
+    var pi_time:String=""
+    var pi_date:String=""
+    var sLocLat:String=""
+    var sLocLong:String=""
+
+
+    private lateinit var executor: Executor
+    private lateinit var biometricPrompt: BiometricPrompt
+    private lateinit var promptInfo: BiometricPrompt.PromptInfo
 
     private var permissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,29 +79,149 @@ class PunchAttendance : AppCompatActivity() {
             enableView()
         }
 
+        //biometric
+        executor = ContextCompat.getMainExecutor(this@PunchAttendance)
+        biometricPrompt = BiometricPrompt(this@PunchAttendance, executor,
+            object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                    super.onAuthenticationError(errorCode, errString)
+                    Toast.makeText(applicationContext, "Authentication error: $errString", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onAuthenticationSucceeded(
+                    result: BiometricPrompt.AuthenticationResult) {
+                    super.onAuthenticationSucceeded(result)
+                    runOnUiThread {
+                        flag = result.toString()
+                        Toast.makeText(this@PunchAttendance, "Flag $flag", Toast.LENGTH_SHORT).show()
+
+                    }
+                }
+
+                override fun onAuthenticationFailed() {
+                    super.onAuthenticationFailed()
+                    Toast.makeText(applicationContext, "Authentication failed", Toast.LENGTH_SHORT).show()
+                }
+            }
+        )
+        promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("Punch Your Attendance")
+            .setNegativeButtonText("Cancel")
+            .build()
+
+
+        btnAtt1.setOnClickListener {
+            biometricPrompt.authenticate(promptInfo)
+           if(flag != " "){
+                pi_date= (SimpleDateFormat("dd-MM-YYYY").format(Calendar.getInstance().time)).toString()
+                pi_time = (SimpleDateFormat("HH:mm").format(Calendar.getInstance().time)).toString()
+
+                getLocation()
+                sLocLat = pi_loc_lat.text.toString()
+                sLocLong = pi_loc_long.text.toString()
+                Log.v("lat1", sLocLat)
+                Log.v("long1", sLocLong)
+                Log.v("pi_date", pi_date)
+                Log.v("pi_time", pi_time)
+
+                Log.v("bio", "Flag LOL")
+                Toast.makeText(this@PunchAttendance, "Flag $sLocLat", Toast.LENGTH_SHORT).show()
+                callService(emp_id, pi_date, pi_time, sLocLat, sLocLong)
+            }
+           // callService(emp_id, pi_date, pi_time, sLocLat, sLocLong)
+        }
+
         btnAtt2.setOnClickListener {
-            Toast.makeText(this@PunchAttendance, "LOL", Toast.LENGTH_SHORT).show()
+            var po_date=(SimpleDateFormat("dd-MM-YYYY").format(Calendar.getInstance().time)).toString()
+            var po_time = (SimpleDateFormat("HH:mm").format(Calendar.getInstance().time)).toString()
+
             getLocation()
             var sLocLat = pi_loc_lat.text.toString()
             var sLocLong = pi_loc_long.text.toString()
             Log.d("lat1", sLocLat)
             Log.d("long1", sLocLong)
-            callService(emp_id, sLocLat, sLocLong)
+            Log.d("po_date", po_date)
+            Log.d("po_time", po_time)
+            callSecService(emp_id, po_date, po_time, sLocLat, sLocLong)
         }
     }
 
-    fun callService(emp_id: String, sLocLat: String, sLocLong: String) {
+    /* Service for button 1*/
+    fun callService(emp_id: String, pi_date:String, pi_time:String, sLocLat: String, sLocLong: String) {
+        Log.v("serv", "service")
+
         try {
             var client = OkHttpClient()
 
             var formBody = FormBody.Builder()
                 .add("emp_id", emp_id)
+                .add("pi_date", pi_date)
+                .add("pi_time", pi_time)
+                .add("pi_lat", sLocLat)
+                .add("pi_long", sLocLong)
+                .build()
+
+            var req = Request.Builder()
+                .url("http://10.0.2.2:80/SalesRecord/punchattendancein.php")
+                .post(formBody)
+                .build()
+
+            client.newCall(req).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    Log.e("Exception", e.toString())
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    response.use {
+                        Log.v("check", "abcde");
+                        if (!response.isSuccessful) throw IOException("Unexpected code $response")
+                        var str = response.body!!.string()
+                        Log.v("test", str)
+
+                        var jObj = JSONObject(str)
+                        val flag = jObj.getInt("success")
+                        var message = jObj.getString("message")
+
+                        Log.v("res", response.toString())
+                        Log.v("cdm", flag.toString())
+                        Log.v("msg", message)
+
+                        if (flag == 1) {
+                            runOnUiThread {
+                                Log.v("fs", flag.toString())
+                                Toast.makeText(this@PunchAttendance, "Punched Successful.", Toast.LENGTH_LONG).show()
+                                btnAtt1.isEnabled=false
+                                btnAtt1.isClickable=false
+                            }
+                        } else {
+                            runOnUiThread {
+                                Log.v("ff", flag.toString())
+                                Toast.makeText(this@PunchAttendance, "Failed to Punch.", Toast.LENGTH_LONG).show()
+                            }
+                        }
+                    }
+                }
+            })
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    /* Service for button 2*/
+    fun callSecService(emp_id: String, po_date:String, po_time:String, sLocLat: String, sLocLong: String) {
+        try {
+            var client = OkHttpClient()
+
+            var formBody = FormBody.Builder()
+                .add("emp_id", emp_id)
+                .add("po_date", po_date)
+                .add("po_time", po_time)
                 .add("po_lat", sLocLat)
                 .add("po_long", sLocLong)
                 .build()
 
             var req = Request.Builder()
-                .url("http://192.168.43.70/SalesRecord/punchattendanceout.php")
+                .url("http://10.0.2.2:80/SalesRecord/punchattendanceout.php")
                 .post(formBody)
                 .build()
 

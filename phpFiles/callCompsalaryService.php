@@ -9,7 +9,7 @@
                 $c0++;
                 $eid = $row0['emp_id'];
                 
-                $qry=mysqli_query($con,"select * from emp_sal where emp_id = '$eid'");
+                $qry=mysqli_query($con,"select * from emp_sal where emp_id = '$eid' and emp_month ='".$_POST['yr']."'");
                 if($qry){
                     $res["Salary2"] = array();
 
@@ -28,13 +28,14 @@
                             $res["message"] = "Salary found Successfully.";
                             
                             array_push($res["Salary2"], $sal);
-                            //echo json_encode($res);
+                            echo json_encode($res);
                         }else{
                             $res["success"] = 0;					
                             $res["message"] = "No data found";
-                           
+                            
+                            echo json_encode($res);       
                         }  
-                        echo json_encode($res);                      
+                                          
                     }
                     // $res["success"] = 1;
                 } else {
