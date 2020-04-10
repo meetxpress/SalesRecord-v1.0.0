@@ -9,19 +9,24 @@
                 $c0++;
                 $eid = $row0['emp_id'];
                 
-                $qry=mysqli_query($con,"select rt_date, SUM(rt_unit) as totSales from emp_routinetask where emp_id = '$eid'");
+                //$qry=mysqli_query($con,"select rt_date, SUM(rt_unit) as totSales from emp_routinetask where emp_id = '$eid'");
+                
+                $qry=mysqli_query($con,"select * from emp_routinetask where emp_id = '$eid'");
                 if($qry){  
-                    $res["Sales"] = array();                  
+                    $res["Sales"] = array();    
                     while($row1 = mysqli_fetch_assoc($qry)){
                         $duh = $row1['rt_date'];
                         $mon = substr($duh, 3);
+                        $unit = $row1['rt_unit'];
                         //echo "<h1>$mon<br>".$_POST['yr']."</h1>";
-                        
-                        $sales = array();   
-                        $sales["totSales"] = $row1["totSales"];
-                        $sales["mon"] = $mon;
+                         $totSales =0; 
+                        $sales = array();                           
+                        if($_POST['yr'] == $mon){   
+                           
+                            $totSales = $totSales + $unit;
+                            $sales["totSales"] = $totSales;//$row1["totSales"];
+                            $sales["mon"] = $mon;
         
-                        if($_POST['yr'] == $mon){                    
                             $res["success"] = 1;
                             $res["message"] = "Sales found Successfully.";
                             

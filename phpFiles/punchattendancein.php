@@ -1,17 +1,13 @@
 <?php
 	$res=array();
-	if(isset ($_POST['emp_id']) && ($_POST['pi_lat']) && ($_POST['pi_long'])){
-		//&& ($_POST['pi_date']) && ($_POST['pi_time']) 
-		
+	if(isset ($_POST['emp_id']) && ($_POST['pi_date']) && ($_POST['pi_time']) && ($_POST['pi_lat']) && ($_POST['pi_long'])){
+				
 		/*
 		?emp_id=300001&pi_lat=37.4219983&pi_long=-122.08400
 		*/
 		$emp_id=$_POST['emp_id'];
-		//$pi_date=$_POST['pi_date'];
-		//$pi_time=$_POST['pi_lat'];
-
-		$pi_date=date("d/m/Y");
-		$pi_time=date("h:i");
+		$pi_date=$_POST['pi_date'];
+		$pi_time=$_POST['pi_time'];
 		$pi_lat=$_POST['pi_lat'];
 		$pi_long=$_POST['pi_long'];
 		
