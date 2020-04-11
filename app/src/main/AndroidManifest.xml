@@ -19,7 +19,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".EmpAttendanceReport"></activity>
         <activity
             android:name=".SAdminCompanyReport"
             android:label="Company Reports"
@@ -55,6 +54,10 @@
         <activity
             android:name=".EmpSalaryReport"
             android:label="View Salary Report"
+            android:parentActivityName=".ViewEmpReports" />
+        <activity
+            android:name=".EmpAttendanceReport"
+            android:label="View Attendance Report"
             android:parentActivityName=".ViewEmpReports" />
         <activity
             android:name=".ViewLeaveResponse"

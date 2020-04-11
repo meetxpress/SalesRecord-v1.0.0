@@ -58,7 +58,7 @@ class CompAttendanceReport : AppCompatActivity() {
             Log.v("yr",yr)
 
             var req= Request.Builder()
-                .url("http://192.168.43.231/SalesRecord/callCompAttendanceService.php")
+                .url("http://192.168.43.70/SalesRecord/callCompAttendanceService.php")
                 .post(formBody)
                 .build()
 

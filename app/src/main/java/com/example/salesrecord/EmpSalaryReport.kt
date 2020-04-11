@@ -59,7 +59,7 @@ class EmpSalaryReport : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.231/SalesRecord/callEmpSalaryReportService.php")
+                .url("http://192.168.43.70/SalesRecord/callEmpSalaryReportService.php")
                 .post(formBody)
                 .build()
 
