@@ -99,7 +99,7 @@ class forgotPassword : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.215/SalesRecord/fetchUserDetails.php")
+                .url("http://192.168.43.70/SalesRecord/fetchUserDetails.php")
                 .post(formBody)
                 .build()
 
@@ -154,7 +154,7 @@ class forgotPassword : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.215/SalesRecord/setUserDetails.php")
+                .url("http://192.168.43.70/SalesRecord/setUserDetails.php")
                 .post(formBody)
                 .build()
 

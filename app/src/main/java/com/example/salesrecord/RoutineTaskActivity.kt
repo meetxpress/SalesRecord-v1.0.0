@@ -49,7 +49,7 @@ class RoutineTaskActivity : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.215/SalesRecord/routinetask3.php")
+                .url("http://192.168.43.70/SalesRecord/routinetask3.php")
                 .post(formBody)
                 .build()
 
