@@ -48,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.70/SalesRecord/login.php")
+                .url("http://192.168.43.215/SalesRecord/login.php")
                 .post(formBody)
                 .build()
 
@@ -75,7 +75,6 @@ class LoginActivity : AppCompatActivity() {
                                 var editor=preference.edit()
                                 editor.putString("uname",LoginUsername.text.toString());
                                 editor.commit()
-                                //Toast.makeText(this@LoginActivity,LoginUsername.text.toString(), Toast.LENGTH_LONG).show()
 
                                 Toast.makeText(this@LoginActivity,"Logged In Successfully.!", Toast.LENGTH_LONG).show()
                                 var i= Intent(this@LoginActivity,HomeSuperAdmin::class.java)
@@ -89,7 +88,6 @@ class LoginActivity : AppCompatActivity() {
                                 var editor=preference.edit()
                                 editor.putString("uname",LoginUsername.text.toString());
                                 editor.commit()
-                                Toast.makeText(this@LoginActivity,LoginUsername.text.toString(), Toast.LENGTH_LONG).show()
 
                                 Toast.makeText(this@LoginActivity,"Logged In Successfully.!", Toast.LENGTH_LONG).show()
                                 var i= Intent(this@LoginActivity,HomeCompany::class.java)

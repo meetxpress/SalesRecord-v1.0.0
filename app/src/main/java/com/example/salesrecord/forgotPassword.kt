@@ -30,6 +30,7 @@ class forgotPassword : AppCompatActivity() {
         var for_pass = " "
         var for_conPass = " "
 
+        //enabling references EditText
         forgotID.setOnFocusChangeListener{ _, _ ->
             forgotReference.setText("")
             forgotReference.hint = " Enter Valid Reference*"
@@ -37,6 +38,7 @@ class forgotPassword : AppCompatActivity() {
             forgotReference.isClickable = true
         }
 
+        //changing Hint according to UserID
         forgotReference.setOnFocusChangeListener{ _, _ ->
             for_id=forgotID.text.toString()
 
@@ -50,9 +52,16 @@ class forgotPassword : AppCompatActivity() {
                 forgotReference.isEnabled = false
                 forgotReference.isClickable = false
             }
-            //callService(for_id, for_refNo)
         }
 
+        //making visible the new password tabs
+        forgotNewPassword.setOnFocusChangeListener { _, _ ->
+            forgotConfirmPassword.visibility = View.VISIBLE
+            forgotConfirmPassword.isEnabled = true
+            forgotConfirmPassword.isClickable = true
+        }
+
+        //calling services according to the flag value.
         btnForgotSearch.setOnClickListener{
             for_refNo = forgotReference.text.toString()
             for_pass = forgotNewPassword.text.toString()
@@ -79,6 +88,7 @@ class forgotPassword : AppCompatActivity() {
         }
     }
 
+    //fetching the data of user
     fun callService(for_id:String, for_refNo:String){
         try{
             var client= OkHttpClient()
@@ -89,7 +99,7 @@ class forgotPassword : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.70/SalesRecord/fetchUserDetails.php")
+                .url("http://192.168.43.215/SalesRecord/fetchUserDetails.php")
                 .post(formBody)
                 .build()
 
@@ -133,6 +143,7 @@ class forgotPassword : AppCompatActivity() {
         }
     }
 
+    //setting the new password of user
     fun callMainservice(for_id:String, for_pass:String){
         try{
             var client= OkHttpClient()
@@ -143,7 +154,7 @@ class forgotPassword : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.70/SalesRecord/setUserDetails.php")
+                .url("http://192.168.43.215/SalesRecord/setUserDetails.php")
                 .post(formBody)
                 .build()
 
@@ -165,13 +176,8 @@ class forgotPassword : AppCompatActivity() {
                                 Toast.makeText(this@forgotPassword,"Password Reset.", Toast.LENGTH_LONG).show()
 
                                 forgotNewPassword.visibility = View.VISIBLE;
-                                forgotConfirmPassword.visibility = View.VISIBLE
-
                                 forgotNewPassword.isEnabled = true
                                 forgotNewPassword.isClickable = true
-
-                                forgotConfirmPassword.isEnabled = true
-                                forgotConfirmPassword.isClickable = true
 
                                 btnForgotSearch.text = "Reset Password"
                                 btnFlag++
@@ -190,4 +196,5 @@ class forgotPassword : AppCompatActivity() {
         }
         btnFlag = 0
     }
+
 }
