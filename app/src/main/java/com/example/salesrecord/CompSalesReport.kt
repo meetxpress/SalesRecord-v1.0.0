@@ -11,6 +11,9 @@ import kotlinx.android.synthetic.main.activity_comp_sales_report.*
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class CompSalesReport : AppCompatActivity() {
 
@@ -26,8 +29,8 @@ class CompSalesReport : AppCompatActivity() {
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         var comp_id = preference.getString("uname","Wrong").toString()
 
-        //empSalMonth.setText(SimpleDateFormat("M-YYYY").format(Calendar.getInstance().time)).toString()
-        empSalesMonth.setText("03-2020")
+        empSalesMonth.setText(SimpleDateFormat("MM-YYYY").format(Calendar.getInstance().time)).toString()
+        //empSalesMonth.setText("03-2020")
         empSalesMonth.setOnClickListener{
             arrUser.clear()
         }

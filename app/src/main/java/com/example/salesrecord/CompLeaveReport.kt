@@ -11,6 +11,9 @@ import kotlinx.android.synthetic.main.activity_comp_leave_report.*
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class CompLeaveReport : AppCompatActivity() {
     var arrUser = ArrayList<PocoCompLeaveReport>()
@@ -26,8 +29,8 @@ class CompLeaveReport : AppCompatActivity() {
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         var comp_id = preference.getString("uname","Wrong").toString()
 
-        //empSalMonth.setText(SimpleDateFormat("M-YYYY").format(Calendar.getInstance().time)).toString()
-        empLeaveMonth.setText("03-2020")
+        empLeaveMonth.setText(SimpleDateFormat("MM-YYYY").format(Calendar.getInstance().time)).toString()
+        //empLeaveMonth.setText("03-2020")
         empLeaveMonth.setOnClickListener{
             arrUser.clear()
         }

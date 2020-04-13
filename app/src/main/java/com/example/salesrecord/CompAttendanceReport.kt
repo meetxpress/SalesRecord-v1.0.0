@@ -11,6 +11,9 @@ import kotlinx.android.synthetic.main.activity_comp_attendance_report.*
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class CompAttendanceReport : AppCompatActivity() {
     var arrUser = ArrayList<PocoCompAttendanceReport>()
@@ -26,8 +29,8 @@ class CompAttendanceReport : AppCompatActivity() {
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         var comp_id = preference.getString("uname","Wrong").toString()
 
-        //empAttMonth.setText(SimpleDateFormat("M-YYYY").format(Calendar.getInstance().time)).toString()
-        empAttMonth.setText("03-2020")
+        empAttMonth.setText(SimpleDateFormat("MM-YYYY").format(Calendar.getInstance().time)).toString()
+        //empAttMonth.setText("03-2020")
         empAttMonth.setOnClickListener{
             arrUser.clear()
         }

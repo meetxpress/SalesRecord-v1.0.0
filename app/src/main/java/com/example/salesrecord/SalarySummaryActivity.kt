@@ -26,13 +26,13 @@ class SalarySummaryActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
         btnShowTarget.setOnClickListener {
-            //var cmonth= SimpleDateFormat("MM-YYYY").format(date.time)
-            var cmonth="03-2020"
+            var cmonth= SimpleDateFormat("MM-YYYY").format(date.time)
+            //var cmonth="03-2020"
             callService(emp_id, cmonth)
         }
         btnRefreshSal.setOnClickListener {
-            //var smonth= SimpleDateFormat("MM-YYYY").format(date.time)
-            var smonth="03-2020"
+            var smonth= SimpleDateFormat("MM-YYYY").format(date.time)
+            //var smonth="03-2020"
 
             callServiceSalary(emp_id, smonth)
         }

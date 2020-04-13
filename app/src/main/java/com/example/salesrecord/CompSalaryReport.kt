@@ -12,6 +12,9 @@ import okhttp3.*
 import org.json.JSONObject
 import java.io.DataOutputStream
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class CompSalaryReport : AppCompatActivity() {
     var arrUser = ArrayList<PocoCompSalaryReport>()
@@ -27,8 +30,8 @@ class CompSalaryReport : AppCompatActivity() {
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         var comp_id = preference.getString("uname","Wrong").toString()
 
-        //empSalMonth.setText(SimpleDateFormat("M-YYYY").format(Calendar.getInstance().time)).toString()
-        empSalMonth.setText("03-2020")
+        empSalMonth.setText(SimpleDateFormat("MM-YYYY").format(Calendar.getInstance().time)).toString()
+        //empSalMonth.setText("03-2020")
         empSalMonth.setOnClickListener{
             arrUser.clear()
         }

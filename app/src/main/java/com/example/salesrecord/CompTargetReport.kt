@@ -13,6 +13,9 @@ import kotlinx.android.synthetic.main.activity_comp_target_report.*
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class CompTargetReport : AppCompatActivity() {
 
@@ -29,8 +32,8 @@ class CompTargetReport : AppCompatActivity() {
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         var comp_id = preference.getString("uname","Wrong").toString()
 
-        //targetMon.setText(SimpleDateFormat("M-YYYY").format(Calendar.getInstance().time)).toString()
-        targetMon.setText("03-2020")
+        targetMon.setText(SimpleDateFormat("MM-YYYY").format(Calendar.getInstance().time)).toString()
+        //targetMon.setText("03-2020")
 
         targetMon.setOnClickListener{
             arrUser.clear()
