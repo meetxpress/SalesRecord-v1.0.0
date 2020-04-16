@@ -26,14 +26,17 @@ class RoutineTaskActivity : AppCompatActivity() {
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         var emp_id = preference.getString("uname","Wrong").toString()
 
-
         btnRoutineSubmit.setOnClickListener {
-            var rmonth=SimpleDateFormat("MM-YYYY").format(date.time)
-           // var rmonth="03-2020"
-           var rdate=SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().time)
-            //ar rdate="13-03-2020"
-            var rtarget=etRoutineTask.text.toString()
-            callServiceSubmit(emp_id, rmonth, rtarget, rdate)
+            if(etRoutineTask.text.toString() == ""){
+                Toast.makeText(this@RoutineTaskActivity, "Reqiured Fileds are missing.", Toast.LENGTH_LONG).show()
+            }else {
+                var rmonth=SimpleDateFormat("MM-YYYY").format(date.time)
+                // var rmonth="03-2020"
+                var rdate=SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().time)
+                //ar rdate="13-03-2020"
+                var rtarget=etRoutineTask.text.toString()
+                callServiceSubmit(emp_id, rmonth, rtarget, rdate)
+            }
         }
     }
 
