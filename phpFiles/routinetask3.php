@@ -3,7 +3,7 @@
 	if(isset($_POST['emp_id']) && ($_POST['rmonth']) && ($_POST['rtarget']) && ($_POST['rdate'])){
 		
 		/*
-		?emp_id=300001&rmonth=03-2020&rtarget=20&rdate
+		?emp_id=300001&rmonth=04-2020&rtarget=20&rdate:12-04-2020
 		*/
 
 		$emp_id=$_POST['emp_id'];
@@ -85,7 +85,7 @@
 				}				
 			} else {
 				$res["success"] = 0;
-				$res["message"]="Error!!";
+				$res["message"]="Error AA!!";
     
 				echo json_encode($res);
 			}			
@@ -103,7 +103,7 @@
 		$emp_bsal=10000;
 		$emp_inc=500;
 		$emp_inc1=0;
-		$emp_totsal=15000;
+		$emp_totsal=10500;
 		$emp_totsal1=10000;
 		
         $con=mysqli_connect('localhost', 'root' ,'' ,'salesrecord') or die(mysqli_error());

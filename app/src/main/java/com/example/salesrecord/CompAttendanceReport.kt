@@ -38,9 +38,9 @@ class CompAttendanceReport : AppCompatActivity() {
         btnGenCompAttendance.setOnClickListener {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
-            if(empAttMonth.text.toString() == " "){
-                Toast.makeText(this@CompAttendanceReport,"Required Fields are missing.", Toast.LENGTH_SHORT).show()
-            }else{
+            if (empAttMonth.text.toString() == " ") {
+                Toast.makeText(this@CompAttendanceReport, "Required Fields are missing.", Toast.LENGTH_SHORT).show()
+            } else {
                 arrUser.clear()
                 callService(comp_id, empAttMonth.text.toString())
                 adap = ArrayAdapter<PocoCompAttendanceReport>(this@CompAttendanceReport, android.R.layout.simple_list_item_1, arrUser)

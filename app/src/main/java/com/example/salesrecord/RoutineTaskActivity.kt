@@ -28,7 +28,7 @@ class RoutineTaskActivity : AppCompatActivity() {
 
         btnRoutineSubmit.setOnClickListener {
             if(etRoutineTask.text.toString() == ""){
-                Toast.makeText(this@RoutineTaskActivity, "Reqiured Fileds are missing.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@RoutineTaskActivity, "Required Fields are missing.", Toast.LENGTH_LONG).show()
             }else {
                 var rmonth=SimpleDateFormat("MM-YYYY").format(date.time)
                 // var rmonth="03-2020"

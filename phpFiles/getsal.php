@@ -43,7 +43,6 @@
 		
 		$q4=mysqli_query($con,"select emp_bsal,emp_inc,emp_totsal from emp_sal where emp_id='$emp_id' and emp_month='$smonth'");
 		
-		
 		if($q4){
 			$r4 = mysqli_fetch_assoc($q4);
 			

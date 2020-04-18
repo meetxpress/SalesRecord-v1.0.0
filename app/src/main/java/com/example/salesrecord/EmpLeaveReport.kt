@@ -43,7 +43,6 @@ class EmpLeaveReport : AppCompatActivity() {
             imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
             if(leaveDate.text.toString() == " "){
                 Toast.makeText(this@EmpLeaveReport,"Required Fields are missing.", Toast.LENGTH_SHORT).show()
-
             } else{
                 Log.v("yr",leaveDate.text.toString())
                 arrUser.clear()

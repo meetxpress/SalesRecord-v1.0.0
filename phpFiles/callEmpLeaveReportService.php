@@ -5,9 +5,7 @@
         $count0 = 0;
 
         $con = mysqli_connect('localhost', 'root', '', 'salesrecord') or die(mysqli_error());  
-        /*
-         * getting leaveCount from database
-                */
+        /*getting leaveCount from database*/
         $qry0=mysqli_query($con,"select * from leave_management where emp_id = '".$_POST['emp_id']."'");
         if(mysqli_num_rows($qry0) > 0 ){ 
             while($row = mysqli_fetch_assoc($qry0)){
@@ -15,9 +13,7 @@
             }
         }
 
-        /*
-         * getting approved leave from database
-        */
+        /*getting approved leave from database*/
         $qry=mysqli_query($con,"select * from leave_management where emp_id = '".$_POST['emp_id']."' and status='Approved'");
         if(mysqli_num_rows($qry) > 0 ){ 
             //creating json array to store json in array format
@@ -28,8 +24,7 @@
                 $year = substr($mon, 3);
 
                 if($_POST['yr'] == $year){         
-                    $count1++;
-                   
+                    $count1++;                   
                 }
             }
             if($count1 != 0 ){
