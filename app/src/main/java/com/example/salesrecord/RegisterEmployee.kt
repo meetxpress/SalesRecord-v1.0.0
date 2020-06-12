@@ -105,11 +105,9 @@ class RegisterEmployee : AppCompatActivity() {
                     if (checked) {
                         eGen=rb_transgender.text.substring(0,1)
                     }
-
             }
         }
         Toast.makeText(this@RegisterEmployee, eGen, Toast.LENGTH_SHORT).show()
-
     }
 
     fun callSearchsShopService(shop_id:String, comp_id:String){

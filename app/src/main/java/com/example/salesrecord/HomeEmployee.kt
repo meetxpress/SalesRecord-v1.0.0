@@ -65,7 +65,7 @@ class HomeEmployee : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.logout){
-            var per=getSharedPreferences("myPref", Context.MODE_PRIVATE)
+            var per=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
             var edit=per.edit()
             edit.clear()
             edit.commit()

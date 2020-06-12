@@ -59,7 +59,6 @@ class ApplyForLeave : AppCompatActivity() {
             var tDate = DatePickerDialog(this@ApplyForLeave, DatePickerDialog.OnDateSetListener { view1, mYear1, mMonth1, mDay1 ->
                     td = ("$mDay1-$mMonth1-$mYear1")
                     toDate.setText(td).toString()
-
                 }, year1, month1, day1)
 
             tDate.show()

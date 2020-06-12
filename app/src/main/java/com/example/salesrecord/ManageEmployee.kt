@@ -185,6 +185,8 @@ class ManageEmployee : AppCompatActivity() {
                 .add("state", emp_state)
                 .build()
 
+            //Log.v("edit", emp_gen + emp_dob )
+
             var req= Request.Builder()
                 .url("http://192.168.43.215/SalesRecord/updateEmp.php")
                 .post(formBody)
@@ -197,7 +199,7 @@ class ManageEmployee : AppCompatActivity() {
 
                 override fun onResponse(call: Call, response: Response) {
                     response.use {
-                        Log.v("check","abcde");
+                        Log.v("check","abcde")
                         if (!response.isSuccessful) throw IOException("Unexpected code $response")
                         var str=response.body!!.string()
                         Log.v("test",str)
@@ -262,7 +264,7 @@ class ManageEmployee : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.edit){
-            Toast.makeText(this@ManageEmployee,"Enabled Editing",Toast.LENGTH_LONG).show()
+            Toast.makeText(this@ManageEmployee,"Enabled Editing",Toast.LENGTH_SHORT).show()
             enableEdits()
         }
 

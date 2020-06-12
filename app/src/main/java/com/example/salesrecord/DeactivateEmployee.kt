@@ -20,8 +20,12 @@ class DeactivateEmployee : AppCompatActivity() {
         supportActionBar?.setDisplayShowCustomEnabled(true)
 
         btnSearchDeleteEmp.setOnClickListener {
-            var id = etDelEmployee.text.toString();
-            callService(id)
+            if(etDelEmployee.text.toString() == ""){
+                Toast.makeText(this@DeactivateEmployee, "Enter Employee Id please.", Toast.LENGTH_LONG).show()
+            } else{
+                var id = etDelEmployee.text.toString();
+                callService(id)
+            }
         }
     }
 
@@ -55,6 +59,7 @@ class DeactivateEmployee : AppCompatActivity() {
 //                        var comp_id=js.getString("comp_id")
                         var emp_mob1=js.getString("emp_mob1")
                         var emp_address=js.getString("emp_address")
+                        var status=js.getString("emp_status")
 
                         Log.v("res",str)
 
@@ -69,11 +74,14 @@ class DeactivateEmployee : AppCompatActivity() {
                                         "\n\n" +
                                         "\nName: $emp_name " +
                                         "\nPhone No.: $emp_mob1" +
-                                        "\nAddress: $emp_address")
+                                        "\nAddress: $emp_address" +
+                                        "\nStatus: $status" +
+                                        "\n\n" +
+                                        "Are you sure you want to Activate/Deactivate this company?")
 
                                 builder.setPositiveButton(android.R.string.yes) { _, _ ->
                                     runOnUiThread {
-                                        mainService(id)
+                                        mainService(id,status)
                                     }
                                 }
 
@@ -95,12 +103,13 @@ class DeactivateEmployee : AppCompatActivity() {
     }
 
     //for updating the status of company in database
-    fun mainService(id:String){
+    fun mainService(id:String, status:String){
         try{
             var client2:OkHttpClient= OkHttpClient()
 
             var fBody= FormBody.Builder()
-                .add("eid",id)
+                .add("eid", id)
+                .add("status", status)
                 .build()
 
             var req2= Request.Builder()
@@ -131,12 +140,12 @@ class DeactivateEmployee : AppCompatActivity() {
                         if(flag == 1){
                             Log.v("fs", flag.toString())
                             runOnUiThread {
-                                Toast.makeText(this@DeactivateEmployee, message, Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@DeactivateEmployee,"Status changed Successfully!", Toast.LENGTH_LONG).show()
                             }
                         }else{
                             Log.v("ff", flag.toString())
                             runOnUiThread {
-                                Toast.makeText(this@DeactivateEmployee, message, Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@DeactivateEmployee,"An Error Occurred!", Toast.LENGTH_LONG).show()
                             }
                         }
                     }

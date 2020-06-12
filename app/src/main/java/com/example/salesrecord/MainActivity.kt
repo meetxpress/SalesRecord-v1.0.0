@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
                 startActivity(i)
                 finish()
             } else{
-                /* if(str.equals("admin")) { */
                 var ss= str?.substring(0,1)
                 if(str == "999999"){
                     var i=Intent(this@MainActivity,HomeSuperAdmin::class.java)
@@ -44,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                     startActivity(i)
                     finish()
                 }else{
-                    Toast.makeText(this@MainActivity, "Verify your credential.", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(this@MainActivity, "Verify your credential.", Toast.LENGTH_LONG).show()
                 }
             }
         },1000)

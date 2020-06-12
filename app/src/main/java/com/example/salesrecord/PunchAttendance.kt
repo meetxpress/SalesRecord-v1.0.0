@@ -73,11 +73,11 @@ class PunchAttendance : AppCompatActivity() {
                     var stf = SimpleDateFormat("hh:mm")
                     var curTime = stf.format(Date())
                     callServicein(emp_id, p_lat, p_long, tdate, curTime)
-                    //Toast.makeText(this@PunchAttendance, "Authentication1 success", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@PunchAttendance, "Authentication1 success", Toast.LENGTH_SHORT).show()
                 }
                 override fun onAuthenticationFailed() {
                     super.onAuthenticationFailed()
-                    Toast.makeText(this@PunchAttendance, "Authentication1 failed", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@PunchAttendance, "Authentication1 failed", Toast.LENGTH_SHORT).show()
                 }
             }
         )
@@ -106,11 +106,11 @@ class PunchAttendance : AppCompatActivity() {
                     Log.d("p_long",p_long)
                     Log.d("tdate",tdate)
                     Log.d("curTime",curTime)
-                    //Toast.makeText(this@PunchAttendance, "Authentication success", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@PunchAttendance, "Authentication success", Toast.LENGTH_SHORT).show()
                 }
                 override fun onAuthenticationFailed() {
                     super.onAuthenticationFailed()
-                    Toast.makeText(this@PunchAttendance, "Authentication failed", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@PunchAttendance, "Authentication failed", Toast.LENGTH_SHORT).show()
                 }
             }
         )
