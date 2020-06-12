@@ -108,7 +108,7 @@ class ManageEmployee : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.70/SalesRecord/updateEmpbtn.php")
+                .url("http://192.168.43.215/SalesRecord/updateEmpbtn.php")
                 .post(formBody)
                 .build()
 
@@ -186,7 +186,7 @@ class ManageEmployee : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.70/SalesRecord/updateEmp.php")
+                .url("http://192.168.43.215/SalesRecord/updateEmp.php")
                 .post(formBody)
                 .build()
 

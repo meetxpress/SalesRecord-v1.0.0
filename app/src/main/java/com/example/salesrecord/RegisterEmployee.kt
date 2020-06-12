@@ -122,7 +122,7 @@ class RegisterEmployee : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.70/SalesRecord/btnSearchShop.php")
+                .url("http://192.168.43.215/SalesRecord/btnSearchShop.php")
                 .post(formBody)
                 .build()
 
@@ -211,7 +211,7 @@ class RegisterEmployee : AppCompatActivity() {
                 Log.v("eStatus",eStatus)*/
 
             var request=Request.Builder()
-                .url("http://192.168.43.70/SalesRecord/addEmployee.php")
+                .url("http://192.168.43.215/SalesRecord/addEmployee.php")
                 .post(formBody)
                 .build()
 

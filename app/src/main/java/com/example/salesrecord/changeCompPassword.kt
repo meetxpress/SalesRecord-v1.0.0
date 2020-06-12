@@ -52,7 +52,7 @@ class changeCompPassword : AppCompatActivity() {
                 .build()
 
             var request = Request.Builder()
-                .url("http://192.168.43.70/SalesRecord/changeCompPassword.php")
+                .url("http://192.168.43.215/SalesRecord/changeCompPassword.php")
                 .post(formBody)
                 .build()
 

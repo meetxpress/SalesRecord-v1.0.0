@@ -47,7 +47,7 @@ class ViewLeaveResponse : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.70/SalesRecord/view_leave_responses.php")
+                .url("http://192.168.43.215/SalesRecord/view_leave_responses.php")
                 .post(formBody)
                 .build()
 

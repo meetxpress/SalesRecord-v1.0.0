@@ -29,8 +29,8 @@ class EmpLeaveReport : AppCompatActivity() {
         var preference=getSharedPreferences("MyPref", Context.MODE_PRIVATE)
         var emp_id = preference.getString("uname","Wrong").toString()
 
-        //leaveDate.setText(SimpleDateFormat("MM-YYYY").format(Calendar.getInstance().time)).toString()
-        leaveDate.setText("03-2020")
+        leaveDate.setText(SimpleDateFormat("MM-YYYY").format(Calendar.getInstance().time)).toString()
+        //leaveDate.setText("03-2020")
         Log.v("id", emp_id)
 
         leaveDate.setOnClickListener{
@@ -64,7 +64,7 @@ class EmpLeaveReport : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.70/SalesRecord/callEmpLeaveReportService.php")
+                .url("http://192.168.43.215/SalesRecord/callEmpLeaveReportService.php")
                 .post(formBody)
                 .build()
 

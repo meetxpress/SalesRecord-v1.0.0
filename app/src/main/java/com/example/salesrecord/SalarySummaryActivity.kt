@@ -48,7 +48,7 @@ class SalarySummaryActivity : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.70/SalesRecord/fetchtarget1.php")
+                .url("http://192.168.43.215/SalesRecord/fetchtarget1.php")
                 .post(formBody)
                 .build()
 
@@ -99,7 +99,7 @@ class SalarySummaryActivity : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.70/SalesRecord/getsal.php")
+                .url("http://192.168.43.215/SalesRecord/getsal.php")
                 .post(formBody)
                 .build()
 
