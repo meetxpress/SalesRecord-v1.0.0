@@ -34,7 +34,7 @@ class DeactivateCompany : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.215/SalesRecord/btndeactivateComp.php")
+                .url("http://192.168.43.70/SalesRecord/btndeactivateComp.php")
                 .post(formBody)
                 .build()
 
@@ -115,7 +115,7 @@ class DeactivateCompany : AppCompatActivity() {
                 .build()
 
             var req2= Request.Builder()
-                .url("http://192.168.43.215/SalesRecord/deactivateComp.php")
+                .url("http://192.168.43.70/SalesRecord/deactivateComp.php")
                 .post(fBody)
                 .build()
 

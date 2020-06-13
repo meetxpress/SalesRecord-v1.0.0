@@ -61,7 +61,7 @@ class CompSalesReport : AppCompatActivity() {
             Log.v("yr",yr)
 
             var req= Request.Builder()
-                .url("http://192.168.43.215/SalesRecord/callCompSalesService.php")
+                .url("http://192.168.43.70/SalesRecord/callCompSalesService.php")
                 .post(formBody)
                 .build()
 

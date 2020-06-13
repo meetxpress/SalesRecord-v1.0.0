@@ -66,7 +66,7 @@ class EmpAttendanceReport : AppCompatActivity() {
                 .build()
 
             var req= Request.Builder()
-                .url("http://192.168.43.215/SalesRecord/callEmpAttendanceReportService.php")
+                .url("http://192.168.43.70/SalesRecord/callEmpAttendanceReportService.php")
                 .post(formBody)
                 .build()
 

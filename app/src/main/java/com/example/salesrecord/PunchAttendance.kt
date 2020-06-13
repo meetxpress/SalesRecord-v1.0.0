@@ -50,7 +50,7 @@ class PunchAttendance : AppCompatActivity() {
             // Request location updates
             locationManager?.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, locationListener)
         } catch(ex: SecurityException) {
-            Log.d("myTag", "Security Exception, no location available")
+            Log.d("MyTag", "Security Exception, no location available")
         }
 
 
@@ -157,7 +157,7 @@ class PunchAttendance : AppCompatActivity() {
 
 
             var req = Request.Builder()
-                .url("http://192.168.43.215/SalesRecord/punchattendancein.php")
+                .url("http://192.168.43.70/SalesRecord/punchattendancein.php")
                 .post(formBody)
                 .build()
 
@@ -217,7 +217,7 @@ class PunchAttendance : AppCompatActivity() {
                 .build()
 
             var req = Request.Builder()
-                .url("http://192.168.43.215/SalesRecord/punchattendanceout.php")
+                .url("http://192.168.43.70/SalesRecord/punchattendanceout.php")
                 .post(formBody)
                 .build()
 

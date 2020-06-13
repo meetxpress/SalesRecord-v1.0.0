@@ -76,7 +76,7 @@ class ViewLeaves : AppCompatActivity() {
                 .build()
 
             val request = Request.Builder()
-            .url("http://192.168.43.215/SalesRecord/view_leaves.php")
+            .url("http://192.168.43.70/SalesRecord/view_leaves.php")
                 .post(formBody)
                 .build()
 
@@ -138,7 +138,7 @@ class ViewLeaves : AppCompatActivity() {
                 .build()
 
             val request = Request.Builder()
-                .url("http://192.168.43.215/SalesRecord/approve_leaves.php")
+                .url("http://192.168.43.70/SalesRecord/approve_leaves.php")
                 .post(formBody)
                 .build()
 

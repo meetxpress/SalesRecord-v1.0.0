@@ -111,7 +111,7 @@ class ApplyForLeave : AppCompatActivity() {
                 .build()
 
             var request= Request.Builder()
-                .url("http://192.168.43.215/SalesRecord/apply_leave.php")
+                .url("http://192.168.43.70/SalesRecord/apply_leave.php")
                 .post(formBody)
                 .build()
 
